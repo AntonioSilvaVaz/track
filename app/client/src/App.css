@@ -12,6 +12,11 @@
 }
 
 .App .LeftBar{
-  /* grid-column: 1 / 1 span; */
+  grid-column: 1 / 1 span;
   grid-row: 12 span;
+}
+
+.App .Flow{
+  grid-column: 2 / 11 fr;
+  grid-row: 11 span;
 }

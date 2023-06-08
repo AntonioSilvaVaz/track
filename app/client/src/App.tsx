@@ -7,15 +7,18 @@ function App() {
   return (
     <div className='App'>
 
-      <div className="TopBar">
+      <div className='TopBar'>
         <TopBar totalNodes={0} />
       </div>
 
-      <div className="LeftBar">
+      <div className='LeftBar'>
         <LeftBar />
       </div>
 
-      {/* <Flow /> */}
+      <div className='Flow'>
+        <Flow />
+      </div>
+
     </div>
   );
 }
