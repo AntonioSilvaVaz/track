@@ -1,0 +1,43 @@
+/* OVERWRITING DEFAULT STYLES */
+/* https://reactflow.dev/docs/guides/theming/#overwrite-default-styles */
+
+.selectable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom left, #FC7171, #FF4747);
+  border-radius: 15px;
+  width: 120px;
+  height: 70px;
+  color: white;
+  border: 0;
+}
+
+.selectable:hover{
+  cursor: move;
+}
+
+.react-flow__handle {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(to bottom left, #FC7171, #FF4747);
+  border-radius: 100%;
+}
+
+.react-flow__handle-top {
+  top: -20px;
+}
+
+.react-flow__handle-bottom {
+  bottom: -20px;
+}
+
+path {
+  stroke: #FF6D59;
+  stroke-opacity: 1;
+  stroke-width: 3px;
+}
+
+path:hover{
+  stroke: black;
+}
