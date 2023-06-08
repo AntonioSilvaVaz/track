@@ -1,6 +1,10 @@
 import './LeftBar.css';
+import { createNewNode } from "../utils/FlowUtils";
 
-function LeftBar() {
+function LeftBar(props: any) {
+
+  const { setNodes } = props;
+
   return (
     <div id="leftbar">
 
@@ -10,7 +14,7 @@ function LeftBar() {
 
 
       <div className='btn-items'>
-        <button>
+        <button onClick={() => createNewNode(setNodes)}>
           <h3>Item</h3>
         </button>
 

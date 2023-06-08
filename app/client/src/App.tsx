@@ -3,7 +3,18 @@ import TopBar from './TopBar/TopBar';
 import LeftBar from './LeftBar/LeftBar';
 import Flow from './Flow/Flow';
 
+import { nodeType } from './types';
+import { getAllitems, connectInitialItems } from './utils/FlowUtils';
+import { useNodesState, useEdgesState } from "reactflow";
+
 function App() {
+
+  const initialNodes: nodeType[] = getAllitems();
+  const initialEdges = connectInitialItems();
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
   return (
     <div className='App'>
 
@@ -12,11 +23,11 @@ function App() {
       </div>
 
       <div className='LeftBar'>
-        <LeftBar />
+        <LeftBar setNodes={setNodes} />
       </div>
 
       <div className='Flow'>
-        <Flow />
+        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} setEdges={setEdges} />
       </div>
 
     </div>
