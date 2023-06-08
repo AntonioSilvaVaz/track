@@ -3,7 +3,7 @@ import TopBar from './TopBar/TopBar';
 import LeftBar from './LeftBar/LeftBar';
 import Flow from './Flow/Flow';
 
-import {nodeType } from './types';
+import { nodeType } from './types';
 import { getAllitems, connectInitialItems } from './utils/FlowUtils';
 import { useNodesState, useEdgesState } from "reactflow";
 import { useState } from 'react';
@@ -30,7 +30,7 @@ function App() {
       </div>
 
       <div className='Flow'>
-        <Flow nodes={nodes} setNodes={setNodes} edges={edges} onNodesChange={onNodesChange} setEdges={setEdges} setCurrentText={setCurrentText} />
+        <Flow nodes={nodes} setNodes={setNodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges} setCurrentText={setCurrentText} />
       </div>
 
     </div>
