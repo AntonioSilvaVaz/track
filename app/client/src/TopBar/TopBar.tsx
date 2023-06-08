@@ -1,9 +1,15 @@
-import { useState } from 'react';
 import './TopBar.css';
+import {changeNodeText} from '../utils/FlowUtils';
 
-function TopBar({ totalNodes }: { totalNodes: number }) {
+function TopBar(props: any) {
 
-  const [currentText, setCurrentText] = useState('');
+  const { totalNodes, currentText, setCurrentText, nodes, setNodes} = props;
+
+  function updateText(e: any) {
+    const value = e.target.value;
+    setCurrentText(value);
+    changeNodeText(value, nodes, setNodes)
+  }
 
   return (
     <div id="topbar">
@@ -15,7 +21,7 @@ function TopBar({ totalNodes }: { totalNodes: number }) {
 
       <div className='details'>
         <label htmlFor="text">text</label>
-        <input type="text" name="text" value={currentText} onChange={(e) => setCurrentText(e.target.value)} />
+        <input type="text" name="text" value={currentText} onChange={updateText} />
       </div>
 
       <h3 className='currentPage'>Track</h3>

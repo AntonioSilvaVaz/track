@@ -2,7 +2,8 @@
 
 import { nodeType, conectItems } from "../types";
 
-let currentID: number = 1;
+let currentNodeID: string = '0';
+let totalNodes: number = 0;
 const extraOptions = {
   targetPosition: 'top',
   sourcePosition: 'bottom'
@@ -19,22 +20,30 @@ export const createNewNode = (setNodes: any) => {
       ...currNodes,
       {
         // by some reason the id needs to be a string
-        id: currentID + '',
+        id: totalNodes + '',
         position: { x: 500, y: 400 },
         data: { label: "yo" }
       }
     ];
     return newNodesArr;
   });
-  return currentID++;
+  return totalNodes++;
+}
+
+export function createLabels(): string[] {
+  const allLabels: any = [];
+  savedItems.forEach((item: any) => {
+    allLabels[Number(item.id) - 1] = item.data.label;
+  })
+  return allLabels
 }
 
 // RETURNS AN ARRAY WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODES
 export function getAllitems(): nodeType[] {
   const endArr: nodeType[] = [];
-  savedItems.forEach((item: { position: { x: number, y: number }, data: { label: string }, id: string }, index: number) => {
-    currentID++;
-    endArr.push({ id: item.id, position: item.position, data: item.data, ...extraOptions })
+  savedItems.forEach((item: { position: { x: number, y: number }, data: { label: string }, id: string }) => {
+    totalNodes++;
+    endArr.push({ id: item.id, position: item.position, data: { label: item.data.label }, ...extraOptions });
   });
   return endArr;
 }
@@ -48,4 +57,25 @@ export function connectInitialItems(): conectItems[] {
     });
   });
   return endArr;
+}
+
+export function handleNodeClick(setCurrentText: any, node: any) {
+  const { data } = node;
+  setCurrentText(data.label);
+  currentNodeID = node.id;
+}
+
+export function changeNodeText(newText: string, nodes: any, setNodes: any) {
+  const newArr = nodes.map((node: any) => {
+    if (node.id === currentNodeID)
+      return {
+        ...node,
+        data: {
+          ...node.data,
+          label: newText,
+        }
+      };
+    return node;
+  })
+  setNodes(newArr);
 }
