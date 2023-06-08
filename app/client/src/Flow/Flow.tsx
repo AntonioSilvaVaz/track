@@ -1,17 +1,9 @@
-import { useCallback } from "react";
-import ReactFlow, { addEdge, Node } from "reactflow";
+import { useCallback, useRef } from "react";
+import ReactFlow, { addEdge} from "reactflow";
+
 import { handleNodeClick } from "../utils/FlowUtils";
 import 'reactflow/dist/style.css';
 import './Flow.css';
-
-interface CustomNodeData {
-  label: string
-}
-
-interface CustomeNode extends Node {
-  id: string,
-  data: CustomNodeData
-}
 
 function Flow(props: any) {
 
@@ -19,7 +11,15 @@ function Flow(props: any) {
 
   // CHECK https://reactflow.dev/docs/quickstart/
 
-  const onConnect = useCallback((params: any) => setEdges((eds: any) => addEdge(params, eds)), [setEdges]);
+  const edgeUpdateSuccessful = useRef(true);
+  const onConnect = useCallback((params: any) => setEdges((edges: any) => addEdge(params, edges)), [setEdges]);
+
+
+  const onDoubleClickEdge = (event: React.MouseEvent) => {
+    console.log(event);
+
+  };
+
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -29,7 +29,9 @@ function Flow(props: any) {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+
         onConnect={onConnect}
+        onDoubleClick={onDoubleClickEdge}
       />
 
     </div>
