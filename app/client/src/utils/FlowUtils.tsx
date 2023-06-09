@@ -31,6 +31,7 @@ export const createNewNode = (setNodes: any) => {
 
 // CREATES A NEW NODE IMAGE
 export const createNewNodeImage = (setNodes: any) => {
+
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
       ...currNodes,
