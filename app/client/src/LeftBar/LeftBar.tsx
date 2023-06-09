@@ -1,5 +1,5 @@
 import './LeftBar.css';
-import { createNewNode } from "../utils/FlowUtils";
+import { createNewNode, createNewNodeImage } from "../utils/FlowUtils";
 
 
 // CHANGE TYPE ANY TO THE SETNODES TYPE
@@ -16,21 +16,15 @@ function LeftBar(props: any) {
       </div>
 
         <div className='btn-items'>
-          <button>
-            <h3>Image</h3>
-          </button>
 
-          <button onClick={() => createNewNode(setNodes)}>
+        <button onClick={() => createNewNode(setNodes)}>
             <h3>Item</h3>
           </button>
 
-          <button>
-            <h3>Text</h3>
+          <button onClick={() => createNewNodeImage(setNodes)}>
+            <h3>Image</h3>
           </button>
 
-          <button>
-            <h3>Favorites</h3>
-          </button>
       </div>
 
 

@@ -8,7 +8,7 @@
   background: linear-gradient(to bottom left, #FC7171, #FF4747);
   border-radius: 15px;
   width: 150px;
-  height: max-content;
+  height: 100px;
   padding: 20px;
   color: white;
   border: 0;
@@ -62,6 +62,44 @@
   width: 100px;
   max-width: 200px;
   height: max-content;
+}
+
+.node_image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  overflow: auto;
+  resize: both;
+  border: 2px solid black;
+}
+
+.node_image_size{
+  width: 80px;
+  height: 20px;
+}
+
+.node_image-top{
+  top: -180px;
+}
+
+.node_image-left{
+  left: -180px;
+}
+
+.node_image-right{
+  right: -180px;
+}
+
+.node_image-bottom{
+  bottom: -180px;
+}
+
+.node_image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /*  */

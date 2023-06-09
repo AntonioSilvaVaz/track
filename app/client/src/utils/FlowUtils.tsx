@@ -5,11 +5,12 @@ import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
 
-const savedItems = [
+const savedItems: nodeType[] = [
   { position: { x: 200, y: 100 }, data: { label: 'id 1' }, conection: ['2'], id: '1' },
   { position: { x: 200, y: 200 }, data: { label: 'id 2' }, conection: [], id: '2' }
 ]
 
+// CREATES A NEW NODE ITEM
 export const createNewNode = (setNodes: any) => {
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
@@ -20,7 +21,26 @@ export const createNewNode = (setNodes: any) => {
         label: totalNodes + '',
         position: { x: 500, y: 400 },
         data: { label: "yo" },
-        type: 'custom',
+        type: 'itemNode',
+      }
+    ];
+    return newNodesArr;
+  });
+  return totalNodes++;
+}
+
+// CREATES A NEW NODE IMAGE
+export const createNewNodeImage = (setNodes: any) => {
+  setNodes((currNodes: nodeType[]) => {
+    const newNodesArr: nodeType[] = [
+      ...currNodes,
+      {
+        // by some reason the id needs to be a string
+        id: totalNodes + '',
+        label: totalNodes + '',
+        position: { x: 500, y: 400 },
+        data: { label: "" },
+        type: 'imageNode',
       }
     ];
     return newNodesArr;
@@ -31,14 +51,14 @@ export const createNewNode = (setNodes: any) => {
 // RETURNS AN ARRAY WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODES
 export function getAllitems(): nodeType[] {
   const endArr: nodeType[] = [];
-  savedItems.forEach((item: { position: { x: number, y: number }, data: { label: string }, id: string }) => {
+  savedItems.forEach((item: nodeType) => {
     totalNodes++;
     endArr.push({
       id: item.id,
       label: item.id,
       position: item.position,
       data: { label: item.data.label },
-      type: 'custom',
+      type: 'itemNode',
     });
   });
   return endArr;
@@ -47,8 +67,8 @@ export function getAllitems(): nodeType[] {
 // RETURNS AN ARRAYS WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODE CONNECTONS
 export function connectInitialItems(): conectItems[] {
   const endArr: conectItems[] = [];
-  savedItems.forEach((item: { id: string, conection: string[] }) => {
-    item.conection.forEach((node: string) => {
+  savedItems.forEach((item: nodeType) => {
+    item.conection && item.conection.forEach((node: string) => {
       endArr.push({
         id: item.id + '-' + node,
         source: item.id,

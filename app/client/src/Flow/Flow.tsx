@@ -2,12 +2,13 @@ import { useCallback } from "react";
 import ReactFlow, { addEdge, ConnectionMode, MarkerType, Edge } from "reactflow";
 
 import SimpleFloatingEdge from './SimpleFloatingEdge';
-import CustomNode from "./ItemNode";
+import ItemNode from "./ItemNode";
+import ImageNode from "./ImageNode";
 
 import 'reactflow/dist/style.css';
 import './Flow.css';
 
-const nodeTypes = { custom: CustomNode };
+const nodeTypes = { itemNode: ItemNode, imageNode: ImageNode };
 const edgeTypes = { floating: SimpleFloatingEdge };
 
 
@@ -31,7 +32,6 @@ function Flow(props: any) {
     <div style={{ width: '100%', height: '100%' }}>
 
       <ReactFlow
-
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
