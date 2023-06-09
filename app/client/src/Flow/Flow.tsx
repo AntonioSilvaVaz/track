@@ -1,30 +1,45 @@
 import { useCallback } from "react";
-import ReactFlow, { addEdge, useNodesState, useEdgesState } from "reactflow";
+import ReactFlow, { addEdge, ConnectionMode, MarkerType, Edge } from "reactflow";
 
-import { handleNodeClick } from "../utils/FlowUtils";
+import SimpleFloatingEdge from './SimpleFloatingEdge';
+import CustomNode from "./ItemNode";
+
 import 'reactflow/dist/style.css';
 import './Flow.css';
 
+const nodeTypes = { custom: CustomNode };
+const edgeTypes = { floating: SimpleFloatingEdge };
+
+
+// DON'T know how to not use any
 function Flow(props: any) {
+  const { nodes, edges, onNodesChange, onEdgesChange, setEdges } = props;
 
-  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setCurrentText } = props;
+  const onConnect = useCallback(
+    (params: any) =>
+      setEdges((eds: Edge[]) =>
+        addEdge({ ...params, type: 'floating', markerEnd: { type: MarkerType.Arrow } }, eds)
+      ),
+    []
+  );
 
-  // CHECK https://reactflow.dev/docs/quickstart/
-
-  const onConnect = useCallback((params: any) => setEdges((eds: any) => addEdge(params, eds)), [setEdges]);
-
+  // CHECK
+  // https://reactflow.dev/docs/quickstart/
+  // https://reactflow.dev/docs/examples/edges/simple-floating-edges/
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
 
       <ReactFlow
-        onNodeClick={(event, node) => handleNodeClick(setCurrentText, node)}
 
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        edgeTypes={edgeTypes}
+        nodeTypes={nodeTypes}
+        connectionMode={ConnectionMode.Loose}
       >
 
       </ReactFlow>

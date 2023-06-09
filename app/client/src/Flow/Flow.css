@@ -1,43 +1,69 @@
 /* OVERWRITING DEFAULT STYLES */
 /* https://reactflow.dev/docs/guides/theming/#overwrite-default-styles */
 
-.selectable{
+.selectable {
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom left, #FC7171, #FF4747);
   border-radius: 15px;
-  width: 120px;
-  height: 70px;
+  width: 150px;
+  height: max-content;
+  padding: 20px;
   color: white;
   border: 0;
 }
 
-.selectable:hover{
+.selectable:hover {
   cursor: move;
 }
 
 .react-flow__handle {
-  width: 15px;
+  width: 50px;
   height: 15px;
-  background: linear-gradient(to bottom left, #FC7171, #FF4747);
-  border-radius: 100%;
+  background: linear-gradient(to bottom left, #fdb8b8, #fba4a4);
+  border-radius: 40px;
 }
 
 .react-flow__handle-top {
-  top: -20px;
+  top: -19px;
 }
 
 .react-flow__handle-bottom {
-  bottom: -20px;
+  visibility: hidden;
+  bottom: -3px;
 }
 
-path {
-  stroke: #FF6D59;
-  stroke-opacity: 1;
-  stroke-width: 3px;
+.react-flow__handle-left {
+  visibility: hidden;
+  left: -5px;
 }
 
-path:hover{
-  stroke: black;
+.react-flow__handle-right {
+  visibility: hidden;
+  right: -5px;
 }
+
+.react-flow__edge-path{
+  stroke: #ffa4c6;
+  stroke-width: 5;
+  fill: none;
+}
+
+.input_text {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  width: 100px;
+  max-width: 200px;
+  height: max-content;
+}
+
+/*  */
+/*  */
+/*  */
