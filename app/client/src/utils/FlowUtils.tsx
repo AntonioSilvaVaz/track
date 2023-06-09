@@ -19,7 +19,7 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
         // by some reason the id needs to be a string
         id: totalNodes + '',
         label: totalNodes + '',
-        position: x && y ? { x, y } : { x: 500, y: 400},
+        position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "yo" },
         type: 'rectNode',
       }
@@ -38,7 +38,7 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
         // by some reason the id needs to be a string
         id: totalNodes + '',
         label: totalNodes + '',
-        position: x && y ? { x, y } : { x: 500, y: 400},
+        position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "yo" },
         type: 'roundNode',
       }
@@ -58,7 +58,7 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
         // by some reason the id needs to be a string
         id: totalNodes + '',
         label: totalNodes + '',
-        position: x && y ? { x, y } : { x: 500, y: 400},
+        position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "" },
         type: 'imageNode',
       }
@@ -101,4 +101,17 @@ export function connectInitialItems(): conectItems[] {
     });
   });
   return endArr;
+}
+
+// FUNCTIONS TO CHANGE TO THE NEW COLOR
+export function changeBoxColor(event: any) {
+  const nodes = document.getElementsByClassName('rect_node');
+  Array.from(nodes).forEach((node) => {
+    if (node === event.currentTarget) {
+      const handleTop = node.getElementsByClassName('handle-top')[0];
+      (handleTop as HTMLElement).style.background = 'linear-gradient(to bottom right, #281919, #1e0707)';
+      (node as HTMLElement).style.background = 'linear-gradient(to bottom right, #281919, #1e0707)';
+    }
+    else return
+  });
 }
