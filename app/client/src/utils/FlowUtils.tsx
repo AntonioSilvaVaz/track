@@ -11,7 +11,7 @@ const savedItems: nodeType[] = [
 ]
 
 // CREATES A NEW NODE ITEM
-export const createNewNode = (setNodes: any) => {
+export const createNewNode = (setNodes: any, x?: number, y?: number) => {
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
       ...currNodes,
@@ -19,7 +19,7 @@ export const createNewNode = (setNodes: any) => {
         // by some reason the id needs to be a string
         id: totalNodes + '',
         label: totalNodes + '',
-        position: { x: 500, y: 400 },
+        position: x && y ? { x, y } : { x: 500, y: 400},
         data: { label: "yo" },
         type: 'itemNode',
       }
@@ -30,7 +30,7 @@ export const createNewNode = (setNodes: any) => {
 }
 
 // CREATES A NEW NODE IMAGE
-export const createNewNodeImage = (setNodes: any) => {
+export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
@@ -39,7 +39,7 @@ export const createNewNodeImage = (setNodes: any) => {
         // by some reason the id needs to be a string
         id: totalNodes + '',
         label: totalNodes + '',
-        position: { x: 500, y: 400 },
+        position: x && y ? { x, y } : { x: 500, y: 400},
         data: { label: "" },
         type: 'imageNode',
       }

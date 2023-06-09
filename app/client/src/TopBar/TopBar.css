@@ -13,10 +13,7 @@
   color: white;
 }
 
-#topbar button {
-  width: 100px;
-  height: 40px;
-  background-color: rgba(252, 169, 169, 0.468);
-  border: 0;
-  color: #3a0202;
+#topbar .currentPage {
+  position: absolute;
+  right: 30px;
 }

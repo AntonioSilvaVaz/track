@@ -1,11 +1,12 @@
 import{ ChangeEvent, memo, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
+import mockImage from '../images/cat.jpg';
 
 // CUSTOM IMAGE NODE
 
 export default memo(() => {
 
-  const [imgPath, setImagePath] = useState<string>('../images/lightMode1.jpg');
+  const [imgPath, setImagePath] = useState<string>(mockImage);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // THIS 2 FUNCTION WORK AS CHANGEPATH PROMPTS THE USER TO AN INPUT

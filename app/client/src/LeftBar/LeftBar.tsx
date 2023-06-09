@@ -8,6 +8,11 @@ function LeftBar(props: any) {
 
   const { setNodes } = props;
 
+  const handleDrag = (event: any, nodeType: string) => {
+    event.dataTransfer.setData('application/reactflow', nodeType);
+    event.dataTransfer.effectAllowed = 'move';
+  };
+
   return (
     <div id="leftbar">
 
@@ -17,11 +22,11 @@ function LeftBar(props: any) {
 
         <div className='btn-items'>
 
-        <button onClick={() => createNewNode(setNodes)}>
+        <button onDragStart={(event)=> handleDrag(event, 'itemNode')} onClick={() => createNewNode(setNodes)} draggable>
             <h3>Item</h3>
           </button>
 
-          <button onClick={() => createNewNodeImage(setNodes)}>
+          <button onDragStart={(event)=> handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
             <h3>Image</h3>
           </button>
 

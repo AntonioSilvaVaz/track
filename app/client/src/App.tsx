@@ -19,15 +19,15 @@ function App() {
     <div className='App'>
 
       <div className='TopBar'>
-        <TopBar totalNodes={0} />
+        <TopBar />
       </div>
 
       <div className='LeftBar'>
-        <LeftBar setNodes={setNodes} />
+        <LeftBar setNodes={setNodes}/>
       </div>
 
       <div className='Flow'>
-        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges} />
+        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges}  setNodes={setNodes} />
       </div>
 
     </div>
