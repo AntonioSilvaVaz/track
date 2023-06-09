@@ -1,23 +1,23 @@
 #leftbar {
-  width: max-content;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to bottom right, #f68686 30%, #FE7575 40%, #FF9595);
+  background: #f2f2f2;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
 #leftbar .dashboard {
-  width: max-content;
-  height: 50px;
+  width: 100%;
+  height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(30deg, #FE3A3A, #FF4F4F);
+  background-color: black;
   color: white;
-  padding: 5px 20px;
-  border-radius: 0 20px 0 0;
+  padding: 0px 20px;
 }
 
 #leftbar .btn-items {
@@ -30,65 +30,93 @@
   gap: 20px;
 }
 
-#leftbar .btn-items .item-btn {
+#leftbar .btn-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100%;
+  gap: 20px;
+}
+
+#leftbar .item-btn{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(to bottom right, #E18574, #F25639);
-  box-shadow: 2px 5px 15px #fc6145;
-  border: none;
-  color: white;
-  font-size: 15px;
-  font-weight: lighter;
+  background-color: #D9D9D9;
+  border: 1px solid #8b8b8b;
 }
 
-#leftbar .btn-items .rectangle{
-  width: max-content;
-  height: 30px;
-  border-radius: 10px;
+#leftbar .rectangle {
+  width: 100px;
+  height: 50px;
+  border-radius: 15px;
 }
 
-#leftbar .btn-items .round{
-  width: 70px;
-  height: 70px;
+#leftbar .circle{
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
 }
 
-#leftbar .export-btn {
-  width: 100%;
+#leftbar .imgDrag{
+  width: 100px;
   height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border: 0;
-  border-radius: 15px 15px 0 0;
-  background: linear-gradient(to right, #FF4747, #FC7171);
-}
-
-#leftbar .btn-items .imgDrag{
-  width: 100%;
-  height: 50px;
-  background-color: transparent;
-  border: transparent;
-  background-image: url("../images/image.png");
-  background-size: contain;
+  background-image: url('../images/image.png');
   background-repeat: no-repeat;
   background-position: 50%;
+  background-size: contain;
+  border: 0;
 }
 
-#color-container{
-  width: 140px;
-  flex-wrap: wrap;
+/* COLOR PICKER */
+
+#leftbar .color-picker{
+  width: 105px;
+  height: max-content;
   display: flex;
-  gap: 0.3px;
   justify-content: center;
   align-items: center;
+  gap: 1px;
+  flex-wrap: wrap;
 }
 
-#color-container .color-box{
-  width: 21%;
+#leftbar .color-box{
+  width: 25px;
+  height: 25px;
+  border: none;
+  box-shadow: -5px 10px 20px rgb(98, 96, 96);
+}
+
+#leftbar .color-horizontal{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+#leftbar .horizontal-colors{
+  width: 10px;
   height: 30px;
+}
+
+/* EXPORT BTN */
+
+#leftbar .img-drag-container{
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+#leftbar .export-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  width: 200px;
+  border-radius: 20px 20px 0 0;
+  border: 0;
+  box-shadow: 10px -10px 20px rgb(139, 137, 137);
 }

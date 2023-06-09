@@ -5,15 +5,10 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 5px 20px;
+  justify-content: end;
   height: 60px;
-  background: linear-gradient(to right, #FE7575, #FF7474, #FF5656);
-  color: white;
-}
-
-#topbar .currentPage {
-  position: absolute;
-  right: 30px;
+  padding: 0 20px;
+  background-color: #f2f2f2;
+  color: black;
+  border-bottom: 1px solid black;
 }

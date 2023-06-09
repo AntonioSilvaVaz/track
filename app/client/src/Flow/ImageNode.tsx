@@ -1,4 +1,4 @@
-import{ ChangeEvent, memo, useRef, useState } from 'react';
+import { ChangeEvent, memo, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import mockImage from '../images/cat.jpg';
 
@@ -30,8 +30,8 @@ export default memo(() => {
 
   return (
     <div className='img_node'>
-      <Handle type="source" className='handle handle-top' position={Position.Top} id="a" />
-      <Handle type="source" className='handle' position={Position.Right} id="b" />
+      <Handle type="source" className='handle  handle-top' position={Position.Top} id="a" />
+      <Handle type="source" className='handle  handle-right' position={Position.Right} id="b" />
       <div className='node_image-container'>
         <img src={imgPath} onDoubleClick={changePath} alt="Not found" />
         <input
@@ -39,8 +39,8 @@ export default memo(() => {
         " style={{ display: 'none' }} onChange={changeFile} ref={fileInputRef}
         />
       </div>
-      <Handle type="source" className='handle' position={Position.Bottom} id="c" />
-      <Handle type="source" className='handle' position={Position.Left} id="d" />
+      <Handle type="source" className='handle  handle-bottom' position={Position.Bottom} id="c" />
+      <Handle type="source" className='handle  handle-left' position={Position.Left} id="d" />
     </div>
   );
 });

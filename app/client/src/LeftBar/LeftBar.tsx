@@ -15,36 +15,38 @@ function LeftBar(props: any) {
   };
 
   return (
-    <div id="leftbar">
+    <div id='leftbar'>
 
-      <div className="dashboard">
+      <div className='dashboard'>
         <h2>Dashboard</h2>
       </div>
 
-      <div className='btn-items'>
+      <div className='btn-container'>
         <button className="item-btn rectangle" onDragStart={(event) => handleDrag(event, 'itemNodeRect')} onClick={() => createNewRectNode(setNodes)} draggable>
           <h3>text</h3>
         </button>
 
-        <button className="item-btn round" onDragStart={(event) => handleDrag(event, 'itemNodeRound')} onClick={() => createNewRoundNode(setNodes)} draggable>
+
+        <button className="item-btn circle" onDragStart={(event) => handleDrag(event, 'itemNodeRound')} onClick={() => createNewRoundNode(setNodes)} draggable>
           <h3>text</h3>
         </button>
 
         <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
         </button>
-      </div>
 
-      <div id='color-container'>
         <ColorPicker />
+
       </div>
 
+      <div className='img-drag-container'>
+        <button className='export-btn'>
+          <h2>Export</h2>
+        </button>
+      </div>
 
-
-      <button className='export-btn'>
-        <h2>Export</h2>
-      </button>
     </div>
   )
+
 }
 
 export default LeftBar;
