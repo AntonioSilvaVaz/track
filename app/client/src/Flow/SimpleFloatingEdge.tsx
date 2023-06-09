@@ -7,9 +7,7 @@ function SimpleFloatingEdge(props: any) {
   const sourceNode = useStore(useCallback((store) => store.nodeInternals.get(source), [source]));
   const targetNode = useStore(useCallback((store) => store.nodeInternals.get(target), [target]));
 
-  if (!sourceNode || !targetNode) {
-    return null;
-  }
+  if (!sourceNode || !targetNode) return null;
 
   const { sx, sy, tx, ty, sourcePos, targetPos } = getEdgeParams(sourceNode, targetNode);
 

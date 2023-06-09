@@ -103,21 +103,9 @@ export function connectInitialItems(): conectItems[] {
   return endArr;
 }
 
-// FUNCTIONS TO CHANGE TO THE NEW COLOR
-export function changeBoxColor(event: any) {
-  const nodes = document.getElementsByClassName('rect_node');
-  Array.from(nodes).forEach((node) => {
-    if (node === event.currentTarget) {
-      const handleTop = node.getElementsByClassName('handle-top')[0];
-      (handleTop as HTMLElement).style.background = 'linear-gradient(to bottom right, #281919, #1e0707)';
-      (node as HTMLElement).style.background = 'linear-gradient(to bottom right, #281919, #1e0707)';
-    }
-    else return
-  });
-}
-
 // FUNCTION TO UPDATE THE DIV COLOR
-export function updateColor(targetDiv: any, color: string) {
+const colors = ['red', 'yellow', 'violet', 'black', 'white', 'blue', 'orange', 'grey', 'brown', 'purple', 'wheat', 'green'];
+export function updateColor(targetDiv: any, color?: string) {
 
   const classes = targetDiv.classList;
   let class_value: any = '';
@@ -127,7 +115,7 @@ export function updateColor(targetDiv: any, color: string) {
     endTargetDiv = targetDiv.parentElement;
     class_value = targetDiv.parentElement.classList[0];
   }
-  else if (classes[0] == 'rect_node' || classes[0] == 'round_node') {
+  else if (classes[0] === 'rect_node' || classes[0] === 'round_node') {
     class_value = classes[0];
     endTargetDiv = targetDiv;
   }
@@ -137,9 +125,10 @@ export function updateColor(targetDiv: any, color: string) {
 
   Array.from(nodes).forEach((node) => {
     if (node === endTargetDiv) {
+      const selectedColor = color ? color : colors[Math.floor(Math.random() * colors.length)];
       const handleTop = node.getElementsByClassName('handle-top')[0];
-      (handleTop as HTMLElement).style.background = color;
-      (node as HTMLElement).style.background = color;
+      (handleTop as HTMLElement).style.background = selectedColor;
+      (node as HTMLElement).style.background = selectedColor;
     }
     else return
   });
