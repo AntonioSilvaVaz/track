@@ -1,5 +1,5 @@
 import './LeftBar.css';
-import { createNewNode, createNewNodeImage } from "../utils/FlowUtils";
+import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
 
 
 // CHANGE TYPE ANY TO THE SETNODES TYPE
@@ -20,15 +20,18 @@ function LeftBar(props: any) {
         <h2>Dashboard</h2>
       </div>
 
-        <div className='btn-items'>
+      <div className='btn-items'>
 
-        <button onDragStart={(event)=> handleDrag(event, 'itemNode')} onClick={() => createNewNode(setNodes)} draggable>
-            <h3>Item</h3>
-          </button>
+        <button className="item-btn rectangle" onDragStart={(event) => handleDrag(event, 'itemNodeRect')} onClick={() => createNewRectNode(setNodes)} draggable>
+          <h3>text</h3>
+        </button>
 
-          <button onDragStart={(event)=> handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
-            <h3>Image</h3>
-          </button>
+        <button className="item-btn round" onDragStart={(event) => handleDrag(event, 'itemNodeRound')} onClick={() => createNewRoundNode(setNodes)} draggable>
+          <h3>text</h3>
+        </button>
+
+        <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
+        </button>
 
       </div>
 

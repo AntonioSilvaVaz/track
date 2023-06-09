@@ -29,18 +29,18 @@ export default memo(() => {
 
 
   return (
-    <div>
-      <Handle type="source" className='node_image_size node_image-top' position={Position.Top} id="a" />
-      <Handle type="source" className='node_image_size node_image-left' position={Position.Right} id="b" />
+    <div className='img_node'>
+      <Handle type="source" className='handle handle-top' position={Position.Top} id="a" />
+      <Handle type="source" className='handle' position={Position.Right} id="b" />
       <div className='node_image-container'>
-        <img src={imgPath} onDoubleClick={changePath} alt="Not found" className={'node_image '} />
+        <img src={imgPath} onDoubleClick={changePath} alt="Not found" />
         <input
           type="file" accept="image/jpeg image/png image/gif
         " style={{ display: 'none' }} onChange={changeFile} ref={fileInputRef}
         />
       </div>
-      <Handle type="source" className='node_image_size node_image-right' position={Position.Bottom} id="c" />
-      <Handle type="source" className='node_image_size node_image-bottom' position={Position.Left} id="d" />
+      <Handle type="source" className='handle' position={Position.Bottom} id="c" />
+      <Handle type="source" className='handle' position={Position.Left} id="d" />
     </div>
   );
 });

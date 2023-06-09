@@ -10,8 +10,8 @@ const savedItems: nodeType[] = [
   { position: { x: 200, y: 200 }, data: { label: 'id 2' }, conection: [], id: '2' }
 ]
 
-// CREATES A NEW NODE ITEM
-export const createNewNode = (setNodes: any, x?: number, y?: number) => {
+// CREATES A NEW RECTANGLE NODE ITEM
+export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
       ...currNodes,
@@ -21,7 +21,26 @@ export const createNewNode = (setNodes: any, x?: number, y?: number) => {
         label: totalNodes + '',
         position: x && y ? { x, y } : { x: 500, y: 400},
         data: { label: "yo" },
-        type: 'itemNode',
+        type: 'rectNode',
+      }
+    ];
+    return newNodesArr;
+  });
+  return totalNodes++;
+}
+
+// CREATES A NEW ROUND NODE ITEM
+export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
+  setNodes((currNodes: nodeType[]) => {
+    const newNodesArr: nodeType[] = [
+      ...currNodes,
+      {
+        // by some reason the id needs to be a string
+        id: totalNodes + '',
+        label: totalNodes + '',
+        position: x && y ? { x, y } : { x: 500, y: 400},
+        data: { label: "yo" },
+        type: 'roundNode',
       }
     ];
     return newNodesArr;
@@ -59,7 +78,7 @@ export function getAllitems(): nodeType[] {
       label: item.id,
       position: item.position,
       data: { label: item.data.label },
-      type: 'itemNode',
+      type: 'rectNode',
     });
   });
   return endArr;

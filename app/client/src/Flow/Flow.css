@@ -1,53 +1,8 @@
 /* OVERWRITING DEFAULT STYLES */
 /* https://reactflow.dev/docs/guides/theming/#overwrite-default-styles */
 
-.selectable {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to bottom left, #FC7171, #FF4747);
-  border-radius: 15px;
-  width: 150px;
-  height: 100px;
-  padding: 20px;
-  color: white;
-  border: 0;
-}
-
 .selectable:hover {
   cursor: move;
-}
-
-.react-flow__handle {
-  width: 50px;
-  height: 15px;
-  background: linear-gradient(to bottom left, #fdb8b8, #fba4a4);
-  border-radius: 40px;
-}
-
-.react-flow__handle-top {
-  top: -19px;
-}
-
-.react-flow__handle-bottom {
-  visibility: hidden;
-  bottom: -3px;
-}
-
-.react-flow__handle-left {
-  visibility: hidden;
-  left: -5px;
-}
-
-.react-flow__handle-right {
-  visibility: hidden;
-  right: -5px;
-}
-
-.react-flow__edge-path{
-  stroke: #ffa4c6;
-  stroke-width: 5;
-  fill: none;
 }
 
 .input_text {
@@ -64,7 +19,59 @@
   height: max-content;
 }
 
-.node_image-container{
+/* RECT NODE */
+
+.rect_node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #FC7171, #FF4747);
+  border-radius: 15px;
+  width: 140px;
+  height: 50px;
+  padding: 20px 10px;
+  color: white;
+  border: 0;
+}
+
+.handle {
+  width: 80px;
+  height: 20px;
+  border-radius: 5px;
+  z-index: -1;
+  visibility: hidden;
+  background: linear-gradient(to right, #FC7171, #FF4747);
+}
+
+.handle-top {
+  visibility: visible;
+  margin-top: -20px;
+}
+
+.react-flow__edge-path,
+.react-flow__connection-path {
+  stroke: #ff5fa8;
+  stroke-width: 4;
+}
+
+/* ROUND NODE */
+
+.round_node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom left, #FC7171, #FF4747);
+  border-radius: 100%;
+  width: 160px;
+  height: 140px;
+  /* padding: 20px 10px; */
+  color: white;
+  border: 0;
+}
+
+/* IMAGE NODE */
+
+.img_node {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,28 +82,7 @@
   border: 2px solid black;
 }
 
-.node_image_size{
-  width: 80px;
-  height: 20px;
-}
-
-.node_image-top{
-  top: -180px;
-}
-
-.node_image-left{
-  left: -180px;
-}
-
-.node_image-right{
-  right: -180px;
-}
-
-.node_image-bottom{
-  bottom: -180px;
-}
-
-.node_image{
+.img_node img{
   width: 100%;
   height: 100%;
   object-fit: cover;
