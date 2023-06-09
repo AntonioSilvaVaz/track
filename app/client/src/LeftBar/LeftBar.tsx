@@ -34,7 +34,7 @@ function LeftBar(props: any) {
         <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
         </button>
 
-        <ColorPicker />
+        <ColorPicker  />
 
       </div>
 

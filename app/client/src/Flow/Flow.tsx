@@ -40,8 +40,8 @@ function Flow(props: any) {
 
   const onDrop = useCallback(
     (event: any) => {
-
       event.preventDefault();
+
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const type = event.dataTransfer.getData('application/reactflow');
       const targetDiv = event.target;
@@ -57,7 +57,6 @@ function Flow(props: any) {
     },
     [reactFlowInstance]
   );
-
 
 
   // CHECK
