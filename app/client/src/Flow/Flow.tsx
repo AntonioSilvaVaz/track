@@ -9,10 +9,10 @@ import ImageNode from "./ImageNode";
 
 import 'reactflow/dist/style.css';
 import './Flow.css';
-import { createNewRectNode, createNewRoundNode, createNewNodeImage } from "../utils/FlowUtils";
+import { createNewRectNode, createNewRoundNode, createNewNodeImage, updateColor } from "../utils/FlowUtils";
 
 // USED FOR THE CUSTOM NODES AND EDGES
-const nodeTypes = { rectNode: RectItemNode, roundNode: RoundItemNode ,imageNode: ImageNode };
+const nodeTypes = { rectNode: RectItemNode, roundNode: RoundItemNode, imageNode: ImageNode };
 const edgeTypes = { floating: SimpleFloatingEdge };
 
 // DON'T know how to not use any
@@ -35,28 +35,25 @@ function Flow(props: any) {
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
-    event.dataTransfer.dropEffect = 'move'
+    event.dataTransfer.dropEffect = 'move';
   }, []);
 
   const onDrop = useCallback(
     (event: any) => {
-      event.preventDefault();
 
+      event.preventDefault();
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const type = event.dataTransfer.getData('application/reactflow');
+      const targetDiv = event.target;
 
       const y = event.clientY - reactFlowBounds.top;
       const x = event.clientX - reactFlowBounds.left;
 
-      if (type === 'itemNodeRect') {
-        createNewRectNode(setNodes, x, y)
-      } else if (type === 'itemNodeRound') {
-        createNewRoundNode(setNodes, x, y)
-      } else if (type === 'imageNode') {
-        createNewNodeImage(setNodes, x, y)
-      } else {
-        return;
-      }
+      if (type === 'itemNodeRect') createNewRectNode(setNodes, x, y)
+      else if (type === 'itemNodeRound') createNewRoundNode(setNodes, x, y)
+      else if (type === 'imageNode') createNewNodeImage(setNodes, x, y)
+      else if (type !== '') updateColor(targetDiv, type);
+      else return;
     },
     [reactFlowInstance]
   );

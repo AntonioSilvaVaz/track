@@ -1,5 +1,6 @@
 import './LeftBar.css';
 import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
+import ColorPicker from './ColorPicker';
 
 
 // CHANGE TYPE ANY TO THE SETNODES TYPE
@@ -21,7 +22,6 @@ function LeftBar(props: any) {
       </div>
 
       <div className='btn-items'>
-
         <button className="item-btn rectangle" onDragStart={(event) => handleDrag(event, 'itemNodeRect')} onClick={() => createNewRectNode(setNodes)} draggable>
           <h3>text</h3>
         </button>
@@ -32,7 +32,10 @@ function LeftBar(props: any) {
 
         <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
         </button>
+      </div>
 
+      <div id='color-container'>
+        <ColorPicker />
       </div>
 
 
@@ -40,7 +43,6 @@ function LeftBar(props: any) {
       <button className='export-btn'>
         <h2>Export</h2>
       </button>
-
     </div>
   )
 }

@@ -115,3 +115,32 @@ export function changeBoxColor(event: any) {
     else return
   });
 }
+
+// FUNCTION TO UPDATE THE DIV COLOR
+export function updateColor(targetDiv: any, color: string) {
+
+  const classes = targetDiv.classList;
+  let class_value: any = '';
+  let endTargetDiv: any = '';
+
+  if (classes[1] === 'input_text') {
+    endTargetDiv = targetDiv.parentElement;
+    class_value = targetDiv.parentElement.classList[0];
+  }
+  else if (classes[0] == 'rect_node' || classes[0] == 'round_node') {
+    class_value = classes[0];
+    endTargetDiv = targetDiv;
+  }
+  else return;
+
+  const nodes = document.getElementsByClassName(class_value);
+
+  Array.from(nodes).forEach((node) => {
+    if (node === endTargetDiv) {
+      const handleTop = node.getElementsByClassName('handle-top')[0];
+      (handleTop as HTMLElement).style.background = color;
+      (node as HTMLElement).style.background = color;
+    }
+    else return
+  });
+}

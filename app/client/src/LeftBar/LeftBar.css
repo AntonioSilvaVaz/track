@@ -78,3 +78,17 @@
   background-repeat: no-repeat;
   background-position: 50%;
 }
+
+#color-container{
+  width: 140px;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 0.3px;
+  justify-content: center;
+  align-items: center;
+}
+
+#color-container .color-box{
+  width: 21%;
+  height: 30px;
+}
