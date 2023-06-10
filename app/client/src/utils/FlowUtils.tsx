@@ -5,6 +5,8 @@ import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
 
+const currentTexts: { id: number, text: string }[] = [{ id: 0, text: 'text' }];
+
 const savedItems: nodeType[] = []
 
 // CREATES A NEW RECTANGLE NODE ITEM
@@ -71,20 +73,24 @@ export function giveInitialItems(arr: any) {
   const endArr: nodeType[] = [];
 
   data.forEach((item: any, index: number) => {
-    if(index === data.length - 1) totalNodes = Number(item.id+1);
+    if (index === data.length - 1) totalNodes = Number(item.id + 1);
+
+    currentTexts.push({id: item.id, text: item.text});
 
     endArr.push({
       id: item.id,
       label: item.id,
       position: { x: item.positionX, y: item.positionY },
-      data: { label: item.text },
+      data: {
+        label: item.text,
+      },
       type: item.type,
       style: {
         color: item.text_color,
         backgroundColor: item.background_color
-      }
-      // SET BG COLOR
+      },
     });
+
   });
 
   return endArr;
@@ -107,4 +113,12 @@ export function connectInitialItems(): conectItems[] {
   //   });
   // });
   return endArr;
+}
+
+// CHANGES THE TEXT THE THE TEXT THAT WAS SAVED
+export function findMyText(node: Element) {
+  const parentNode: any = node.parentNode;
+  const id = parentNode.getAttribute("data-id");
+  const text = currentTexts.filter((item) => item.id === id);
+  return text[0]?.text;
 }

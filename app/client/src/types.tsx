@@ -1,11 +1,12 @@
 export type nodeType = {
   id: string,
   position: { x: number, y: number },
-  data: { label: string },
+  data: {},
   type?: string,
   label?: string,
   conection?: string[],
-  style?: {}
+  style?: {},
+  attributes?: {}
 }
 
 export type conectItems = {

@@ -71,7 +71,7 @@
 
 /* IMAGE NODE */
 
-.img_node, .react-flow__node-img_node {
+.img_node {
   display: flex;
   justify-content: center;
   align-items: center;

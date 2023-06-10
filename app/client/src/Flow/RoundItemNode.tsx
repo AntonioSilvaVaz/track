@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import { getParentColor } from '../utils/ColorUtils';
+import { findMyText } from '../utils/FlowUtils';
 
 // HERE YOU CAN CUSTOMIZE YOUR NODE 'item'
 
@@ -10,8 +11,13 @@ export default memo(() => {
   const thisNode = useRef(null);
 
   useEffect(() => {
-    if (thisNode.current) getParentColor(thisNode.current);
+    if (thisNode.current) {
+      getParentColor(thisNode.current);
+      const textSet = findMyText(thisNode.current);
+      if (textSet) setText(textSet)
+    }
   }, []);
+
 
   return (
     <div className='round_node _node' ref={thisNode}>
