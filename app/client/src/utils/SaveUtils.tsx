@@ -15,14 +15,22 @@ export function saveFile() {
     ...allInfoRectNodes,
     ...allInfoRoundNodes,
     ...allInfoImageNodes
-  ]
+  ];
 
-  console.log(JSON.stringify(endArr));
+  fetch('http://localhost:3001/save', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(endArr),
+  })
+    .then(res => alert('Saved'))
+    .catch(err => alert('Failed Saving'))
 
   return endArr;
 }
 
-function createNode(arrNodes:HTMLCollectionOf<Element>, isImg: boolean): nodeSave[] {
+function createNode(arrNodes: HTMLCollectionOf<Element>, isImg: boolean): nodeSave[] {
 
   const endArr: nodeSave[] = [];
 

@@ -3,16 +3,25 @@ import TopBar from './TopBar/TopBar';
 import LeftBar from './LeftBar/LeftBar';
 import Flow from './Flow/Flow';
 
-import { nodeType, conectItems } from './types';
-import { getAllitems, connectInitialItems } from './utils/FlowUtils';
+import { conectItems } from './types';
+import { connectInitialItems, giveInitialItems } from './utils/FlowUtils';
 import { useNodesState, useEdgesState } from "reactflow";
+import { useEffect } from 'react';
 
 function App() {
 
-  const initialNodes: nodeType[] = getAllitems();
   const initialEdges: conectItems[] = connectInitialItems();
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  useEffect(() => {
+    fetch('http://localhost:3001/info')
+      .then(res => res.json())
+      .then(data => {
+        const init = giveInitialItems(data)
+        setNodes(init);
+      })
+  }, [])
+
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   return (
@@ -23,11 +32,11 @@ function App() {
       </div>
 
       <div className='LeftBar'>
-        <LeftBar setNodes={setNodes}/>
+        <LeftBar setNodes={setNodes} />
       </div>
 
       <div className='Flow'>
-        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges}  setNodes={setNodes} />
+        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges} setNodes={setNodes} />
       </div>
 
     </div>

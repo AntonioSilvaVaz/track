@@ -1,9 +1,10 @@
 const mongoose = require('./connection');
 
 const itemSchema = new mongoose.Schema({
+  id: String,
   background_color: String,
-  positionX: String,
-  positionY: String,
+  positionX: Number,
+  positionY: Number,
   text: String,
   type: String
 });
@@ -20,31 +21,24 @@ async function getInfo() {
 };
 
 // SAVES AN ARRAY AT ITEMS PART OF THE DB COLLECTION
-// THIS DOSEN'T WORK IT DOSEN'T SAVE THE INFORMATION INTO THE DB
-// ONLY THE ARRAY BUT IT SAVES IT WITH NOTHING
 
 async function saveInfo(information) {
 
   const item = information.map(item => ({
+    id: item.id,
     background_color: item.background_color,
     positionX: item.position.x + '',
     positionY: item.position.y + '',
     text: item.text,
-    type: item.text
+    type: item.type
   }));
 
-  const saved = await Save.create({
-    item: [
-      {
-        background_color: 'test',
-        positionX: 'test',
-        positionY: 'test',
-        text: 'test',
-        type: 'test'
-      },
-    ]
-  });
-  return saved;
+  let document = await Save.find({});
+
+  if (document.length > 0) document.items = item;
+  else document = await Save.create({ items: item });
+
+  return document;
 }
 
 module.exports = {

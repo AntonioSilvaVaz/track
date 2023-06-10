@@ -5,10 +5,7 @@ import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
 
-const savedItems: nodeType[] = [
-  // { position: { x: 200, y: 100 }, data: { label: 'id 1' }, conection: ['2'], id: '1' },
-  { position: { x: 200, y: 200 }, data: { label: 'id 2' }, conection: [], id: '2' }
-]
+const savedItems: nodeType[] = []
 
 // CREATES A NEW RECTANGLE NODE ITEM
 export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
@@ -68,37 +65,39 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
   return totalNodes++;
 }
 
-// RETURNS AN ARRAY WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODES
-export function getAllitems(): nodeType[] {
+export function giveInitialItems(arr: any) {
+  const test = arr[0].items;
   const endArr: nodeType[] = [];
-  savedItems.forEach((item: nodeType) => {
+
+  test.forEach((item: any) => {
     totalNodes++;
     endArr.push({
       id: item.id,
       label: item.id,
-      position: item.position,
-      data: { label: item.data.label },
-      type: 'rectNode',
+      position: { x: item.positionX, y: item.positionY },
+      data: { label: item.text },
+      type: item.type,
     });
   });
+
   return endArr;
 }
 
 // RETURNS AN ARRAYS WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODE CONNECTONS
 export function connectInitialItems(): conectItems[] {
   const endArr: conectItems[] = [];
-  savedItems.forEach((item: nodeType) => {
-    item.conection && item.conection.forEach((node: string) => {
-      endArr.push({
-        id: item.id + '-' + node,
-        source: item.id,
-        target: node,
-        sourceHandle: 'c',
-        targetHandle: 'a',
-        type: 'floating',
-        markerEnd: { type: MarkerType.ArrowClosed },
-      });
-    });
-  });
+  // savedItems.forEach((item: nodeType) => {
+  //   item.conection && item.conection.forEach((node: string) => {
+  //     endArr.push({
+  //       id: item.id + '-' + node,
+  //       source: item.id,
+  //       target: node,
+  //       sourceHandle: 'c',
+  //       targetHandle: 'a',
+  //       type: 'floating',
+  //       markerEnd: { type: MarkerType.ArrowClosed },
+  //     });
+  //   });
+  // });
   return endArr;
 }
