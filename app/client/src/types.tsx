@@ -16,3 +16,10 @@ export type conectItems = {
   targetHandle: string,
   markerEnd: any,
 }
+
+export type nodeSave = {
+  background_color: string,
+  position: { x: number, y: number },
+  text: string,
+  type: string
+}

@@ -1,9 +1,10 @@
+import { saveFile } from '../utils/SaveUtils';
 import './TopBar.css';
 
 function TopBar() {
 
   function saveChanges(event: any) {
-
+    saveFile();
   }
 
   return (

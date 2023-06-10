@@ -6,7 +6,7 @@ import { nodeType, conectItems } from "../types";
 let totalNodes: number = 0;
 
 const savedItems: nodeType[] = [
-  { position: { x: 200, y: 100 }, data: { label: 'id 1' }, conection: ['2'], id: '1' },
+  // { position: { x: 200, y: 100 }, data: { label: 'id 1' }, conection: ['2'], id: '1' },
   { position: { x: 200, y: 200 }, data: { label: 'id 2' }, conection: [], id: '2' }
 ]
 
