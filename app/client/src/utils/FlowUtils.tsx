@@ -18,7 +18,7 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
         label: totalNodes + '',
         position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "yo" },
-        type: 'rectNode',
+        type: 'rect_node',
       }
     ];
     return newNodesArr;
@@ -37,7 +37,7 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
         label: totalNodes + '',
         position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "yo" },
-        type: 'roundNode',
+        type: 'round_node',
       }
     ];
     return newNodesArr;
@@ -57,7 +57,7 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
         label: totalNodes + '',
         position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "" },
-        type: 'imageNode',
+        type: 'image_node',
       }
     ];
     return newNodesArr;
@@ -65,11 +65,12 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
   return totalNodes++;
 }
 
+// GETS AN ARRAY WITH THE INITIAL NODES
 export function giveInitialItems(arr: any) {
-  const test = arr[0].items;
+  const data = arr[0].items;
   const endArr: nodeType[] = [];
 
-  test.forEach((item: any) => {
+  data.forEach((item: any) => {
     totalNodes++;
     endArr.push({
       id: item.id,

@@ -16,7 +16,6 @@ const saveInformation = async (req, res) => {
 const getInformation = async (req, res) => {
 
   const info = await getInfo();
-  console.log(info);
   res.body = JSON.stringify(info);
 
   res.writeHead(200, {

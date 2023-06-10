@@ -6,7 +6,7 @@ import Flow from './Flow/Flow';
 import { conectItems } from './types';
 import { connectInitialItems, giveInitialItems } from './utils/FlowUtils';
 import { useNodesState, useEdgesState } from "reactflow";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -16,13 +16,16 @@ function App() {
     fetch('http://localhost:3001/info')
       .then(res => res.json())
       .then(data => {
-        const init = giveInitialItems(data)
-        setNodes(init);
+        if (data[0]) {
+          const init = giveInitialItems(data)
+          setNodes(init);
+        }
       })
   }, [])
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
 
   return (
     <div className='App'>

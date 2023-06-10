@@ -24,7 +24,7 @@ async function getInfo() {
 
 async function saveInfo(information) {
 
-  const item = information.map(item => ({
+  const items = information.map(item => ({
     id: item.id,
     background_color: item.background_color,
     positionX: item.position.x + '',
@@ -33,10 +33,13 @@ async function saveInfo(information) {
     type: item.type
   }));
 
-  let document = await Save.find({});
+  let document = await Save.findOne({});
 
-  if (document.length > 0) document.items = item;
-  else document = await Save.create({ items: item });
+  if (document) {
+    document.items = items;
+    await document.save();
+  }
+  else document = await Save.create({ items });
 
   return document;
 }

@@ -13,7 +13,7 @@ import { createNewRectNode, createNewRoundNode, createNewNodeImage } from "../ut
 import { updateColor } from "../utils/ColorUtils";
 
 // USED FOR THE CUSTOM NODES AND EDGES
-const nodeTypes = { rectNode: RectItemNode, roundNode: RoundItemNode, imageNode: ImageNode };
+const nodeTypes = { rect_node: RectItemNode, round_node: RoundItemNode, image_node: ImageNode };
 const edgeTypes = { floating: SimpleFloatingEdge };
 
 // DON'T know how to not use any

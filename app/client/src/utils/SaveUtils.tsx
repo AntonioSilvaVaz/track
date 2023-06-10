@@ -17,6 +17,8 @@ export function saveFile() {
     ...allInfoImageNodes
   ];
 
+  console.log(endArr);
+
   fetch('http://localhost:3001/save', {
     method: 'POST',
     headers: {
@@ -43,7 +45,13 @@ function createNode(arrNodes: HTMLCollectionOf<Element>, isImg: boolean): nodeSa
     // node inputchild
     const inputChild = node.getElementsByClassName('input_text')[0];
 
+    // GETS THE ELEMENT ID
+    const child: any = node.childNodes[0];
+    const id: any = child.getAttribute('data-nodeid')
+
+
     const nodeSetting = {
+      id: Number(id + 1) + '',
       background_color: nodeInfo.backgroundColor,
       position: { x: pos.x, y: pos.y },
       text: !isImg ? (inputChild as HTMLInputElement).value : node.querySelector('img')?.currentSrc + '',
