@@ -20,6 +20,9 @@ async function getInfo() {
 };
 
 // SAVES AN ARRAY AT ITEMS PART OF THE DB COLLECTION
+// THIS DOSEN'T WORK IT DOSEN'T SAVE THE INFORMATION INTO THE DB
+// ONLY THE ARRAY BUT IT SAVES IT WITH NOTHING
+
 async function saveInfo(information) {
 
   const item = information.map(item => ({
@@ -29,8 +32,6 @@ async function saveInfo(information) {
     text: item.text,
     type: item.text
   }));
-
-  console.log(item);
 
   const saved = await Save.create({
     item: [
