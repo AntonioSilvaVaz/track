@@ -12,7 +12,7 @@ export function updateColor(targetDiv: any, color: string) {
     endTargetDiv = targetDiv.parentElement;
     class_value = targetDiv.parentElement.classList[0];
   }
-  else if (classes[0] === 'rect_node' && !isHorizontal || classes[0] === 'round_node' && !isHorizontal) {
+  else if ((classes[0] === 'rect_node' && !isHorizontal) || (classes[0] === 'round_node' && !isHorizontal)) {
     class_value = classes[0];
     endTargetDiv = targetDiv;
   }
