@@ -47,11 +47,10 @@ function createNode(arrNodes: HTMLCollectionOf<Element>, isImg: boolean): nodeSa
 
     // GETS THE ELEMENT ID
     const child: any = node.childNodes[0];
-    const id: any = child.getAttribute('data-nodeid')
-
+    const id: number = child.getAttribute('data-nodeid');
 
     const nodeSetting = {
-      id: Number(id + 1) + '',
+      id,
       background_color: nodeInfo.backgroundColor,
       position: { x: pos.x, y: pos.y },
       text: !isImg ? (inputChild as HTMLInputElement).value : node.querySelector('img')?.currentSrc + '',

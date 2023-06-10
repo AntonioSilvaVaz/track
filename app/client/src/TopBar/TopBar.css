@@ -14,10 +14,10 @@
 }
 
 #topbar .save{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-image: url('../images/save.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: 50%;
 }

@@ -10,6 +10,7 @@ const savedItems: nodeType[] = []
 // CREATES A NEW RECTANGLE NODE ITEM
 export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
   setNodes((currNodes: nodeType[]) => {
+    totalNodes++;
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
@@ -23,12 +24,12 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
     ];
     return newNodesArr;
   });
-  return totalNodes++;
 }
 
 // CREATES A NEW ROUND NODE ITEM
 export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
   setNodes((currNodes: nodeType[]) => {
+    totalNodes++
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
@@ -42,13 +43,13 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
     ];
     return newNodesArr;
   });
-  return totalNodes++;
 }
 
 // CREATES A NEW NODE IMAGE
 export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 
   setNodes((currNodes: nodeType[]) => {
+    totalNodes++
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
@@ -62,7 +63,6 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
     ];
     return newNodesArr;
   });
-  return totalNodes++;
 }
 
 // GETS AN ARRAY WITH THE INITIAL NODES
@@ -70,8 +70,9 @@ export function giveInitialItems(arr: any) {
   const data = arr[0].items;
   const endArr: nodeType[] = [];
 
-  data.forEach((item: any) => {
-    totalNodes++;
+  data.forEach((item: any, index: number) => {
+    if(index === data.length - 1) totalNodes = Number(item.id+1);
+
     endArr.push({
       id: item.id,
       label: item.id,
