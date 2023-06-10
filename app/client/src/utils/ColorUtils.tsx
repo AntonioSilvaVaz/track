@@ -1,3 +1,20 @@
+// FUNCTION TO GET THE PARENT DIV COLOR
+export function getParentColor(targetDiv: Element) {
+
+  const parent = targetDiv.parentNode;
+  const input = targetDiv.childNodes;
+
+  const text_color = (parent as HTMLElement).style.color;
+  const bg_color = (parent as HTMLElement).style.backgroundColor;
+
+  (targetDiv as HTMLElement).style.backgroundColor = bg_color;
+  input.forEach((node, index) => {
+    if (index === 2) (node as HTMLElement).style.color = text_color;
+    else (node as HTMLElement).style.backgroundColor = bg_color;
+  })
+
+}
+
 // FUNCTION TO UPDATE THE DIV COLOR
 export function updateColor(targetDiv: any, color: string) {
 
@@ -6,7 +23,6 @@ export function updateColor(targetDiv: any, color: string) {
   let endTargetDiv: any = '';
 
   const isHorizontal = color.match('horizontal');
-
 
   if (classes[1] === 'input_text' && !isHorizontal) {
     endTargetDiv = targetDiv.parentElement;

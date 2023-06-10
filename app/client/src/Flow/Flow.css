@@ -56,14 +56,14 @@
 }
 
 /* RECT NODE */
-.rect_node {
+.rect_node, .react-flow__node-rect_node {
   border-radius: 10px;
   width: 150px;
   height: 70px;
 }
 
 /* ROUND NODE */
-.round_node {
+.round_node, .react-flow__node-round_node {
   border-radius: 100%;
   width:  90px;
   height: 90px;
@@ -71,7 +71,7 @@
 
 /* IMAGE NODE */
 
-.img_node {
+.img_node, .react-flow__node-img_node {
   display: flex;
   justify-content: center;
   align-items: center;

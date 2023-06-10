@@ -2,6 +2,7 @@ const mongoose = require('./connection');
 
 const itemSchema = new mongoose.Schema({
   id: String,
+  text_color: String,
   background_color: String,
   positionX: Number,
   positionY: Number,
@@ -26,6 +27,7 @@ async function saveInfo(information) {
 
   const items = information.map(item => ({
     id: item.id,
+    text_color: item.text_color,
     background_color: item.background_color,
     positionX: item.position.x + '',
     positionY: item.position.y + '',

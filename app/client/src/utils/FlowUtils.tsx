@@ -58,7 +58,7 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
         label: totalNodes + '',
         position: x && y ? { x, y } : { x: 500, y: 400 },
         data: { label: "" },
-        type: 'image_node',
+        type: 'img_node',
       }
     ];
     return newNodesArr;
@@ -79,6 +79,11 @@ export function giveInitialItems(arr: any) {
       position: { x: item.positionX, y: item.positionY },
       data: { label: item.text },
       type: item.type,
+      style: {
+        color: item.text_color,
+        backgroundColor: item.background_color
+      }
+      // SET BG COLOR
     });
   });
 

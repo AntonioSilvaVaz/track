@@ -5,6 +5,7 @@ export type nodeType = {
   type?: string,
   label?: string,
   conection?: string[],
+  style?: {}
 }
 
 export type conectItems = {
