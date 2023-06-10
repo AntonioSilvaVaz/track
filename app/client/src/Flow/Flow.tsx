@@ -9,7 +9,8 @@ import ImageNode from "./ImageNode";
 
 import 'reactflow/dist/style.css';
 import './Flow.css';
-import { createNewRectNode, createNewRoundNode, createNewNodeImage, updateColor } from "../utils/FlowUtils";
+import { createNewRectNode, createNewRoundNode, createNewNodeImage } from "../utils/FlowUtils";
+import { updateColor } from "../utils/ColorUtils";
 
 // USED FOR THE CUSTOM NODES AND EDGES
 const nodeTypes = { rectNode: RectItemNode, roundNode: RoundItemNode, imageNode: ImageNode };

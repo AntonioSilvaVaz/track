@@ -5,10 +5,23 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
   height: 60px;
   padding: 0 20px;
   background-color: #f2f2f2;
   color: black;
   border-bottom: 1px solid black;
+}
+
+#topbar .save{
+  width: 40px;
+  height: 40px;
+  background-image: url('../images/save.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+#topbar .save:hover{
+  cursor: pointer;
 }

@@ -105,10 +105,25 @@
 
 #leftbar .merge-colors{
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+#leftbar input{
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  width: 100px;
+  max-width: 200px;
+  height: max-content;
 }
 
 /* EXPORT BTN */
