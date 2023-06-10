@@ -25,13 +25,14 @@ function App() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [saved, setSaved] = useState('');
 
 
   return (
     <div className='App'>
 
       <div className='TopBar'>
-        <TopBar />
+        <TopBar saved={saved} setSaved={setSaved} />
       </div>
 
       <div className='LeftBar'>

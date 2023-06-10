@@ -17,17 +17,15 @@ export function saveFile() {
     ...allInfoImageNodes
   ];
 
-  fetch('http://localhost:3001/save', {
+
+  return fetch('http://localhost:3001/save', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(endArr),
-  })
-    .then(res => alert('Saved'))
-    .catch(err => alert('Failed Saving'))
+  });
 
-  return endArr;
 }
 
 function createNode(arrNodes: HTMLCollectionOf<Element>, isImg: boolean): nodeSave[] {
