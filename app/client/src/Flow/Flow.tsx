@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ReactFlow, { addEdge, ConnectionMode, MarkerType, Edge } from "reactflow";
 
 import SimpleFloatingEdge from './SimpleFloatingEdge';
@@ -9,7 +9,7 @@ import ImageNode from "./ImageNode";
 
 import 'reactflow/dist/style.css';
 import './Flow.css';
-import { createNewRectNode, createNewRoundNode, createNewNodeImage } from "../utils/FlowUtils";
+import { createNewRectNode, createNewRoundNode, createNewNodeImage, fetchData } from "../utils/FlowUtils";
 import { updateColor } from "../utils/ColorUtils";
 
 // USED FOR THE CUSTOM NODES AND EDGES
@@ -25,6 +25,14 @@ function Flow(props: any) {
   // USED FOR THE DRAG AND DROP
   const reactFlowWrapper: any = useRef(null);
   const [reactFlowInstance, setReactFlowInstance]: [any, any] = useState(null);
+
+  useEffect(() => {
+    if(reactFlowInstance){
+      fetchData(setNodes, setEdges, reactFlowInstance);
+      reactFlowInstance.zoomTo(1, {x: 0, y: 0});
+    }
+  }, [reactFlowInstance]);
+
 
   const onConnect = useCallback(
     (params: any) =>
@@ -42,12 +50,17 @@ function Flow(props: any) {
   const onDrop = useCallback(
     (event: any) => {
       event.preventDefault();
+
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const type = event.dataTransfer.getData('application/reactflow');
       const targetDiv = event.target;
 
-      const y = event.clientY - reactFlowBounds.top;
-      const x = event.clientX - reactFlowBounds.left;
+      console.log(reactFlowBounds.left, reactFlowBounds.top);
+
+      const { x, y } = reactFlowInstance.project({
+        x: event.clientX - reactFlowBounds.left,
+        y: event.clientY - reactFlowBounds.top,
+      });
 
       if (type === 'itemNodeRect') createNewRectNode(setNodes, x, y)
       else if (type === 'itemNodeRound') createNewRoundNode(setNodes, x, y)

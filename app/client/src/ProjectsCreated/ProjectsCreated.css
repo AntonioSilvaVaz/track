@@ -1,0 +1,27 @@
+.project{
+  position: relative;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+}
+
+.project h3{
+  bottom: 0;
+  margin: 0;
+  padding: 10px;
+  width: 90%;
+  height: 20px;
+  color: white;
+  background-color: black;
+  position: absolute;
+}
+
+.project img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

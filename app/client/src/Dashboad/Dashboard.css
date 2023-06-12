@@ -1,0 +1,9 @@
+#dashboard .create-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  width: 200px;
+  border-radius: 20px 20px 0 0;
+  border: 0;
+  box-shadow: 10px -10px 20px rgb(139, 137, 137);
+}

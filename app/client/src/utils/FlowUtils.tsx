@@ -79,11 +79,14 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 }
 
 // GETS AN ARRAY WITH THE INITIAL NODES
-export function giveInitialItems(arr: any) {
-
+export function giveInitialItems(arr: any, reactFlowInstance: any) {
 
   const reactFlowWrapper = document.getElementById('react-flow-wrapper');
   const reactFlowBounds = reactFlowWrapper && reactFlowWrapper.getBoundingClientRect();
+  const flowX = reactFlowBounds && reactFlowBounds.x ? reactFlowBounds.left : 166;
+  const flowY = reactFlowBounds && reactFlowBounds.top ? reactFlowBounds.top : 66;
+
+  console.log(flowX, flowY);
 
   return arr.map((item: any, index: number) => {
     if (index === arr.length - 1) totalNodes = Number(item.id) + 1;
@@ -91,8 +94,10 @@ export function giveInitialItems(arr: any) {
     currentText.push({ id: item.id, text: item.text });
     item.file && currentImages.push({ id: item.id, img: item.file });
 
-    const x = reactFlowBounds && reactFlowBounds.x ? item.positionX - reactFlowBounds.left : '500';
-    const y = reactFlowBounds && reactFlowBounds.y ? item.positionY - reactFlowBounds.top : '500';
+    const {x, y} = reactFlowInstance.project({
+      x: item.positionX - flowX,
+      y: item.positionY - flowY,
+    });
 
     return {
       id: item.id,
@@ -137,4 +142,22 @@ export function findMyImage(node: Element) {
   const id = parentNode.getAttribute("data-id");
   const text = currentImages.filter((item) => item.id === id);
   return text[0]?.img;
+}
+
+export function fetchData (setNodes: any, setEdges: any, reactFlowInstance: any) {
+  fetch(`${process.env.REACT_APP_BASE_URL}/info`)
+  .then(res => res.json())
+  .then(data => {
+    if (data[0]) {
+      try {
+        const nodes = giveInitialItems(data[0].items, reactFlowInstance);
+        const edges = connectInitialItems(data[0].conections);
+        setNodes(nodes);
+        setEdges(edges);
+      } catch (error) {
+        return error;
+      }
+
+    }
+  })
 }

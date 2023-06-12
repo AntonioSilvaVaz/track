@@ -1,0 +1,22 @@
+.InProjects{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.InProjects .TopBar{
+  grid-column: 1 / 11 fr;
+  grid-row: 1;
+}
+
+.InProjects .LeftBar{
+  grid-column: 1 / 1 span;
+  grid-row: 12 span;
+}
+
+.InProjects .Flow{
+  grid-column: 2 / 11 fr;
+  grid-row: 11 span;
+}

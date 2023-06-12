@@ -14,10 +14,6 @@ function LeftBar(props: any) {
   return (
     <div id='leftbar'>
 
-      <div className='dashboard'>
-        <h2>Dashboard</h2>
-      </div>
-
       <div className='btn-container'>
         <button className="item-btn rectangle" onDragStart={(event) => handleDrag(event, 'itemNodeRect')} onClick={() => createNewRectNode(setNodes)} draggable>
           <h3>text</h3>

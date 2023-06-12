@@ -3,7 +3,7 @@ import './TopBar.css';
 
 function TopBar(props: any) {
 
-  const { saved, setSaved, edges } = props;
+  const { title, page, saved, setSaved, edges } = props;
 
   function saveChanges() {
     const text_save = document.getElementById('text-save');
@@ -26,9 +26,12 @@ function TopBar(props: any) {
 
   return (
     <div id="topbar">
+      <div className='dashboard'>
+        <h2>{title}</h2>
+      </div>
       <div className='save' onClick={saveChanges}></div>
       <h3 id='text-save'>{saved}</h3>
-      <h3 className='currentPage'>Track</h3>
+      <h3 className='currentPage'>{page}</h3>
     </div>
   )
 }

@@ -4,3 +4,5 @@ resources/
 # node modules
 node_modules/
 
+#ENV VARIABLES
+.env
