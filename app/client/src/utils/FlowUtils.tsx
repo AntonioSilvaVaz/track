@@ -6,9 +6,9 @@ import { nodeType, conectItems } from "../types";
 let totalNodes: number = 0;
 
 const currentText: { id: number, text: string }[] = [{ id: 0, text: 'text' }];
-export let currentImages: {id: number, img: string}[] = [{id: 0, img: ''}];
+export let currentImages: { id: number, img: string }[] = [];
 
-export function pushToFiles(img: string, id: number){
+export function pushToFiles(img: string, id: number) {
   let itemPlaced = false;
   const newFiles = currentImages.map(item => {
     if (item.id === id) {
@@ -42,7 +42,7 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
 
 // CREATES A NEW ROUND NODE ITEM
 export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
-  totalNodes++
+  totalNodes++;
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
       ...currNodes,
@@ -61,7 +61,7 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
 
 // CREATES A NEW NODE IMAGE
 export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
-  totalNodes++
+  totalNodes++;
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
       ...currNodes,
@@ -81,16 +81,12 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 // GETS AN ARRAY WITH THE INITIAL NODES
 export function giveInitialItems(arr: any) {
 
-  const data = arr[0].items;
-  const endArr: nodeType[] = [];
+  return arr.map((item: any, index: number) => {
+    if (index === arr.length - 1) totalNodes = Number(item.id) + 1;
+    currentText.push({ id: item.id, text: item.text });
+    currentImages.push({ id: item.id, img: item.file })
 
-  data.forEach((item: any, index: number) => {
-    if (index === data.length - 1) totalNodes = Number(item.id + 1);
-
-    currentText.push({ id: item.id, text: item.text});
-    currentImages.push({id: item.id, img: item.file})
-
-    endArr.push({
+    return {
       id: item.id,
       label: item.id,
       position: { x: item.positionX, y: item.positionY },
@@ -102,30 +98,22 @@ export function giveInitialItems(arr: any) {
         color: item.text_color,
         backgroundColor: item.background_color
       },
-    });
-
+    };
   });
-
-  return endArr;
 }
 
 // RETURNS AN ARRAYS WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODE CONNECTONS
-export function connectInitialItems(): conectItems[] {
-  const endArr: conectItems[] = [];
-  // savedItems.forEach((item: nodeType) => {
-  //   item.conection && item.conection.forEach((node: string) => {
-  //     endArr.push({
-  //       id: item.id + '-' + node,
-  //       source: item.id,
-  //       target: node,
-  //       sourceHandle: 'c',
-  //       targetHandle: 'a',
-  //       type: 'floating',
-  //       markerEnd: { type: MarkerType.ArrowClosed },
-  //     });
-  //   });
-  // });
-  return endArr;
+export function connectInitialItems(edges: [{ sourceId: string, targetId: string, sourceHandle: string, targetHandle: string }]): conectItems[] {
+
+  return edges.map(item => ({
+    id: item.sourceId + '-' + item.targetId,
+    source: item.sourceId,
+    target: item.targetId,
+    sourceHandle: item.sourceHandle,
+    targetHandle: item.targetHandle,
+    type: 'floating',
+    markerEnd: { type: MarkerType.ArrowClosed },
+  }));
 }
 
 // CHANGES THE TEXT THE THE TEXT THAT WAS SAVED

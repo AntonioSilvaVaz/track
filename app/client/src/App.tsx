@@ -3,28 +3,27 @@ import TopBar from './TopBar/TopBar';
 import LeftBar from './LeftBar/LeftBar';
 import Flow from './Flow/Flow';
 
-import { conectItems } from './types';
 import { connectInitialItems, giveInitialItems } from './utils/FlowUtils';
 import { useNodesState, useEdgesState } from "reactflow";
 import { useEffect, useState } from 'react';
 
 function App() {
 
-  const initialEdges: conectItems[] = connectInitialItems();
-
   useEffect(() => {
     fetch('http://localhost:3001/info')
       .then(res => res.json())
       .then(data => {
         if (data[0]) {
-          const init = giveInitialItems(data)
-          setNodes(init);
+          const nodes = giveInitialItems(data[0].items);
+          const edges = connectInitialItems(data[0].conections);
+          setNodes(nodes);
+          setEdges(edges);
         }
       })
-  }, [])
+  }, []);
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [saved, setSaved] = useState('');
 
 
@@ -32,7 +31,7 @@ function App() {
     <div className='App'>
 
       <div className='TopBar'>
-        <TopBar saved={saved} setSaved={setSaved} />
+        <TopBar saved={saved} setSaved={setSaved} edges={edges} />
       </div>
 
       <div className='LeftBar'>

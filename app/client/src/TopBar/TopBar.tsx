@@ -3,12 +3,12 @@ import './TopBar.css';
 
 function TopBar(props: any) {
 
-  const { saved, setSaved } = props;
+  const { saved, setSaved, edges } = props;
 
   function saveChanges() {
     const text_save = document.getElementById('text-save');
 
-    saveFile()
+    saveFile(edges)
       .then(res => {
         setSaved('Saved');
         (text_save as HTMLElement).style.color = 'green';

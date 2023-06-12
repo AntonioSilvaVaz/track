@@ -11,8 +11,16 @@ const itemSchema = new mongoose.Schema({
   file: String,
 });
 
+const conectionchema = new mongoose.Schema({
+  sourceId: String,
+  targetId: String,
+  sourceHandle: String,
+  targetHandle: String,
+});
+
 const SaveSchema = new mongoose.Schema({
-  items: [itemSchema]
+  items: [itemSchema],
+  conections: [conectionchema],
 });
 
 const Save = mongoose.model('info', SaveSchema);
@@ -26,24 +34,31 @@ async function getInfo() {
 
 async function saveInfo(information) {
 
-  const items = information.map(item => ({
+  const items = information[0].map(item => ({
     id: item.id,
     text_color: item.text_color,
     background_color: item.background_color,
-    positionX: item.position.x + '',
-    positionY: item.position.y + '',
+    positionX: item.positionX,
+    positionY: item.positionY,
     text: item.text,
     type: item.type,
     file: item.img
+  }));
+
+  const conections = information[1].map(item => ({
+    sourceId: item.sourceId,
+    targetId: item.targetId,
+    sourceHandle: item.sourceHandle,
+    targetHandle: item.targetHandle,
   }));
 
   let document = await Save.findOne({});
 
   if (document) {
     document.items = items;
+    document.conections = conections;
     await document.save();
-  }
-  else document = await Save.create({ items });
+  } else document = await Save.create({ items, conections });
 
   return document;
 }

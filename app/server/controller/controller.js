@@ -4,7 +4,7 @@ const saveInformation = async (req, res) => {
 
   const body = req.body;
   const saved = await saveInfo(body);
-  res.body = JSON.stringify(saved.items);
+  res.body = JSON.stringify(saved);
 
   res.writeHead(200, {
     'Content-Type': 'application/json'

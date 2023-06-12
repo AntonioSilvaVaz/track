@@ -2,21 +2,32 @@ import { ChangeEvent } from "react";
 import { nodeSave } from "../types";
 import { currentImages, pushToFiles } from "./FlowUtils";
 
-export async function saveFile() {
+export async function saveFile(edges: any) {
 
   const allRectNodes = document.getElementsByClassName('rect_node');
   const allRoundNodes = document.getElementsByClassName('round_node');
   const allImageNodes = document.getElementsByClassName('img_node');
-  // const paths = document.getElementsByClassName('react-flow__edge-path');
 
-  const allInfoRectNodes = await createNode(allRectNodes);
-  const allInfoRoundNodes = await createNode(allRoundNodes);
-  const allInfoImageNodes = await createNode(allImageNodes, true);
+  const allInfoRectNodes = createNode(allRectNodes);
+  const allInfoRoundNodes = createNode(allRoundNodes);
+  const allInfoImageNodes = createNode(allImageNodes, true);
+
+  let currentEdges = edges.map((edge: any) => ({
+    sourceId: edge.source,
+    targetId: edge.target,
+    sourceHandle: edge.sourceHandle,
+    targetHandle: edge.tagetHandle
+    }));
 
   const endArr = [
-    ...allInfoRectNodes,
-    ...allInfoRoundNodes,
-    ...allInfoImageNodes
+    [
+      ...allInfoRectNodes,
+      ...allInfoRoundNodes,
+      ...allInfoImageNodes
+    ],
+    [
+      ...currentEdges
+    ]
   ];
 
   return fetch('http://localhost:3001/save', {
@@ -76,7 +87,8 @@ function handleItemNodes(node: any): nodeSave {
     id,
     text_color,
     background_color: nodeInfo.backgroundColor,
-    position: { x: pos.x, y: pos.y },
+    positionX: pos.x,
+    positionY: pos.y,
     text: (inputChild as HTMLInputElement).value,
     type: node.classList[0]
   }
@@ -99,7 +111,8 @@ function handleImageNode(node: Element): nodeSave {
     id: id,
     text_color: '',
     background_color: 'transparent',
-    position: { x: pos.x, y: pos.y },
+    positionX: pos.x,
+    positionY: pos.y,
     text: '',
     type: 'img_node',
     img: imgSelected,
