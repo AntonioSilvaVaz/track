@@ -55,8 +55,6 @@ function Flow(props: any) {
       const type = event.dataTransfer.getData('application/reactflow');
       const targetDiv = event.target;
 
-      console.log(reactFlowBounds.left, reactFlowBounds.top);
-
       const { x, y } = reactFlowInstance.project({
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,

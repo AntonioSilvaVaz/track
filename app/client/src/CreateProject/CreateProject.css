@@ -45,10 +45,11 @@
 }
 
 #CreateProject input{
+  padding: 0 10px;
   width: 250px;
   height: 50px;
 }
 
 #CreateProject .create{
-  width: 250px;
+  width: 200px;
 }

@@ -3,9 +3,9 @@ import DashboardBar from "../DashboardBar/DashboardBar";
 import ProjectsContainer from "../ProjectsContainer/ProjectContainer";
 import "./Dashboard.css";
 import CreateProject from "../CreateProject/CreateProject";
-import { getAllProjects } from "../utils/ProjectUtils";
+import {  getAllProjects } from "../utils/ProjectUtils";
 
-function Dashboard({ setCurrentProjectId, setShowProject, setProjectTitle }: any) {
+function Dashboard({ setCurrentProjectId, setShowProject, setProjectTitle, currentProjectId }: any) {
 
   const [projects, setProjects]: [{ title: string, description: string, id: string }[], any] = useState([]);
   const [showCreateProject, setShowCreateProject]: [boolean, any] = useState(false);

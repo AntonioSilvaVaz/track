@@ -64,9 +64,19 @@ async function saveInfo(information) {
   let document = await Save.findOne({ _id: user_id });
   let project = document.projects.filter((item) => item._id == project_id);
 
-  project[0].items = items;
-  project[0].conections = conections;
-  await document.save();
+  if(project[0]){
+    project[0].items = items;
+    project[0].conections = conections;
+    await document.save();
+  } else {
+    project[0] = {
+      items,
+      conections
+    };
+
+    await document.save();
+  }
+
 
   return document;
 }
@@ -104,10 +114,19 @@ async function saveMockData(mockData) {
   }
 }
 
+async function deleteProj({ project_id, user_id }) {
+  let document = await Save.findOne({ _id: user_id });
+  const allProjects = document.projects;
+  document.projects = allProjects.filter((project) => project._id != project_id);
+  await document.save();
+  return document;
+}
+
 module.exports = {
   getInfo,
   saveInfo,
   saveMockData,
   createProj,
-  getProj
+  getProj,
+  deleteProj
 }
