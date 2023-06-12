@@ -1,6 +1,10 @@
 /* OVERWRITING DEFAULT STYLES */
 /* https://reactflow.dev/docs/guides/theming/#overwrite-default-styles */
 
+.Flow{
+  background-color: white;
+}
+
 .selectable:hover {
   cursor: move;
 }

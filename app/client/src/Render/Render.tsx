@@ -4,7 +4,8 @@ import download from "downloadjs";
 
 
 async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
-  const node = document.getElementById('react-flow-wrapper');
+  const node = document.getElementsByClassName('Flow')[0];
+  const nodeAsHtml = (node as HTMLElement);
 
   if (!node) return;
   try {
@@ -12,13 +13,13 @@ async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
     let end: string;
 
     if (toWhat === 'png') {
-      dataUrl = await toPng(node);
+      dataUrl = await toPng(nodeAsHtml);
       end = 'png';
     } else if (toWhat === 'svg') {
-      dataUrl = await toSvg(node);
+      dataUrl = await toSvg(nodeAsHtml);
       end = 'svg';
     } else if (toWhat === 'jpeg') {
-      dataUrl = await toJpeg(node);
+      dataUrl = await toJpeg(nodeAsHtml);
       end = 'jpeg';
     }
 
