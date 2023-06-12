@@ -81,15 +81,23 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 // GETS AN ARRAY WITH THE INITIAL NODES
 export function giveInitialItems(arr: any) {
 
+
+  const reactFlowWrapper = document.getElementById('react-flow-wrapper');
+  const reactFlowBounds = reactFlowWrapper && reactFlowWrapper.getBoundingClientRect();
+
   return arr.map((item: any, index: number) => {
     if (index === arr.length - 1) totalNodes = Number(item.id) + 1;
+
     currentText.push({ id: item.id, text: item.text });
-    currentImages.push({ id: item.id, img: item.file })
+    item.file && currentImages.push({ id: item.id, img: item.file });
+
+    const x = reactFlowBounds && reactFlowBounds.x ? item.positionX - reactFlowBounds.left : '500';
+    const y = reactFlowBounds && reactFlowBounds.y ? item.positionY - reactFlowBounds.top : '500';
 
     return {
       id: item.id,
       label: item.id,
-      position: { x: item.positionX, y: item.positionY },
+      position: { x, y},
       data: {
         label: item.text,
       },

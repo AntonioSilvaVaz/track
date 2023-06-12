@@ -70,7 +70,7 @@ function createNode(arrNodes: HTMLCollectionOf<Element>, isImgNode?: boolean) {
 }
 
 function handleItemNodes(node: any): nodeSave {
-  // node styles
+
   const nodeInfo = window.getComputedStyle(node);
   // node position
   const pos = node.getBoundingClientRect();
