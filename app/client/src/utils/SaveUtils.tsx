@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import { nodeSave } from "../types";
 import { currentImages, pushToFiles } from "./FlowUtils";
 
-export async function saveFile(edges: any) {
+export async function saveFile(edges: any, currentProjectId: string) {
 
   const allRectNodes = document.getElementsByClassName('rect_node');
   const allRoundNodes = document.getElementsByClassName('round_node');
@@ -27,7 +27,11 @@ export async function saveFile(edges: any) {
     ],
     [
       ...currentEdges
-    ]
+    ],
+    {
+      user_id: "648749d95aeb8afb07c57725",
+      project_id: currentProjectId
+    }
   ];
 
   return fetch('http://localhost:3001/save', {

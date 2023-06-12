@@ -6,11 +6,16 @@ import Dashboard from './Dashboad/Dashboard';
 function App() {
 
   const [showProject, setShowProject] = useState(false);
+  const [currentProjectId, setCurrentProjectId] = useState('');
+  const [title, setProjectTitle] = useState('Track');
 
   return (
     <main className='App'>
 
-      {showProject ? <InProjects /> : <Dashboard />}
+      {showProject ?
+        <InProjects title={title} currentProjectId={currentProjectId} setShowProject={setShowProject} />
+        : <Dashboard setProjectTitle={setProjectTitle} setShowProject={setShowProject} setCurrentProjectId={setCurrentProjectId} />
+      }
 
     </main>
   );

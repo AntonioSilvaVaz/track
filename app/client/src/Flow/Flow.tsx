@@ -27,9 +27,9 @@ function Flow(props: any) {
   const [reactFlowInstance, setReactFlowInstance]: [any, any] = useState(null);
 
   useEffect(() => {
-    if(reactFlowInstance){
-      fetchData(setNodes, setEdges, reactFlowInstance);
-      reactFlowInstance.zoomTo(1, {x: 0, y: 0});
+    if (reactFlowInstance) {
+      fetchData(setNodes, setEdges, reactFlowInstance, "648749d95aeb8afb07c57726");
+      reactFlowInstance.zoomTo(1, { x: 0, y: 0 });
     }
   }, [reactFlowInstance]);
 

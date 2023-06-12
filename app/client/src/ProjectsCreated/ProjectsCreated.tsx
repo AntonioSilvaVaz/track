@@ -1,7 +1,7 @@
 import cat from "../images/cat.jpg";
 import "./ProjectsCreated.css"
 
-function ProjectsCreated({title, description}: any) {
+function ProjectsCreated({ title, description }: any) {
   return (
     <div className="project">
       <img src={cat} alt="Cat" />

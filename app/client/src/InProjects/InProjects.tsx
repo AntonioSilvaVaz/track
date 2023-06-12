@@ -7,7 +7,7 @@ import { useNodesState, useEdgesState } from "reactflow";
 import { useState } from 'react';
 import Render from '../Render/Render';
 
-function InProjects() {
+function InProjects({ currentProjectId, setShowProject, title }: any) {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -21,7 +21,10 @@ function InProjects() {
       {showExport && <Render setShowExport={setShowExport} />}
 
       <nav className='TopBar'>
-        <TopBar title={"Dashboard"} page={"track"} saved={saved} setSaved={setSaved} edges={edges} />
+        <TopBar
+        title={"Dashboard"} page={title} saved={saved} setSaved={setSaved} edges={edges}
+        setShowProject={setShowProject} currentProjectId={currentProjectId}
+        />
       </nav>
 
       <section className='LeftBar'>
@@ -30,8 +33,9 @@ function InProjects() {
 
       <section className='Flow'>
         <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange} setEdges={setEdges} setNodes={setNodes}
-         />
+          onEdgesChange={onEdgesChange} setEdges={setEdges} setNodes={setNodes}
+          currentProjectId={currentProjectId}
+        />
       </section>
 
     </main>

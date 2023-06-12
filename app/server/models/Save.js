@@ -18,11 +18,6 @@ const conectionchema = new mongoose.Schema({
   targetHandle: String,
 });
 
-const infoSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-});
-
 const projectsSchema = new mongoose.Schema({
   title: String,
   description: String,
@@ -76,6 +71,11 @@ async function saveInfo(information) {
   return document;
 }
 
+async function getProj({user_id}) {
+  let document = await Save.findOne({ _id: user_id });
+  return document;
+}
+
 async function createProj(info) {
 
   const { title, description } = info;
@@ -110,5 +110,6 @@ module.exports = {
   getInfo,
   saveInfo,
   saveMockData,
-  createProj
+  createProj,
+  getProj
 }

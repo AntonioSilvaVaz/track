@@ -3,10 +3,20 @@ import "./ProjectContainer.css";
 
 function ProjectContainer(props: any) {
 
-  const { projects } = props;
+  const { projects, setCurrentProjectId, setShowCreateProject, setProjectTitle } = props;
 
-  const allProjects = projects.map((project: {title: string, description: string}) => {
-    return <ProjectCreated title={project.title} description={project.description} />;
+  function loadFlow(title: string, id: string) {
+    setCurrentProjectId(id);
+    setProjectTitle(title);
+    setShowCreateProject(true);
+  }
+
+  const allProjects = projects.map((project: { title: string, description: string, _id: string }, index: number) => {
+    return (
+      <div key={index} onDoubleClick={() => loadFlow(project.title, project._id)}>
+        < ProjectCreated title={project.title} description={project.description} />
+      </div>
+    )
   })
 
   return (

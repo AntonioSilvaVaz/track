@@ -86,15 +86,13 @@ export function giveInitialItems(arr: any, reactFlowInstance: any) {
   const flowX = reactFlowBounds && reactFlowBounds.x ? reactFlowBounds.left : 166;
   const flowY = reactFlowBounds && reactFlowBounds.top ? reactFlowBounds.top : 66;
 
-  console.log(flowX, flowY);
-
   return arr.map((item: any, index: number) => {
     if (index === arr.length - 1) totalNodes = Number(item.id) + 1;
 
     currentText.push({ id: item.id, text: item.text });
     item.file && currentImages.push({ id: item.id, img: item.file });
 
-    const {x, y} = reactFlowInstance.project({
+    const { x, y } = reactFlowInstance.project({
       x: item.positionX - flowX,
       y: item.positionY - flowY,
     });
@@ -102,7 +100,7 @@ export function giveInitialItems(arr: any, reactFlowInstance: any) {
     return {
       id: item.id,
       label: item.id,
-      position: { x, y},
+      position: { x, y },
       data: {
         label: item.text,
       },
@@ -144,20 +142,26 @@ export function findMyImage(node: Element) {
   return text[0]?.img;
 }
 
-export function fetchData (setNodes: any, setEdges: any, reactFlowInstance: any) {
-  fetch(`${process.env.REACT_APP_BASE_URL}/info`)
-  .then(res => res.json())
-  .then(data => {
-    if (data[0]) {
-      try {
-        const nodes = giveInitialItems(data[0].items, reactFlowInstance);
-        const edges = connectInitialItems(data[0].conections);
-        setNodes(nodes);
-        setEdges(edges);
-      } catch (error) {
-        return error;
-      }
-
-    }
+export function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any, project_id: string) {
+  fetch(`${process.env.REACT_APP_BASE_URL}/info`, {
+    method: 'POST',
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ user_id: "648749d95aeb8afb07c57725", project_id }),
   })
+    .then(res => res.json())
+    .then(data => {
+      if (data[0]) {
+        try {
+          const nodes = giveInitialItems(data[0].items, reactFlowInstance);
+          const edges = connectInitialItems(data[0].conections);
+          setNodes(nodes);
+          setEdges(edges);
+        } catch (error) {
+          return error;
+        }
+
+      }
+    })
 }
