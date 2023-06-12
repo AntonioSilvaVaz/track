@@ -11,14 +11,19 @@ import Render from './Render/Render';
 function App() {
 
   useEffect(() => {
-    fetch('http://localhost:3001/info')
+    fetch(`${process.env.REACT_APP_BASE_URL}/info`)
       .then(res => res.json())
       .then(data => {
         if (data[0]) {
-          const nodes = giveInitialItems(data[0].items);
-          const edges = connectInitialItems(data[0].conections);
-          setNodes(nodes);
-          setEdges(edges);
+          try {
+            const nodes = giveInitialItems(data[0].items);
+            const edges = connectInitialItems(data[0].conections);
+            setNodes(nodes);
+            setEdges(edges);
+          } catch (error) {
+            return error;
+          }
+
         }
       })
   }, []);
@@ -31,23 +36,23 @@ function App() {
 
 
   return (
-    <div className='App'>
+    <main className='App'>
 
       {showExport && <Render setShowExport={setShowExport} />}
 
-      <div className='TopBar'>
+      <nav className='TopBar'>
         <TopBar saved={saved} setSaved={setSaved} edges={edges} />
-      </div>
+      </nav>
 
-      <div className='LeftBar'>
+      <section className='LeftBar'>
         <LeftBar setNodes={setNodes} setShowExport={setShowExport} />
-      </div>
+      </section>
 
-      <div className='Flow'>
+      <section className='Flow'>
         <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange} setEdges={setEdges} setNodes={setNodes} />
-      </div>
+      </section>
 
-    </div>
+    </main>
   );
 }
 

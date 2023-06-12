@@ -2,17 +2,14 @@ import './LeftBar.css';
 import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
 import ColorPicker from './ColorPicker';
 
+const handleDrag = (event: any, nodeType: string) => {
+  event.dataTransfer.setData('application/reactflow', nodeType);
+  event.dataTransfer.effectAllowed = 'move';
+};
 
-// CHANGE TYPE ANY TO THE SETNODES TYPE
-// Couldn't find anything about it
 function LeftBar(props: any) {
 
   const { setNodes, setShowExport } = props;
-
-  const handleDrag = (event: any, nodeType: string) => {
-    event.dataTransfer.setData('application/reactflow', nodeType);
-    event.dataTransfer.effectAllowed = 'move';
-  };
 
   return (
     <div id='leftbar'>

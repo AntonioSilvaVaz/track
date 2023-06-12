@@ -1,7 +1,7 @@
 // FUNCTION TO GET THE PARENT DIV COLOR
 export function getParentColor(targetDiv: Element) {
 
-  const parent = targetDiv.parentNode;
+  const parent = targetDiv.parentElement;
   const input = targetDiv.childNodes;
 
   const text_color = (parent as HTMLElement).style.color;
