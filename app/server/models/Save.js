@@ -81,8 +81,6 @@ async function createProj(info) {
   const { title, description, user_id } = info;
 
   let document = await Save.findOne({ _id: user_id });
-  console.log(document);
-
   const newProject = {
     title,
     description,

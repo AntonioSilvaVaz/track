@@ -10,15 +10,15 @@ function CreateProject({ setShowCreateProject, setProjects }: any) {
   function creatseProject(e: any) {
     e.preventDefault();
 
-    createNewProject(title, description, setProjects)
+    createNewProject(title, description)
       .then(res => res.json())
-      .then(data => setProjects((currProjects: any) =>{
-        return [...currProjects, { title: data.title, description: data.description, _id: data._id }];
-      }))
-
-    setTitle('');
-    setDescription('');
-    setShowCreateProject(false);
+      .then(data => setProjects((currProjects: any) => {
+        const newProj = {title: title, description: description, _id: data._id}
+        setTitle('');
+        setDescription('');
+        setShowCreateProject(false);
+        return [...currProjects, newProj];
+      }));
   }
 
   return (
