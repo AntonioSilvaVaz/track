@@ -18,16 +18,28 @@ const conectionchema = new mongoose.Schema({
   targetHandle: String,
 });
 
-const SaveSchema = new mongoose.Schema({
+const infoSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+});
+
+const projectsSchema = new mongoose.Schema({
+  title: String,
+  description: String,
   items: [itemSchema],
   conections: [conectionchema],
+})
+
+const SaveSchema = new mongoose.Schema({
+  projects: [projectsSchema],
 });
 
 const Save = mongoose.model('info', SaveSchema);
 
-async function getInfo() {
-  const info = await Save.find({});
-  return info;
+async function getInfo({user_id, project_id}) {
+  let document = await Save.findOne({ _id: user_id });
+  let project = document.projects.filter((item) => item._id == project_id);
+  return project;
 };
 
 // SAVES AN ARRAY AT ITEMS PART OF THE DB COLLECTION
@@ -52,20 +64,42 @@ async function saveInfo(information) {
     targetHandle: item.targetHandle,
   }));
 
+  const { user_id, project_id } = information[2];
+
+  let document = await Save.findOne({ _id: user_id });
+  let project = document.projects.filter((item) => item._id == project_id);
+
+  project[0].items = items;
+  project[0].conections= conections;
+  await document.save();
+
+  return document;
+}
+
+async function createProj(info) {
+
+  const { title, description } = info;
+
   let document = await Save.findOne({});
+  const newProject = {
+    title,
+    description,
+    items: [],
+    connections: [],
+  }
 
   if (document) {
-    document.items = items;
-    document.conections = conections;
+    const allProjects = document.projects;
+    document.projects = [...allProjects, newProject];
     await document.save();
-  } else document = await Save.create({ items, conections });
+  } else document = await Save.create({ projects: [newProject] });
 
   return document;
 }
 
 async function saveMockData(mockData) {
   try {
-    await Save.create({...mockData});
+    await Save.create({ ...mockData });
     return 'SUCCESS';
   } catch (error) {
     return 'FAILED' + error;
@@ -75,5 +109,6 @@ async function saveMockData(mockData) {
 module.exports = {
   getInfo,
   saveInfo,
-  saveMockData
+  saveMockData,
+  createProj
 }

@@ -1,4 +1,4 @@
-const {saveInfo, getInfo} = require('../models/Save');
+const {saveInfo, getInfo, createProj} = require('../models/Save');
 
 const saveInformation = async (req, res) => {
 
@@ -13,9 +13,23 @@ const saveInformation = async (req, res) => {
 
 }
 
+const createProject = async (req, res) => {
+
+  const info = req.body;
+  const projectCreated = await createProj(info);
+
+  res.body = JSON.stringify(projectCreated);
+
+  res.writeHead(200, {
+    'Content-Type': 'application/json'
+  });
+  res.end(res.body);
+
+}
+
 const getInformation = async (req, res) => {
 
-  const info = await getInfo();
+  const info = await getInfo(req.body);
   res.body = JSON.stringify(info);
 
   res.writeHead(200, {
@@ -37,4 +51,5 @@ module.exports = {
   saveInformation,
   getInformation,
   notFound,
+  createProject
 }
