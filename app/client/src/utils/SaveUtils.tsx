@@ -92,6 +92,9 @@ function handleImageNode(node: Element): nodeSave {
     if (file.id === id) return file;
   });
 
+  const imgSelected = img[0] ? img[0].img : 'http://localhost:3000/static/media/cat.77aaf5376cc1173fc38e.jpg';
+
+
   return {
     id: id,
     text_color: '',
@@ -99,7 +102,7 @@ function handleImageNode(node: Element): nodeSave {
     position: { x: pos.x, y: pos.y },
     text: '',
     type: 'img_node',
-    img: img[0].img,
+    img: imgSelected,
   }
 }
 

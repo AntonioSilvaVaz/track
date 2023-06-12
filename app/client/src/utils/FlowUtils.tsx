@@ -23,8 +23,8 @@ export function pushToFiles(img: string, id: number){
 
 // CREATES A NEW RECTANGLE NODE ITEM
 export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
+  totalNodes++;
   setNodes((currNodes: nodeType[]) => {
-    totalNodes++;
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
@@ -42,8 +42,8 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
 
 // CREATES A NEW ROUND NODE ITEM
 export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
+  totalNodes++
   setNodes((currNodes: nodeType[]) => {
-    totalNodes++
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
@@ -61,9 +61,8 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
 
 // CREATES A NEW NODE IMAGE
 export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
-
+  totalNodes++
   setNodes((currNodes: nodeType[]) => {
-    totalNodes++
     const newNodesArr: nodeType[] = [
       ...currNodes,
       {
