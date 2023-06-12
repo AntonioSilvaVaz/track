@@ -63,7 +63,17 @@ async function saveInfo(information) {
   return document;
 }
 
+async function saveMockData(mockData) {
+  try {
+    await Save.create({...mockData});
+    return 'SUCCESS';
+  } catch (error) {
+    return 'FAILED' + error;
+  }
+}
+
 module.exports = {
   getInfo,
   saveInfo,
+  saveMockData
 }
