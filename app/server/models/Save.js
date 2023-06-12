@@ -7,7 +7,8 @@ const itemSchema = new mongoose.Schema({
   positionX: Number,
   positionY: Number,
   text: String,
-  type: String
+  type: String,
+  file: String,
 });
 
 const SaveSchema = new mongoose.Schema({
@@ -32,7 +33,8 @@ async function saveInfo(information) {
     positionX: item.position.x + '',
     positionY: item.position.y + '',
     text: item.text,
-    type: item.type
+    type: item.type,
+    file: item.img
   }));
 
   let document = await Save.findOne({});
@@ -48,5 +50,5 @@ async function saveInfo(information) {
 
 module.exports = {
   getInfo,
-  saveInfo
+  saveInfo,
 }

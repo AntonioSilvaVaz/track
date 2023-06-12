@@ -1,12 +1,23 @@
-import { ChangeEvent, memo, useRef, useState } from 'react';
+import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
 import mockImage from '../images/cat.jpg';
+import { addToFiles, saveFile } from '../utils/SaveUtils';
+import { findMyImage } from '../utils/FlowUtils';
 
 // CUSTOM IMAGE NODE
 
 export default memo(() => {
 
   const [imgPath, setImagePath] = useState<string>(mockImage);
+  const thisNode: any = useRef(null);
+
+  useEffect(() => {
+    if (thisNode.current) {
+      const pathSet = findMyImage(thisNode.current);
+      if(pathSet) setImagePath(pathSet)
+    }
+  }, []);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // THIS 2 FUNCTION WORK AS CHANGEPATH PROMPTS THE USER TO AN INPUT
@@ -23,13 +34,15 @@ export default memo(() => {
     fileReader.onload = () => {
       setImagePath(fileReader.result + '');
     }
+
     file && fileReader.readAsDataURL(file);
 
+    addToFiles(e, thisNode.current);
   }
 
 
   return (
-    <div className='img_node'>
+    <div className='img_node' ref={thisNode}>
       <Handle className='handle handle-top' type="source" position={Position.Top} id="a" />
       <Handle className='handle handle-right' type="source" position={Position.Right} id="b" />
       <div className='node_image-container'>

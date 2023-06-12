@@ -20,8 +20,11 @@ export type conectItems = {
 }
 
 export type nodeSave = {
+  id: number,
+  text_color: string,
   background_color: string,
   position: { x: number, y: number },
   text: string,
-  type: string
+  type: string,
+  img?: any,
 }

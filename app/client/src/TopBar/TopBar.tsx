@@ -5,7 +5,7 @@ function TopBar(props: any) {
 
   const { saved, setSaved } = props;
 
-  function saveChanges(event: any) {
+  function saveChanges() {
     const text_save = document.getElementById('text-save');
 
     saveFile()

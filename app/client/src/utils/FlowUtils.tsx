@@ -5,9 +5,21 @@ import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
 
-const currentTexts: { id: number, text: string }[] = [{ id: 0, text: 'text' }];
+const currentText: { id: number, text: string }[] = [{ id: 0, text: 'text' }];
+export let currentImages: {id: number, img: string}[] = [{id: 0, img: ''}];
 
-const savedItems: nodeType[] = []
+export function pushToFiles(img: string, id: number){
+  let itemPlaced = false;
+  const newFiles = currentImages.map(item => {
+    if (item.id === id) {
+      itemPlaced = true;
+      return { img, id }
+    } else return item;
+  });
+
+  if (!itemPlaced) newFiles.push({ id, img });
+  currentImages = newFiles;
+}
 
 // CREATES A NEW RECTANGLE NODE ITEM
 export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
@@ -69,13 +81,15 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 
 // GETS AN ARRAY WITH THE INITIAL NODES
 export function giveInitialItems(arr: any) {
+
   const data = arr[0].items;
   const endArr: nodeType[] = [];
 
   data.forEach((item: any, index: number) => {
     if (index === data.length - 1) totalNodes = Number(item.id + 1);
 
-    currentTexts.push({id: item.id, text: item.text});
+    currentText.push({ id: item.id, text: item.text});
+    currentImages.push({id: item.id, img: item.file})
 
     endArr.push({
       id: item.id,
@@ -119,6 +133,13 @@ export function connectInitialItems(): conectItems[] {
 export function findMyText(node: Element) {
   const parentNode: any = node.parentNode;
   const id = parentNode.getAttribute("data-id");
-  const text = currentTexts.filter((item) => item.id === id);
+  const text = currentText.filter((item) => item.id === id);
   return text[0]?.text;
+}
+
+export function findMyImage(node: Element) {
+  const parentNode: any = node.parentNode;
+  const id = parentNode.getAttribute("data-id");
+  const text = currentImages.filter((item) => item.id === id);
+  return text[0]?.img;
 }
