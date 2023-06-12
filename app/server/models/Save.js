@@ -31,7 +31,7 @@ const SaveSchema = new mongoose.Schema({
 
 const Save = mongoose.model('info', SaveSchema);
 
-async function getInfo({user_id, project_id}) {
+async function getInfo({ user_id, project_id }) {
   let document = await Save.findOne({ _id: user_id });
   let project = document.projects.filter((item) => item._id == project_id);
   return project;
@@ -65,22 +65,24 @@ async function saveInfo(information) {
   let project = document.projects.filter((item) => item._id == project_id);
 
   project[0].items = items;
-  project[0].conections= conections;
+  project[0].conections = conections;
   await document.save();
 
   return document;
 }
 
-async function getProj({user_id}) {
+async function getProj({ user_id }) {
   let document = await Save.findOne({ _id: user_id });
   return document;
 }
 
 async function createProj(info) {
 
-  const { title, description } = info;
+  const { title, description, user_id } = info;
 
-  let document = await Save.findOne({});
+  let document = await Save.findOne({ _id: user_id });
+  console.log(document);
+
   const newProject = {
     title,
     description,
@@ -88,11 +90,9 @@ async function createProj(info) {
     connections: [],
   }
 
-  if (document) {
-    const allProjects = document.projects;
-    document.projects = [...allProjects, newProject];
-    await document.save();
-  } else document = await Save.create({ projects: [newProject] });
+  const allProjects = document.projects;
+  document.projects = [...allProjects, newProject];
+  await document.save();
 
   return document;
 }

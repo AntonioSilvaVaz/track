@@ -7,7 +7,7 @@ import { getAllProjects } from "../utils/ProjectUtils";
 
 function Dashboard({ setCurrentProjectId, setShowProject, setProjectTitle }: any) {
 
-  const [projects, setProjects]: [{ description: string, img?: string }[], any] = useState([]);
+  const [projects, setProjects]: [{ title: string, description: string, id: string }[], any] = useState([]);
   const [showCreateProject, setShowCreateProject]: [boolean, any] = useState(false);
 
   useEffect(() => {
@@ -21,8 +21,8 @@ function Dashboard({ setCurrentProjectId, setShowProject, setProjectTitle }: any
       {showCreateProject && <CreateProject setShowCreateProject={setShowCreateProject} setProjects={setProjects} />}
       <DashboardBar />
       <ProjectsContainer projects={projects}
-      setCurrentProjectId={setCurrentProjectId} setShowCreateProject={setShowProject}
-      setProjectTitle={setProjectTitle}
+        setCurrentProjectId={setCurrentProjectId} setShowCreateProject={setShowProject}
+        setProjectTitle={setProjectTitle}
       />
       <button className='create-btn' onClick={() => setShowCreateProject(true)}>
         <h2>+</h2>

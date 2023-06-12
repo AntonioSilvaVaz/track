@@ -1,6 +1,10 @@
 export function createNewProject(title: string, description: string, setProjects: any) {
-  setProjects((currProjects: { title: string, description: string }[]) => {
-    return [...currProjects, { title, description }];
+  return fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({title, description, user_id: "648749d95aeb8afb07c57725" })
   });
 }
 

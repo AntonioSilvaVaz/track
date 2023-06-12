@@ -20,7 +20,7 @@ const edgeTypes = { floating: SimpleFloatingEdge };
 function Flow(props: any) {
 
   // ALL PROPS NEEDED
-  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes } = props;
+  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes, currentProjectId } = props;
 
   // USED FOR THE DRAG AND DROP
   const reactFlowWrapper: any = useRef(null);
@@ -28,7 +28,7 @@ function Flow(props: any) {
 
   useEffect(() => {
     if (reactFlowInstance) {
-      fetchData(setNodes, setEdges, reactFlowInstance, "648749d95aeb8afb07c57726");
+      fetchData(setNodes, setEdges, reactFlowInstance, currentProjectId);
       reactFlowInstance.zoomTo(1, { x: 0, y: 0 });
     }
   }, [reactFlowInstance]);

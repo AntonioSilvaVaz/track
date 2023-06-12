@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import "./CreateProject.css";
 import { createNewProject } from "../utils/ProjectUtils";
 
@@ -9,7 +9,13 @@ function CreateProject({ setShowCreateProject, setProjects }: any) {
 
   function creatseProject(e: any) {
     e.preventDefault();
-    createNewProject(title, description, setProjects);
+
+    createNewProject(title, description, setProjects)
+      .then(res => res.json())
+      .then(data => setProjects((currProjects: any) =>{
+        return [...currProjects, { title: data.title, description: data.description, _id: data._id }];
+      }))
+
     setTitle('');
     setDescription('');
     setShowCreateProject(false);
