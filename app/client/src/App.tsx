@@ -6,6 +6,7 @@ import Flow from './Flow/Flow';
 import { connectInitialItems, giveInitialItems } from './utils/FlowUtils';
 import { useNodesState, useEdgesState } from "reactflow";
 import { useEffect, useState } from 'react';
+import Render from './Render/Render';
 
 function App() {
 
@@ -26,16 +27,20 @@ function App() {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [saved, setSaved] = useState('');
 
+  const [showExport, setShowExport] = useState(false);
+
 
   return (
     <div className='App'>
+
+      {showExport && <Render setShowExport={setShowExport} />}
 
       <div className='TopBar'>
         <TopBar saved={saved} setSaved={setSaved} edges={edges} />
       </div>
 
       <div className='LeftBar'>
-        <LeftBar setNodes={setNodes} />
+        <LeftBar setNodes={setNodes} setShowExport={setShowExport} />
       </div>
 
       <div className='Flow'>

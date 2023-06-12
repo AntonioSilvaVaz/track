@@ -7,7 +7,7 @@ import ColorPicker from './ColorPicker';
 // Couldn't find anything about it
 function LeftBar(props: any) {
 
-  const { setNodes } = props;
+  const { setNodes, setShowExport } = props;
 
   const handleDrag = (event: any, nodeType: string) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
@@ -39,7 +39,7 @@ function LeftBar(props: any) {
       </div>
 
       <div className='img-drag-container'>
-        <button className='export-btn'>
+        <button className='export-btn' onClick={() => setShowExport(true)}>
           <h2>Export</h2>
         </button>
       </div>
