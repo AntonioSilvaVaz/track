@@ -3,11 +3,12 @@ import DashboardBar from "../DashboardBar/DashboardBar";
 import ProjectsContainer from "../ProjectsContainer/ProjectContainer";
 import "./Dashboard.css";
 import CreateProject from "../CreateProject/CreateProject";
-import {  getAllProjects } from "../utils/ProjectUtils";
+import { getAllProjects } from "../utils/ProjectUtils";
+import { logout } from "../utils/LoginUtils";
 
-function Dashboard({ setShowProject, setProjectTitle }: any) {
+function Dashboard({ setShowProject, setProjectTitle, setLoggedIn }: any) {
 
-  const [projects, setProjects]: [{ title: string, description: string, id: string }[], any] = useState([]);
+  const [projects, setProjects]: [{ title: string, description: string, id: string, banner: string }[], any] = useState([]);
   const [showCreateProject, setShowCreateProject]: [boolean, any] = useState(false);
 
   useEffect(() => {
@@ -17,10 +18,16 @@ function Dashboard({ setShowProject, setProjectTitle }: any) {
       .catch(err => console.log(err))
   }, []);
 
+  function loguserOut() {
+    logout()
+      .then(res => setLoggedIn(false))
+      .catch(err => console.log(err))
+  }
+
   return (
     <div id="dashboard">
       {showCreateProject && <CreateProject setShowCreateProject={setShowCreateProject} setProjects={setProjects} />}
-      <DashboardBar title={'Dashboard'} rightText={'Track'} callback={()=>console.log('Logging out')} />
+      <DashboardBar title={'Dashboard'} rightText={'Track'} callback={loguserOut} />
       <ProjectsContainer projects={projects}
         setShowCreateProject={setShowProject}
         setProjectTitle={setProjectTitle} setProjects={setProjects}

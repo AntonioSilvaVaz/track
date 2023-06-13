@@ -16,7 +16,7 @@ function App() {
       {loggedIn ?
         showProject ?
           <InProjects setShowProject={setShowProject} title={title} />
-          : <Dashboard setShowProject={setShowProject} setProjectTitle={setProjectTitle} /> :
+          : <Dashboard setShowProject={setShowProject} setProjectTitle={setProjectTitle} setLoggedIn={setLoggedIn} /> :
         <Login setLoggedIn={setLoggedIn} />
       }
 

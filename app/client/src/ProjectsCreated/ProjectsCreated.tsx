@@ -1,12 +1,14 @@
-import cat from "../images/cat.jpg";
+import bg from "../images/white_bg.png";
 import "./ProjectsCreated.css"
 import { deleteProject } from "../utils/ProjectUtils";
 import React, { useState } from "react";
 
 function ProjectsCreated({
   title, description, projects, setProjects,
-  _id, setShowCreateProject, setProjectTitle
+  _id, setShowCreateProject, setProjectTitle, banner
 }: any) {
+
+  const imgSrc = banner ? banner : bg;
 
 
   function loadOptionsMenu(e: React.MouseEvent<HTMLElement>, setShowOptions: any) {
@@ -38,7 +40,7 @@ function ProjectsCreated({
         onContextMenu={(e) => loadOptionsMenu(e, setShowOptions)}
         onClick={loadFlow}
       >
-        <img src={cat} alt="Cat" />
+        <img src={imgSrc} alt="Cat" />
         <h3 className="title">{title}</h3>
       </div>
       {showOptions &&

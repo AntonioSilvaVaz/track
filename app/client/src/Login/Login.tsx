@@ -68,7 +68,7 @@ function Login({ setLoggedIn }: any) {
           </div>
 
           <button onClick={handleSubmit} type="submit">
-            <h3>Submit</h3>
+            <h3>{state}</h3>
           </button>
         </form>
 

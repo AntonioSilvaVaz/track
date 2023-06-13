@@ -21,6 +21,7 @@ const conectionchema = new mongoose.Schema({
 const projectsSchema = new mongoose.Schema({
   title: String,
   description: String,
+  banner: String,
   items: [itemSchema],
   conections: [conectionchema],
 })
@@ -61,17 +62,21 @@ async function saveInfo(information, user_id, project_id) {
     targetHandle: item.targetHandle,
   }));
 
+  const banner = information[2].banner;
+
   let document = await Save.findOne({ _id: user_id });
   let project = document.projects.filter((item) => item._id == project_id);
 
-  if(project[0]){
+  if (project[0]) {
     project[0].items = items;
     project[0].conections = conections;
+    project[0].banner = banner;
     await document.save();
   } else {
     project[0] = {
       items,
-      conections
+      conections,
+      banner
     };
 
     await document.save();
@@ -114,7 +119,7 @@ async function saveMockData(mockData) {
   }
 }
 
-async function deleteProj(project_id, user_id ) {
+async function deleteProj(project_id, user_id) {
   let document = await Save.findOne({ _id: user_id });
   const allProjects = document.projects;
   document.projects = allProjects.filter((project) => project._id != project_id);
@@ -122,17 +127,17 @@ async function deleteProj(project_id, user_id ) {
   return document;
 }
 
-async function loginUser({email, password}) {
-  const document = await Save.find({user_email: email});
-  if(!document[0]) return false;
-  if(document[0].password == password) return document[0]._id;
+async function loginUser({ email, password }) {
+  const document = await Save.find({ user_email: email });
+  if (!document[0]) return false;
+  if (document[0].password == password) return document[0]._id;
   else return false;
 }
 
-async function registerUser({email, password}) {
+async function registerUser({ email, password }) {
 
-  const document = await Save.find({user_email: email});
-  if(!document[0]) {
+  const document = await Save.find({ user_email: email });
+  if (!document[0]) {
     const newUser = await Save.create({
       user_email: email,
       password,
@@ -145,6 +150,11 @@ async function registerUser({email, password}) {
 
 }
 
+async function logUserOut(user_id) {
+  return;
+  // STILL NEED TO CREATE IT WITH A SEESION TOKEN
+}
+
 module.exports = {
   getInfo,
   saveInfo,
@@ -153,5 +163,6 @@ module.exports = {
   getProj,
   deleteProj,
   registerUser,
-  loginUser
+  loginUser,
+  logUserOut
 }

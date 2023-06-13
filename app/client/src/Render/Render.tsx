@@ -22,7 +22,6 @@ async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
       dataUrl = await toJpeg(nodeAsHtml);
       end = 'jpeg';
     }
-
     else return;
     download(dataUrl, `track.${end}`);
   } catch (error) {

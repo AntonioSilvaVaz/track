@@ -5,12 +5,12 @@ function ProjectContainer(props: any) {
 
   const { projects, setCurrentProjectId, setShowCreateProject, setProjectTitle, setProjects } = props;
 
-  const allProjects = projects.map((project: { title: string, description: string, _id: string }, index: number) => {
+  const allProjects = projects.map((project: { title: string, description: string, _id: string, banner: string }, index: number) => {
 
     return (
       <div key={index} className="options-container hover">
         < ProjectCreated
-         projects={projects} setProjects={setProjects}
+         projects={projects} setProjects={setProjects} banner={project.banner}
         title={project.title} description={project.description} _id={project._id}
         setCurrentProjectId={setCurrentProjectId} setProjectTitle={setProjectTitle} setShowCreateProject={setShowCreateProject}
          />

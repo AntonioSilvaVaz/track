@@ -1,4 +1,4 @@
-const { saveInfo, getInfo, createProj, getProj, deleteProj, loginUser, registerUser } = require('../models/Save');
+const { saveInfo, getInfo, createProj, getProj, deleteProj, loginUser, registerUser, logUserOut } = require('../models/Save');
 
 const saveInformation = async (req, res) => {
 
@@ -81,7 +81,7 @@ const login = async (req, res) => {
 
   const info = await loginUser(req.body);
 
-  if(!info){
+  if (!info) {
     res.body = JSON.stringify('Already Exists');
     res.writeHead(404, {
       'Content-Type': 'application/json'
@@ -100,7 +100,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const info = await registerUser(req.body);
 
-  if(!info) {
+  if (!info) {
     res.writeHead(200, {
       'Content-Type': 'application/json'
     });
@@ -114,6 +114,14 @@ const register = async (req, res) => {
 
 }
 
+const logout = async (req, res) => {
+  const user_id = req.cookies.user_id;
+  await logUserOut(user_id);
+  res.setHeader('Set-Cookie', `user_id=0`);
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.end('true');
+}
+
 module.exports = {
   saveInformation,
   getInformation,
@@ -122,5 +130,6 @@ module.exports = {
   getProjects,
   deleteProject,
   login,
-  register
+  register,
+  logout
 }

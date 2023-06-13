@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { nodeSave } from "../types";
 import { currentImages, pushToFiles } from "./FlowUtils";
+import { toJpeg } from 'html-to-image';
 
 export async function saveFile(edges: any) {
 
@@ -11,6 +12,7 @@ export async function saveFile(edges: any) {
   const allInfoRectNodes = createNode(allRectNodes);
   const allInfoRoundNodes = createNode(allRoundNodes);
   const allInfoImageNodes = createNode(allImageNodes, true);
+  const banner = await getBanner();
 
   let currentEdges = edges.map((edge: any) => ({
     sourceId: edge.source,
@@ -28,7 +30,11 @@ export async function saveFile(edges: any) {
     [
       ...currentEdges
     ],
+    {
+      banner
+    }
   ];
+
 
   return fetch('http://localhost:3001/save', {
     credentials: 'include',
@@ -51,6 +57,13 @@ export async function addToFiles(event: ChangeEvent<HTMLInputElement>, node: Ele
   const id: number = child.getAttribute('data-nodeid');
 
   pushToFiles(img, id);
+}
+
+async function getBanner() {
+  const node = document.getElementsByClassName('Flow')[0];
+  const nodeAsHtml = (node as HTMLElement);
+  const img = await toJpeg(nodeAsHtml);
+  return img;
 }
 
 function createNode(arrNodes: HTMLCollectionOf<Element>, isImgNode?: boolean) {

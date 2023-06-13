@@ -18,3 +18,10 @@ export async function createUser(email: string, password: string) {
     body: JSON.stringify({email, password})
   })
 }
+
+export async function logout() {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/logout`, {
+    credentials: 'include',
+    method: 'DELETE',
+  })
+}

@@ -1,7 +1,7 @@
 .project{
   position: relative;
   width: 200px;
-  height: 150px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
