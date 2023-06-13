@@ -1,0 +1,40 @@
+#Login{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#Login .form{
+  width: 400px;
+  height: max-content;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+#Login div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#Login input{
+  padding: 0 20px;
+  width: 220px;
+  height: 50px;
+}
+
+#Login button{
+  margin-top: 20px;
+  height: 50px;
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

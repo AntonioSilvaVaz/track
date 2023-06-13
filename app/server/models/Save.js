@@ -26,12 +26,14 @@ const projectsSchema = new mongoose.Schema({
 })
 
 const SaveSchema = new mongoose.Schema({
+  user_email: String,
+  password: String,
   projects: [projectsSchema],
 });
 
 const Save = mongoose.model('info', SaveSchema);
 
-async function getInfo({ user_id, project_id }) {
+async function getInfo(user_id, project_id) {
   let document = await Save.findOne({ _id: user_id });
   let project = document.projects.filter((item) => item._id == project_id);
   return project;
@@ -39,7 +41,7 @@ async function getInfo({ user_id, project_id }) {
 
 // SAVES AN ARRAY AT ITEMS PART OF THE DB COLLECTION
 
-async function saveInfo(information) {
+async function saveInfo(information, user_id, project_id) {
 
   const items = information[0].map(item => ({
     id: item.id,
@@ -58,8 +60,6 @@ async function saveInfo(information) {
     sourceHandle: item.sourceHandle,
     targetHandle: item.targetHandle,
   }));
-
-  const { user_id, project_id } = information[2];
 
   let document = await Save.findOne({ _id: user_id });
   let project = document.projects.filter((item) => item._id == project_id);
@@ -81,15 +81,14 @@ async function saveInfo(information) {
   return document;
 }
 
-async function getProj({ user_id }) {
-  // let document = await Save.findOne({ _id: user_id });
-  let document = await Save.find({});
-  return document;
+async function getProj(user_id) {
+  let document = await Save.findOne({ _id: user_id });
+  return document.projects;
 }
 
-async function createProj(info) {
+async function createProj(info, user_id) {
 
-  const { title, description, user_id } = info;
+  const { title, description } = info;
 
   let document = await Save.findOne({ _id: user_id });
   const newProject = {
@@ -115,12 +114,35 @@ async function saveMockData(mockData) {
   }
 }
 
-async function deleteProj({ project_id, user_id }) {
+async function deleteProj(project_id, user_id ) {
   let document = await Save.findOne({ _id: user_id });
   const allProjects = document.projects;
   document.projects = allProjects.filter((project) => project._id != project_id);
   await document.save();
   return document;
+}
+
+async function loginUser({email, password}) {
+  const document = await Save.find({user_email: email});
+  if(!document[0]) return false;
+  if(document[0].password == password) return document[0]._id;
+  else return false;
+}
+
+async function registerUser({email, password}) {
+
+  const document = await Save.find({user_email: email});
+  if(!document[0]) {
+    const newUser = await Save.create({
+      user_email: email,
+      password,
+      projects: [],
+    });
+    return newUser;
+  }
+  else return false;
+
+
 }
 
 module.exports = {
@@ -129,5 +151,7 @@ module.exports = {
   saveMockData,
   createProj,
   getProj,
-  deleteProj
+  deleteProj,
+  registerUser,
+  loginUser
 }

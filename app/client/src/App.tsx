@@ -2,19 +2,22 @@ import { useState } from 'react';
 import './App.css';
 import InProjects from './InProjects/InProjects';
 import Dashboard from './Dashboad/Dashboard';
+import Login from './Login/Login';
 
 function App() {
 
+  const [loggedIn, setLoggedIn] = useState(false);
   const [showProject, setShowProject] = useState(false);
-  const [currentProjectId, setCurrentProjectId] = useState('');
   const [title, setProjectTitle] = useState('Track');
 
   return (
     <main className='App'>
 
-      {showProject ?
-        <InProjects title={title} currentProjectId={currentProjectId} setShowProject={setShowProject} setCurrentProjectId={setCurrentProjectId} />
-        : <Dashboard setProjectTitle={setProjectTitle} setShowProject={setShowProject} setCurrentProjectId={setCurrentProjectId} />
+      {loggedIn ?
+        showProject ?
+          <InProjects setShowProject={setShowProject} title={title} />
+          : <Dashboard setShowProject={setShowProject} setProjectTitle={setProjectTitle} /> :
+        <Login setLoggedIn={setLoggedIn} />
       }
 
     </main>

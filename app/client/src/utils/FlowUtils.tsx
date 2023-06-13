@@ -142,13 +142,10 @@ export function findMyImage(node: Element) {
   return text[0]?.img;
 }
 
-export function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any, project_id: string) {
+export function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any) {
+
   fetch(`${process.env.REACT_APP_BASE_URL}/info`, {
-    method: 'POST',
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify({ user_id: "648749d95aeb8afb07c57725", project_id }),
+    credentials: 'include',
   })
     .then(res => res.json())
     .then(data => {

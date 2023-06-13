@@ -3,17 +3,17 @@ import './TopBar.css';
 
 function TopBar(props: any) {
 
-  const { title, page, saved, setSaved, edges, setShowProject, currentProjectId, setCurrentProjectId } = props;
+  const { title, page, saved, setSaved, edges, setShowProject } = props;
 
   function leaveThisPage() {
-    setCurrentProjectId('');
+    document.cookie = 'project_id=0';
     setShowProject(false);
   }
 
   function saveChanges() {
     const text_save = document.getElementById('text-save');
 
-    saveFile(edges, currentProjectId)
+    saveFile(edges)
       .then(res => {
         setSaved('Saved');
         (text_save as HTMLElement).style.color = 'green';

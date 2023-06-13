@@ -28,7 +28,7 @@ function Flow(props: any) {
 
   useEffect(() => {
     if (reactFlowInstance) {
-      fetchData(setNodes, setEdges, reactFlowInstance, currentProjectId);
+      fetchData(setNodes, setEdges, reactFlowInstance);
       reactFlowInstance.zoomTo(1, { x: 0, y: 0 });
     }
   }, [reactFlowInstance]);

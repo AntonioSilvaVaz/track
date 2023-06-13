@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 function ProjectsCreated({
   title, description, projects, setProjects,
-  _id, setShowCreateProject, setCurrentProjectId, setProjectTitle
+  _id, setShowCreateProject, setProjectTitle
 }: any) {
 
 
@@ -24,8 +24,8 @@ function ProjectsCreated({
   }
 
   function loadFlow() {
-    setShowOptions(false)
-    setCurrentProjectId(_id);
+    document.cookie = `project_id=${_id}`;
+    setShowOptions(false);
     setProjectTitle(title);
     setShowCreateProject(true);
   }
