@@ -3,24 +3,29 @@ import './App.css';
 import InProjects from './InProjects/InProjects';
 import Dashboard from './Dashboad/Dashboard';
 import Login from './Login/Login';
+import { Context } from './Context/context';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [showProject, setShowProject] = useState(false);
-  const [title, setProjectTitle] = useState('Track');
+  const [loggedIn, setLoggedIn]: [boolean, any] = useState(false);
+  const [showProject, setShowProject]: [boolean, any] = useState(false);
+  const [title, setProjectTitle]: [string, any] = useState('Track');
+
+  const value = { loggedIn, setLoggedIn, showProject, setShowProject, title, setProjectTitle }
 
   return (
-    <main className='App'>
+    <Context.Provider value={value}>
+      <main className='App'>
+        {loggedIn ?
+          showProject ?
+            <InProjects />
+            : <Dashboard />
+          :
+          <Login />
+        }
 
-      {loggedIn ?
-        showProject ?
-          <InProjects setShowProject={setShowProject} title={title} />
-          : <Dashboard setShowProject={setShowProject} setProjectTitle={setProjectTitle} setLoggedIn={setLoggedIn} /> :
-        <Login setLoggedIn={setLoggedIn} />
-      }
-
-    </main>
+      </main>
+    </ Context.Provider >
   );
 }
 

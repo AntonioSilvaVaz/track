@@ -1,14 +1,15 @@
+import { useContext } from "react";
+import { DashboardContext, Context } from "../Context/context";
+
 import bg from "../images/white_bg.png";
 import "./ProjectsCreated.css"
 import { deleteProject } from "../utils/ProjectUtils";
 
-function ProjectsCreated({
-  title, description, projects, setProjects,
-  _id, setShowCreateProject, setProjectTitle, banner
-}: any) {
+function ProjectsCreated({ title, description, _id, banner }: any) {
 
+  const { projects, setProjects } = useContext(DashboardContext);
+  const { setProjectTitle, setShowProject } = useContext(Context);
   const imgSrc = banner ? banner : bg;
-
 
   function deleteElement(e: any) {
     e.preventDefault();
@@ -22,9 +23,8 @@ function ProjectsCreated({
   function loadFlow() {
     document.cookie = `project_id=${_id}`;
     setProjectTitle(title);
-    setShowCreateProject(true);
+    setShowProject(true);
   }
-
 
   return (
     <div className="project hover"

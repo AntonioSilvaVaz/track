@@ -20,7 +20,7 @@ const edgeTypes = { floating: SimpleFloatingEdge };
 function Flow(props: any) {
 
   // ALL PROPS NEEDED
-  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes, currentProjectId } = props;
+  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes } = props;
 
   // USED FOR THE DRAG AND DROP
   const reactFlowWrapper: any = useRef(null);

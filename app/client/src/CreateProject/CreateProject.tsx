@@ -1,11 +1,15 @@
-import { useState } from "react";
-import "./CreateProject.css";
+import { useState, useContext } from "react";
 import { createNewProject } from "../utils/ProjectUtils";
+import { DashboardContext } from "../Context/context";
+import "./CreateProject.css";
 
-function CreateProject({ setShowCreateProject, setProjects }: any) {
+function CreateProject() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  const { setShowCreateProject, setProjects } = useContext(DashboardContext);
+
 
   function creatseProject(e: any) {
     e.preventDefault();

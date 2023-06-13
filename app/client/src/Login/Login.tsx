@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { checkuser, createUser } from "../utils/LoginUtils";
 import "./Login.css";
 import DashboardBar from "../DashboardBar/DashboardBar";
+import { Context } from "../Context/context";
 
-function Login({ setLoggedIn }: any) {
+function Login() {
+
+
+  const setLoggedIn = useContext(Context).setLoggedIn;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +18,7 @@ function Login({ setLoggedIn }: any) {
   const [errorText, setErrorText] = useState('');
 
   function handleSubmit(e: React.FormEvent) {
+
     e.preventDefault();
 
     if (state === 'Register') {
