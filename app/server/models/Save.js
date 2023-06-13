@@ -107,7 +107,8 @@ async function createProj(info, user_id) {
   document.projects = [...allProjects, newProject];
   await document.save();
 
-  return document;
+  const returnEl = document.projects[document.projects.length - 1];
+  return returnEl;
 }
 
 async function saveMockData(mockData) {
@@ -119,7 +120,7 @@ async function saveMockData(mockData) {
   }
 }
 
-async function deleteProj(project_id, user_id) {
+async function deleteProj(user_id, project_id) {
   let document = await Save.findOne({ _id: user_id });
   const allProjects = document.projects;
   document.projects = allProjects.filter((project) => project._id != project_id);

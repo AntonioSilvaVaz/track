@@ -34,7 +34,7 @@ const createProject = async (req, res) => {
 const deleteProject = async (req, res) => {
 
   const user_id = req.cookies.user_id;
-  const project_id = req.cookies.project_id;
+  const { project_id } = req.body;
 
   const projectDeleted = await deleteProj(user_id, project_id);
   res.body = JSON.stringify(projectDeleted);
@@ -118,7 +118,7 @@ const logout = async (req, res) => {
   const user_id = req.cookies.user_id;
   await logUserOut(user_id);
   res.setHeader('Set-Cookie', `user_id=0`);
-  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end('true');
 }
 

@@ -27,7 +27,7 @@ function Dashboard({ setShowProject, setProjectTitle, setLoggedIn }: any) {
   return (
     <div id="dashboard">
       {showCreateProject && <CreateProject setShowCreateProject={setShowCreateProject} setProjects={setProjects} />}
-      <DashboardBar title={'Dashboard'} rightText={'Track'} callback={loguserOut} />
+      <DashboardBar title={'Dashboard'} rightText={'Logout'} callback={loguserOut} />
       <ProjectsContainer projects={projects}
         setShowCreateProject={setShowProject}
         setProjectTitle={setProjectTitle} setProjects={setProjects}
