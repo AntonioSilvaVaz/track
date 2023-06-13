@@ -7,8 +7,8 @@
 }
 
 .InProjects .TopBar{
-  grid-column: 1 / 11 fr;
-  grid-row: 1;
+  grid-column: 12 span;
+  grid-row: 1 span;
 }
 
 .InProjects .LeftBar{

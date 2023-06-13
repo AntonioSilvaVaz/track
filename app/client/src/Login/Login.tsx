@@ -18,6 +18,8 @@ function Login() {
   const [errorText, setErrorText] = useState('');
 
   function handleLogin() {
+    console.log('HERE');
+
     setLoggedIn(true);
     setPassword('');
     setEmail('');
@@ -27,7 +29,7 @@ function Login() {
     e.preventDefault();
     if (state === 'Register') {
       createUser(email, password)
-        .then(registerSuccefull => registerSuccefull ? handleLogin : setErrorText('Failed Register'))
+        .then(registerSuccefull => registerSuccefull ? handleLogin() : setErrorText('Failed Register'))
     } else {
       checkuser(email, password)
         .then(shouldLogin => shouldLogin ? setLoggedIn(true) : setErrorText('Failed Login'))

@@ -24,7 +24,10 @@ export async function createUser(email: string, password: string) {
   });
 
   const data = await res.json();
-  if(Boolean(data)) return await checkuser(email, password);
+  let newUser;
+  if(Boolean(data)) newUser = await checkuser(email, password);
+  return newUser;
+
 }
 
 export async function logout() {

@@ -1,9 +1,9 @@
 #Login{
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
 }
 
 #Login .form h2{
@@ -11,6 +11,8 @@
 }
 
 #Login .form-container{
+  grid-column: 1 / 12 fr;
+  grid-row: 7;
   width: 100%;
   display: flex;
   flex-direction: column;

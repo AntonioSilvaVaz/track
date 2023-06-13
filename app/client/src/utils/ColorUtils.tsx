@@ -19,11 +19,12 @@ export function getParentColor(targetDiv: Element) {
 // FUNCTION TO UPDATE THE DIV COLOR
 export function updateColor(targetDiv: any, color: string) {
 
+
   const classes = targetDiv.classList;
   let class_value: any = '';
   let endTargetDiv: any = '';
-
   const isHorizontal = color.match('horizontal');
+
 
   if (classes[1] === 'input_text' && !isHorizontal) {
     endTargetDiv = targetDiv.parentElement;
@@ -39,7 +40,7 @@ export function updateColor(targetDiv: any, color: string) {
   }
   else if (isHorizontal) {
     endTargetDiv = targetDiv.childNodes[2];
-    class_value = targetDiv.childNodes[2].classList[0];
+    class_value = targetDiv.childNodes[2]?.classList[0];
   }
   else return;
 

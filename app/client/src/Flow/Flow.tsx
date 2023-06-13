@@ -20,7 +20,7 @@ const edgeTypes = { floating: SimpleFloatingEdge };
 function Flow() {
 
   // ALL ITEMS NEEDED
-  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes } = useContext(FlowContext);
+  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes }: any = useContext(FlowContext);
 
   // USED FOR THE DRAG AND DROP
   const reactFlowWrapper: any = useRef(null);
@@ -60,10 +60,10 @@ function Flow() {
         y: event.clientY - reactFlowBounds.top,
       });
 
-      if (type === 'itemNodeRect') createNewRectNode(setNodes, x, y)
-      else if (type === 'itemNodeRound') createNewRoundNode(setNodes, x, y)
-      else if (type === 'imageNode') createNewNodeImage(setNodes, x, y)
-      else if (type !== '') updateColor(targetDiv, type);
+      if (type === 'itemNodeRect') return createNewRectNode(setNodes, x, y);
+      else if (type === 'itemNodeRound') return createNewRoundNode(setNodes, x, y);
+      else if (type === 'imageNode') return createNewNodeImage(setNodes, x, y);
+      else if (type[0] === '#') return updateColor(targetDiv, type);
       else return;
     },
     [reactFlowInstance]

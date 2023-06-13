@@ -15,16 +15,16 @@ function InProjects() {
 
   const { title } = useContext(Context);
 
-  const [showExport, setShowExport] = useState(false);
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [saved, setSaved] = useState('');
+  const [showExport, setShowExport]: [any, any] = useState(false);
+  const [nodes, setNodes, onNodesChange]: [any, any, any] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange]: [any, any, any] = useEdgesState([]);
+  const [saved, setSaved]: [any, any] = useState('');
 
   const value = {
-    nodes: [], setNodes: (node: any) => { }, onNodesChange: () => { },
-    edges: [], setEdges: (edge: any) => { }, onEdgesChange: () => { },
-    saved: '', setSaved: (value: string) => { },
-    showExport: false, setShowExport: ()=>{}
+    nodes, setNodes, onNodesChange,
+    edges, setEdges, onEdgesChange,
+    saved, setSaved,
+    showExport, setShowExport
   }
   return (
     <FlowContext.Provider value={value}>

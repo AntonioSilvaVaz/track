@@ -7,7 +7,7 @@ import './TopBar.css';
 function TopBar({ page }: any) {
 
   const { setSaved, edges, saved } = useContext(FlowContext);
-  const { setShowProject, title } = useContext(Context);
+  const { setShowProject } = useContext(Context);
 
   function leaveThisPage() {
     document.cookie = 'project_id=0';
@@ -34,14 +34,14 @@ function TopBar({ page }: any) {
   }
 
   return (
-    <div id="topbar">
-      <div className='dashboard' onClick={leaveThisPage}>
-        <h2>{title}</h2>
+    <>
+      <div className='dashboard hover' onClick={leaveThisPage}>
+        <h2>Dashboard</h2>
       </div>
       <div className='save' onClick={saveChanges}></div>
       <h3 id='text-save'>{saved}</h3>
       <h3 className='currentPage'>{page}</h3>
-    </div>
+    </>
   )
 }
 
