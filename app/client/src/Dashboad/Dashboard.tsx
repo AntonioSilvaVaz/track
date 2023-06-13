@@ -20,7 +20,7 @@ function Dashboard({ setShowProject, setProjectTitle }: any) {
   return (
     <div id="dashboard">
       {showCreateProject && <CreateProject setShowCreateProject={setShowCreateProject} setProjects={setProjects} />}
-      <DashboardBar />
+      <DashboardBar title={'Dashboard'} rightText={'Track'} callback={()=>console.log('Logging out')} />
       <ProjectsContainer projects={projects}
         setShowCreateProject={setShowProject}
         setProjectTitle={setProjectTitle} setProjects={setProjects}
