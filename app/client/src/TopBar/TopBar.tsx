@@ -3,7 +3,12 @@ import './TopBar.css';
 
 function TopBar(props: any) {
 
-  const { title, page, saved, setSaved, edges, setShowProject, currentProjectId } = props;
+  const { title, page, saved, setSaved, edges, setShowProject, currentProjectId, setCurrentProjectId } = props;
+
+  function leaveThisPage() {
+    setCurrentProjectId('');
+    setShowProject(false);
+  }
 
   function saveChanges() {
     const text_save = document.getElementById('text-save');
@@ -26,7 +31,7 @@ function TopBar(props: any) {
 
   return (
     <div id="topbar">
-      <div className='dashboard' onClick={() => setShowProject(false)}>
+      <div className='dashboard' onClick={leaveThisPage}>
         <h2>{title}</h2>
       </div>
       <div className='save' onClick={saveChanges}></div>

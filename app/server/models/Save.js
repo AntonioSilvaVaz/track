@@ -82,7 +82,8 @@ async function saveInfo(information) {
 }
 
 async function getProj({ user_id }) {
-  let document = await Save.findOne({ _id: user_id });
+  // let document = await Save.findOne({ _id: user_id });
+  let document = await Save.find({});
   return document;
 }
 

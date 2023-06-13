@@ -3,18 +3,17 @@ import "./ProjectContainer.css";
 
 function ProjectContainer(props: any) {
 
-  const { projects, setCurrentProjectId, setShowCreateProject, setProjectTitle } = props;
+  const { projects, setCurrentProjectId, setShowCreateProject, setProjectTitle, setProjects } = props;
 
-  function loadFlow(title: string, id: string) {
-    setCurrentProjectId(id);
-    setProjectTitle(title);
-    setShowCreateProject(true);
-  }
   const allProjects = projects.map((project: { title: string, description: string, _id: string }, index: number) => {
 
     return (
-      <div key={index} onDoubleClick={() => loadFlow(project.title, project._id)}>
-        < ProjectCreated title={project.title} description={project.description} />
+      <div key={index} className="options-container hover">
+        < ProjectCreated
+         projects={projects} setProjects={setProjects}
+        title={project.title} description={project.description} _id={project._id}
+        setCurrentProjectId={setCurrentProjectId} setProjectTitle={setProjectTitle} setShowCreateProject={setShowCreateProject}
+         />
       </div>
     )
   })

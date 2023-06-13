@@ -1,8 +1,17 @@
 #ProjectContainer{
+  position: relative;
   padding: 20px;
   gap: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+#ProjectContainer .options-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }

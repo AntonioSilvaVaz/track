@@ -34,6 +34,8 @@ export async function saveFile(edges: any, currentProjectId: string) {
     }
   ];
 
+  console.log(endArr);
+
   return fetch('http://localhost:3001/save', {
     method: 'POST',
     headers: {

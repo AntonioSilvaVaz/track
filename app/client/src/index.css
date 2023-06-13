@@ -33,3 +33,7 @@ h4{
 button:hover{
   cursor: pointer;
 }
+
+.hover:hover{
+  cursor: pointer;
+}

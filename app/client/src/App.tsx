@@ -13,7 +13,7 @@ function App() {
     <main className='App'>
 
       {showProject ?
-        <InProjects title={title} currentProjectId={currentProjectId} setShowProject={setShowProject} />
+        <InProjects title={title} currentProjectId={currentProjectId} setShowProject={setShowProject} setCurrentProjectId={setCurrentProjectId} />
         : <Dashboard setProjectTitle={setProjectTitle} setShowProject={setShowProject} setCurrentProjectId={setCurrentProjectId} />
       }
 
