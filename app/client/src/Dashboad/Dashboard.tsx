@@ -19,15 +19,13 @@ function Dashboard() {
 
   useEffect(() => {
     getAllProjects()
-      .then(res => res.json())
       .then(data => setProjects(data))
-      .catch(err => console.log(err))
   }, []);
 
   function logUserOut() {
     logout()
       .then(res => setLoggedIn(false))
-      .catch(err => console.log(err))
+      .catch(err => alert('Failed logout'))
   }
 
   return (
@@ -35,7 +33,7 @@ function Dashboard() {
       <div id="dashboard">
         {showCreateProject && <CreateProject />}
         <DashboardBar title={'Dashboard'} rightText={'Logout'} callback={logUserOut} />
-        <ProjectsContainer/>
+        <ProjectsContainer />
         <button className='create-btn' onClick={() => setShowCreateProject(true)}>
           <h2>+</h2>
         </button>

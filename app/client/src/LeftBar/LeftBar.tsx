@@ -1,15 +1,18 @@
+import { useContext } from "react";
+import { FlowContext } from '../Context/context';
 import './LeftBar.css';
-import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
+
 import ColorPicker from './ColorPicker';
+import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
 
 const handleDrag = (event: any, nodeType: string) => {
   event.dataTransfer.setData('application/reactflow', nodeType);
   event.dataTransfer.effectAllowed = 'move';
 };
 
-function LeftBar(props: any) {
+function LeftBar() {
 
-  const { setNodes, setShowExport } = props;
+  const { setNodes, setShowExport } = useContext(FlowContext);
 
   return (
     <div id='leftbar'>
@@ -27,7 +30,7 @@ function LeftBar(props: any) {
         <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
         </button>
 
-        <ColorPicker  />
+        <ColorPicker />
 
       </div>
 

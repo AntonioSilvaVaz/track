@@ -7,7 +7,7 @@ import { Context } from "../Context/context";
 function Login() {
 
 
-  const setLoggedIn = useContext(Context).setLoggedIn;
+  const { setLoggedIn } = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,32 +17,20 @@ function Login() {
   const [state, setState] = useState('Login')
   const [errorText, setErrorText] = useState('');
 
+  function handleLogin() {
+    setLoggedIn(true);
+    setPassword('');
+    setEmail('');
+  }
+
   function handleSubmit(e: React.FormEvent) {
-
     e.preventDefault();
-
     if (state === 'Register') {
       createUser(email, password)
-        .then(res => res.json())
-        .then(res => {
-          if (Boolean(res)) {
-            return checkuser(email, password)
-              .then(res => {
-                setLoggedIn(true);
-                setPassword('');
-                setEmail('');
-              });
-          } else setErrorText('Failed loggin in');
-        })
-        .catch(err => setErrorText('Failed Register'));
+        .then(registerSuccefull => registerSuccefull ? handleLogin : setErrorText('Failed Register'))
     } else {
       checkuser(email, password)
-        .then(res => res.json())
-        .then(res => {
-          if (Boolean(res)) setLoggedIn(true);
-          else setErrorText('Failed loggin in');
-        })
-        .catch(err => setErrorText('Failed loggin in'))
+        .then(shouldLogin => shouldLogin ? setLoggedIn(true) : setErrorText('Failed Login'))
     }
   }
 

@@ -1,6 +1,10 @@
-import './Render.css';
+import { useContext } from "react";
+import { FlowContext } from '../Context/context';
+
 import { toPng, toJpeg, toSvg } from 'html-to-image';
 import download from "downloadjs";
+
+import './Render.css';
 
 
 async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
@@ -29,9 +33,9 @@ async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
   }
 }
 
-function Render(props: any) {
+function Render() {
 
-  const { setShowExport } = props;
+  const { setShowExport } = useContext(FlowContext);
 
   return (
     <div id="render">

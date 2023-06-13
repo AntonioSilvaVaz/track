@@ -40,7 +40,6 @@ export default memo(() => {
     addToFiles(e, thisNode.current);
   }
 
-
   return (
     <div className='img_node' ref={thisNode}>
       <Handle className='handle handle-top' type="source" position={Position.Top} id="a" />

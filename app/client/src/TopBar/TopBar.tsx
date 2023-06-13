@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { Context, FlowContext } from '../Context/context';
+
 import { saveFile } from '../utils/SaveUtils';
 import './TopBar.css';
 
-function TopBar(props: any) {
+function TopBar({ page }: any) {
 
-  const { title, page, saved, setSaved, edges, setShowProject } = props;
+  const { setSaved, edges, saved } = useContext(FlowContext);
+  const { setShowProject, title } = useContext(Context);
 
   function leaveThisPage() {
     document.cookie = 'project_id=0';

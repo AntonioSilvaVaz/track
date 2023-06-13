@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import ReactFlow, { addEdge, ConnectionMode, MarkerType, Edge } from "reactflow";
+import { FlowContext } from "../Context/context";
+import 'reactflow/dist/style.css';
+import './Flow.css';
 
 import SimpleFloatingEdge from './SimpleFloatingEdge';
-
 import RoundItemNode from "./RoundItemNode";
 import RectItemNode from "./RectItemNode";
 import ImageNode from "./ImageNode";
 
-import 'reactflow/dist/style.css';
-import './Flow.css';
 import { createNewRectNode, createNewRoundNode, createNewNodeImage, fetchData } from "../utils/FlowUtils";
 import { updateColor } from "../utils/ColorUtils";
 
@@ -17,10 +17,10 @@ const nodeTypes = { rect_node: RectItemNode, round_node: RoundItemNode, img_node
 const edgeTypes = { floating: SimpleFloatingEdge };
 
 // DON'T know how to not use any
-function Flow(props: any) {
+function Flow() {
 
-  // ALL PROPS NEEDED
-  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes } = props;
+  // ALL ITEMS NEEDED
+  const { nodes, edges, onNodesChange, onEdgesChange, setEdges, setNodes } = useContext(FlowContext);
 
   // USED FOR THE DRAG AND DROP
   const reactFlowWrapper: any = useRef(null);

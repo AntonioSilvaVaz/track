@@ -1,5 +1,9 @@
-export function createNewProject(title: string, description: string) {
-  return fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
+// THE USER ID IS PASSED ALWAYS IN THE COOKIES
+// THE PROJECT ID IS ALSO PASSED IN THE COOKIES WHEN NEEDED
+
+// CREATES A NEW PROJECT
+export async function createNewProject(title: string, description: string) {
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
     credentials: 'include',
     method: 'POST',
     headers: {
@@ -7,10 +11,13 @@ export function createNewProject(title: string, description: string) {
     },
     body: JSON.stringify({ title, description })
   });
+  const data = await res.json();
+  return data;
 }
 
-export function deleteProject(project_id: string) {
-  return fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
+// DELETE A PROJECT
+export async function deleteProject(project_id: string) {
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
     credentials: 'include',
     method: 'DELETE',
     headers: {
@@ -18,10 +25,17 @@ export function deleteProject(project_id: string) {
     },
     body: JSON.stringify({ project_id })
   });
+
+  const data = await res.json();
+  return data
 }
 
+// GETS ALL OF THE PROJECTS THAT THE USER HAS
 export async function getAllProjects() {
-  return fetch(`${process.env.REACT_APP_BASE_URL}/projects`, {
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/projects`, {
     credentials: 'include',
   });
+
+  const data = await res.json();
+  return data;
 }

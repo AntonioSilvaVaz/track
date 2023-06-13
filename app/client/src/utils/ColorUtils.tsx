@@ -1,4 +1,5 @@
-// FUNCTION TO GET THE PARENT DIV COLOR
+// UPDATES THE COLOR OF A CERTAIN DIV
+// USED WHEN USER PAGE LOADS... i think
 export function getParentColor(targetDiv: Element) {
 
   const parent = targetDiv.parentElement;
@@ -74,7 +75,7 @@ export function updateColor(targetDiv: any, color: string) {
 
 }
 
-// MERGES TWO COLORS FROM 2 HAXADECIMAL INPUTS
+// MERGES TWO COLORS FROM 2 HEXADECIMAL INPUTS
 export function createMergedColor(colorToUse: string, colorMerge: string): string {
 
   const rgb1 = hexToRgb(colorToUse);

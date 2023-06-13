@@ -14,10 +14,7 @@ function ProjectsCreated({ title, description, _id, banner }: any) {
   function deleteElement(e: any) {
     e.preventDefault();
     deleteProject(_id)
-      .then(res => {
-        const newArr = projects.filter((project: { _id: string }) => project._id !== _id);
-        setProjects(newArr)
-      });
+      .then(res => setProjects(projects.filter((project: { _id: string }) => project._id !== _id)));
   }
 
   function loadFlow() {

@@ -7,17 +7,13 @@ function CreateProject() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
   const { setShowCreateProject, setProjects } = useContext(DashboardContext);
 
-
-  function creatseProject(e: any) {
+  function createProject(e: any) {
     e.preventDefault();
-
     createNewProject(title, description)
-      .then(res => res.json())
       .then(data => setProjects((currProjects: any) => {
-        const newProj = {title: title, description: description, _id: data._id}
+        const newProj = {title, description, _id: data._id}
         setTitle('');
         setDescription('');
         setShowCreateProject(false);
@@ -43,7 +39,7 @@ function CreateProject() {
         </div>
 
         <div className='input-options'>
-          <button className="create" onClick={creatseProject}>
+          <button className="create" onClick={createProject}>
             <h3>Create Project:</h3>
           </button>
         </div>

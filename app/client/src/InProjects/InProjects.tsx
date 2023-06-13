@@ -1,5 +1,5 @@
-import {useContext} from "react"
-import { Context } from "../Context/context";
+import { useContext } from "react"
+import { Context, FlowContext } from "../Context/context";
 
 import { useNodesState, useEdgesState } from "reactflow";
 import { useState } from 'react';
@@ -13,38 +13,39 @@ import Render from '../Render/Render';
 
 function InProjects() {
 
-  const { setShowProject, title } = useContext(Context);
+  const { title } = useContext(Context);
 
+  const [showExport, setShowExport] = useState(false);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [saved, setSaved] = useState('');
 
-  const [showExport, setShowExport] = useState(false);
-
+  const value = {
+    nodes: [], setNodes: (node: any) => { }, onNodesChange: () => { },
+    edges: [], setEdges: (edge: any) => { }, onEdgesChange: () => { },
+    saved: '', setSaved: (value: string) => { },
+    showExport: false, setShowExport: ()=>{}
+  }
   return (
-    <main className='InProjects'>
+    <FlowContext.Provider value={value}>
+      <main className='InProjects'>
 
-      {showExport && <Render setShowExport={setShowExport} />}
+        {showExport && <Render/>}
 
-      <nav className='TopBar'>
-        <TopBar
-        title={"Dashboard"} page={title} saved={saved} setSaved={setSaved} edges={edges}
-        setShowProject={setShowProject}
-        />
-      </nav>
+        <nav className='TopBar'>
+          <TopBar page={title}/>
+        </nav>
 
-      <section className='LeftBar'>
-        <LeftBar setNodes={setNodes} setShowExport={setShowExport} />
-      </section>
+        <section className='LeftBar'>
+          <LeftBar />
+        </section>
 
-      <section className='Flow'>
-        <Flow nodes={nodes} edges={edges} onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange} setEdges={setEdges} setNodes={setNodes}
+        <section className='Flow'>
+          <Flow/>
+        </section>
 
-        />
-      </section>
-
-    </main>
+      </main>
+    </FlowContext.Provider>
   );
 }
 
