@@ -2,7 +2,7 @@
 
 ## About
 
-#### track is a web application to create node based just by draging and droping diferent items you can also have diferent projects that will show up in the dashboard of your account.
+### track is a web application to create node based maps just by draging and droping diferent items you can also have diferent projects that will show up in the dashboard of your account.
 
 
 
@@ -18,19 +18,19 @@
 
 ## Commands
 
-#### root folder
+### root folder
 
-- ##### npm run get --> get's all the information inside the db
+- #### npm run get --> get's all the information inside the db
 
-- ##### npm run fill -->  fill the db with some mock data email -> demo@demo.com -> password -> 123
+- #### npm run fill -->  fill the db with some mock data email -> demo@demo.com -> password -> 123
 
-- ##### npm run clear --> clears all the information inside the db
+- #### npm run clear --> clears all the information inside the db
 
-#### app/client
+### app/client
 
-- ##### npm start to start the react app
+- #### npm start to start the react app
 
-#### app/server
+### app/server
 
 - ##### node index.js or nodemon index.js
 
@@ -40,29 +40,29 @@
 
 ### Front-End
 
-- ##### React
+- #### React
 
-- ##### React Flow
+- #### React Flow
 
-- ##### Typescript
+- #### Typescript
 
-- ##### html-to-image
+- #### html-to-image
 
-- ##### downloadjs
+- #### downloadjs
 
 ### Back-End
 
-- ##### Express
+- #### Express
 
-- ##### MongoDb
+- #### MongoDb
 
-- ##### Mongoose
+- #### Mongoose
 
-- ##### Cors
+- #### Cors
 
-- ##### Body-Parser
+- #### Body-Parser
 
-- ##### Cookies-Parser
+- #### Cookies-Parser
 
 ### Todo
 
@@ -76,10 +76,10 @@
 
 - [ ] Make images on the flow resizable
 
-##### Errors
+### <mark>**Errors**</mark>
 
-- Server crashes easy
+- #### Server crashes easy
 
-- Arrow of the connector dosen't animate with the edge
+- #### Arrow of the connector dosen't animate with the edge
 
-- If image uses css resize: both instead of resizing it moves with screen not allowing the resizing
+- #### If image uses css resize: both instead of resizing it moves with screen not allowing the resizing
