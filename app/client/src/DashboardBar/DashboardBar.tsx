@@ -1,6 +1,7 @@
+import { DashboardType } from '../types';
 import './DashboardBar.css';
 
-function DashboardBar({ title, rightText, callback }: any) {
+function DashboardBar({ title, rightText, callback }: DashboardType) {
 
   return (
     <section id="dashboardBar">

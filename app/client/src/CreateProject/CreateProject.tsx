@@ -1,18 +1,19 @@
-import { useState, useContext } from "react";
+import { MouseEvent, useState, useContext } from "react";
 import { createNewProject } from "../utils/ProjectUtils";
 import { DashboardContext } from "../Context/context";
 import "./CreateProject.css";
+import { initialProject } from "../types";
 
 function CreateProject() {
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] =  useState<string>('');
   const { setShowCreateProject, setProjects } = useContext(DashboardContext);
 
-  function createProject(e: any) {
+  function createProject(e: MouseEvent<HTMLElement>) {
     e.preventDefault();
     createNewProject(title, description)
-      .then(data => setProjects((currProjects: any) => {
+      .then(data => setProjects((currProjects: [initialProject]) => {
         const newProj = {title, description, _id: data._id}
         setTitle('');
         setDescription('');

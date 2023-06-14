@@ -8,13 +8,14 @@ import CreateProject from "../CreateProject/CreateProject";
 
 import { getAllProjects } from "../utils/ProjectUtils";
 import { logout } from "../utils/LoginUtils";
+import { initialProject } from "../types";
 
 function Dashboard() {
 
   const { setLoggedIn } = useContext(Context);
 
-  const [projects, setProjects]: [{ title: string, description: string, _id: string, banner: string }[], any] = useState([]);
-  const [showCreateProject, setShowCreateProject]: [boolean, any] = useState(false);
+  const [projects, setProjects] = useState<[initialProject]>();
+  const [showCreateProject, setShowCreateProject] = useState<boolean>(false);
   const value = { projects, setProjects, showCreateProject, setShowCreateProject };
 
   useEffect(() => {

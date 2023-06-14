@@ -7,7 +7,7 @@ import { findMyText } from '../utils/FlowUtils';
 
 export default memo(() => {
 
-  const [text, setText] = useState('text');
+  const [text, setText] = useState<string>('text');
   const thisNode = useRef(null);
 
   useEffect(() => {

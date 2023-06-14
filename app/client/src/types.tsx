@@ -29,3 +29,16 @@ export type nodeSave = {
   type: string,
   img?: any,
 }
+
+export type initialProject = {
+  title: string,
+  description: string,
+  _id: string,
+  banner?: string,
+}
+
+export type DashboardType = {
+  title: string,
+  rightText: string,
+  callback: any
+}
