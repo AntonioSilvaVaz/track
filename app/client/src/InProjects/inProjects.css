@@ -1,4 +1,5 @@
 .InProjects{
+  position: relative;
   width: 100%;
   height: 100%;
   display: grid;
@@ -7,16 +8,16 @@
 }
 
 .InProjects .TopBar{
-  grid-column: 12 span;
-  grid-row: 1 span;
+  grid-column: 1fr / 1fr;
+  grid-row: 1fr / 1fr;
 }
 
 .InProjects .LeftBar{
-  grid-column: 1 / 1 span;
-  grid-row: 12 span;
+  grid-column: 1   span;
+  grid-row:  11 span;
 }
 
 .InProjects .Flow{
-  grid-column: 2 / 11 fr;
+  grid-column: 11 span;
   grid-row: 11 span;
 }

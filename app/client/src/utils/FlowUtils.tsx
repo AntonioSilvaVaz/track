@@ -1,12 +1,19 @@
 // ALL OF THE UTILITES FUNCTION TAHT ARE BEING USED BY THE REACT FLOW
-
 import { MarkerType } from "reactflow";
 import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
 
-const currentText: { id: number, text: string }[] = [{ id: 0, text: 'text' }];
+let currentText: { id: number, text: string }[] = [];
 export let currentImages: { id: number, img: string }[] = [];
+
+// THIS IS REALLY IMPORTANT BECAUSE OF THE WAY THE LOADING IS STUCTURE
+// IF THE ITEMS DON'T GET RESETED THEN WITH MORE THAN 1 DOCUMENT
+// THEY START LOADING THE WRONG INFORMATION
+export function resetItems() {
+  currentText = []
+  currentImages = []
+}
 
 export function pushToFiles(img: string, id: number) {
   let itemPlaced = false;
@@ -129,7 +136,7 @@ export function connectInitialItems(edges: [{ sourceId: string, targetId: string
 
 // CHANGES THE TEXT THE THE TEXT THAT WAS SAVED
 export function findMyText(node: Element) {
-  const parentNode: any = node.parentNode;
+  const parentNode: any = node.parentElement;
   const id = parentNode.getAttribute("data-id");
   const text = currentText.filter((item) => item.id === id);
   return text[0]?.text;
@@ -150,6 +157,8 @@ export function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any) 
     .then(res => res.json())
     .then(data => {
       if (data[0]) {
+        console.log(data[0]);
+
         try {
           const nodes = giveInitialItems(data[0].items, reactFlowInstance);
           const edges = connectInitialItems(data[0].conections);

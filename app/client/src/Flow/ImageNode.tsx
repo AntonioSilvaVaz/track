@@ -19,7 +19,7 @@ export default memo(() => {
   }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const img = useRef(null)
   // THIS 2 FUNCTION WORK AS CHANGEPATH PROMPTS THE USER TO AN INPUT
   //  CHANHE FILE RECEIVES THE INPUT AND CHANGES THE CURENT IMAGE PATH
 
@@ -40,12 +40,16 @@ export default memo(() => {
     addToFiles(e, thisNode.current);
   }
 
+  function resizeImage() {
+
+  }
+
   return (
     <div className='img_node' ref={thisNode}>
       <Handle className='handle handle-top' type="source" position={Position.Top} id="a" />
       <Handle className='handle handle-right' type="source" position={Position.Right} id="b" />
       <div className='node_image-container'>
-        <img src={imgPath} onDoubleClick={changePath} alt="Not found" />
+        <img ref={img} src={imgPath} onDoubleClick={changePath} alt="Not found" />
         <input
           type="file" accept="image/jpeg image/png image/gif
         " style={{ display: 'none' }} onChange={changeFile} ref={fileInputRef}

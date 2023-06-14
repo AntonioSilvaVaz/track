@@ -6,11 +6,6 @@
   grid-template-rows: repeat(12, 1fr);
 }
 
-#dashboard #bar{
-  grid-column: 1 / 11 fr;
-  grid-row: 1;
-}
-
 #dashboard .create-btn{
   position: absolute;
   bottom: 0;

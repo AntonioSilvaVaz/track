@@ -111,15 +111,6 @@ async function createProj(info, user_id) {
   return returnEl;
 }
 
-async function saveMockData(mockData) {
-  try {
-    await Save.create({ ...mockData });
-    return 'SUCCESS';
-  } catch (error) {
-    return 'FAILED' + error;
-  }
-}
-
 async function deleteProj(user_id, project_id) {
   let document = await Save.findOne({ _id: user_id });
   const allProjects = document.projects;
@@ -159,7 +150,6 @@ async function logUserOut(user_id) {
 module.exports = {
   getInfo,
   saveInfo,
-  saveMockData,
   createProj,
   getProj,
   deleteProj,
