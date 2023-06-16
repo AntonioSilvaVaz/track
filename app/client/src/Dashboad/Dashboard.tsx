@@ -7,26 +7,23 @@ import ProjectsContainer from "../ProjectsContainer/ProjectContainer";
 import CreateProject from "../CreateProject/CreateProject";
 
 import { getAllProjects } from "../utils/ProjectUtils";
-import { logout } from "../utils/LoginUtils";
+import { logout } from "../utils/AuthUtils";
 import { initialProject } from "../types";
 
 function Dashboard() {
 
   const { setLoggedIn } = useContext(Context);
 
-  const [projects, setProjects] = useState<[initialProject]>();
+  const [projects, setProjects] = useState<initialProject[]>([]);
   const [showCreateProject, setShowCreateProject] = useState<boolean>(false);
   const value = { projects, setProjects, showCreateProject, setShowCreateProject };
 
   useEffect(() => {
-    getAllProjects()
-      .then(data => setProjects(data))
+    getAllProjects(setProjects)
   }, []);
 
   function logUserOut() {
-    logout()
-      .then(res => setLoggedIn(false))
-      .catch(err => alert('Failed logout'))
+    logout(setLoggedIn)
   }
 
   return (

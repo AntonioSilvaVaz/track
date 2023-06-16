@@ -1,17 +1,20 @@
 const router = require('express').Router();
-const controller = require('./controller/controller');
+const ProjectController = require('./controllers/ProjectController');
+const UserController = require('./controllers/UserController');
 
-router.get('/info', controller.getInformation);
-router.get('/projects', controller.getProjects);
+// USER ROUTES
+router.get('/confirm', UserController.confirmUser);
+router.post('/login', UserController.login);
+router.post('/register', UserController.register);
+router.delete('/logout', UserController.logout);
 
-router.post('/login', controller.login);
-router.post('/register', controller.register);
-router.post('/project', controller.createProject);
-router.post('/save', controller.saveInformation);
+// PROJECT ROUTES
+router.get('/info', ProjectController.getInformation);
+router.get('/projects', ProjectController.getProjects);
+router.post('/project', ProjectController.createProject);
+router.post('/save', ProjectController.saveInformation);
+router.delete('/project', ProjectController.deleteProject);
 
-router.delete('/project', controller.deleteProject);
-router.delete('/logout', controller.logout);
-
-router.get('*', controller.notFound);
+router.get('*', ProjectController.notFound);
 
 module.exports = router;

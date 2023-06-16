@@ -3,6 +3,7 @@ import { MarkerType } from "reactflow";
 import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
+let maxNodes: number = 0;
 
 let currentText: { id: number, text: string }[] = [];
 export let currentImages: { id: number, img: string }[] = [];
@@ -48,7 +49,7 @@ export const createNewRectNode = (setNodes: any, x?: number, y?: number) => {
 }
 
 // CREATES A NEW ROUND NODE ITEM
-export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
+export function createNewRoundNode (setNodes: any, x?: number, y?: number) {
   totalNodes++;
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
@@ -67,7 +68,7 @@ export const createNewRoundNode = (setNodes: any, x?: number, y?: number) => {
 }
 
 // CREATES A NEW NODE IMAGE
-export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
+export function createNewNodeImage (setNodes: any, x?: number, y?: number) {
   totalNodes++;
   setNodes((currNodes: nodeType[]) => {
     const newNodesArr: nodeType[] = [
@@ -86,7 +87,7 @@ export const createNewNodeImage = (setNodes: any, x?: number, y?: number) => {
 }
 
 // GETS AN ARRAY WITH THE INITIAL NODES
-export function giveInitialItems(arr: any, reactFlowInstance: any) {
+export function getInitialItems(arr: any, reactFlowInstance: any) {
 
   const reactFlowWrapper = document.getElementById('react-flow-wrapper');
   const reactFlowBounds = reactFlowWrapper && reactFlowWrapper.getBoundingClientRect();
@@ -94,8 +95,8 @@ export function giveInitialItems(arr: any, reactFlowInstance: any) {
   const flowY = reactFlowBounds && reactFlowBounds.top ? reactFlowBounds.top : 66;
 
   return arr.map((item: any, index: number) => {
-    if (index === arr.length - 1) totalNodes = Number(item.id) + 1;
 
+    maxNodes = item.id >= maxNodes ? Number(item.id) + 1 : maxNodes;
     currentText.push({ id: item.id, text: item.text });
     item.file && currentImages.push({ id: item.id, img: item.file });
 
@@ -149,25 +150,19 @@ export function findMyImage(node: Element) {
   return text[0]?.img;
 }
 
-export function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any) {
+export async function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any) {
 
-  fetch(`${process.env.REACT_APP_BASE_URL}/info`, {
-    credentials: 'include',
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data[0]) {
-        console.log(data[0]);
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/info`, { credentials: 'include', });
+  const data = await res.json();
 
-        try {
-          const nodes = giveInitialItems(data[0].items, reactFlowInstance);
-          const edges = connectInitialItems(data[0].conections);
-          setNodes(nodes);
-          setEdges(edges);
-        } catch (error) {
-          return error;
-        }
-
-      }
-    })
+  if (data[0]) {
+    try {
+      const nodes = getInitialItems(data[0].items, reactFlowInstance);
+      const edges = connectInitialItems(data[0].conections);
+      setNodes(nodes);
+      setEdges(edges);
+    } catch (error) {
+      return error;
+    }
+  }
 }

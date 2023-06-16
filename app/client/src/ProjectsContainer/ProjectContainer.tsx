@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import { DashboardContext, Context } from "../Context/context";
+import { DashboardContext } from "../Context/context";
 
 import ProjectCreated from "../ProjectsCreated/ProjectsCreated";
 import "./ProjectContainer.css";
+import { initialProject } from "../types";
 
 function ProjectContainer() {
 
-  const { projects } = useContext(DashboardContext);
+  const { projects, setProjects } = useContext(DashboardContext);
 
-  const allProjects = projects.map((project: { title: string, description: string, _id: string, banner: string }, index: number) => {
+  const allProjects = projects.map((project: initialProject, index: number) => {
 
     return (
       <div key={index} className="options-container hover">

@@ -1,13 +1,15 @@
 import { useCallback, useState } from "react";
-import { createMergedColor } from "../utils/ColorUtils";
+import { changeColor, createMergedColor, mergeColor, switchColor } from "../utils/ColorUtils";
 
 function ColorPicker() {
 
   const [colorMerge, setColorMerge] = useState('#000000');
+
   const [colors, setColors] = useState([
     '#FFFFFF', '#FF0000', '#FFC700', '#24FF00', '#00A3FF', '#6100FF', '#40037D', '#FF00F5', '#570000',
     '#7D6200', '#523131', '#380D0D', '#00FF94', '#BA7272', '#044416', '#000000'
   ]);
+
   const [horizontalColors, setHorizontalColors] = useState([
     '#FFFFFF', '#FF0000', '#FFC700', '#24FF00', '#00A3FF', '#6100FF', '#40037D', '#FF00F5', '#570000',
     '#7D6200', '#523131', '#380D0D', '#00FF94', '#BA7272', '#044416', '#000000'
@@ -23,31 +25,6 @@ function ColorPicker() {
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
-  //
-  const changeColor = (event: any) => {
-    let newColor = event.target.value;
-    if (!newColor) return;
-    if(newColor[0] !== '#') newColor = '#'+newColor;
-    setColorMerge(newColor);
-  }
-
-  // MERGES THE 2 COLORS THE CURRENT COLOR MERGE AND THE DROPED COLOR
-  const mergeColor = (event: any) => {
-    event.preventDefault();
-    const type = event.dataTransfer.getData('application/reactflow');
-    const newColor = createMergedColor(type, colorMerge);
-    setColorMerge(newColor);
-  }
-
-  // CHANGE TO THE COLOR THAT WAS DROPED IN
-  const switchColor = (event: any, index: number, setter: any) => {
-    event.preventDefault();
-    const newColor = event.dataTransfer.getData('application/reactflow');
-    const newArr = [...colors];
-    newArr[index] = newColor;
-    setter(newArr)
-  };
-
   // RETURNS ALL OF COLORS AS AN ELEMENT
   const allBoxes = colors.map((color: string, index: number) => {
     return (
@@ -55,7 +32,7 @@ function ColorPicker() {
         style={{ backgroundColor: color }}
         onDragStart={(e) => handleDrag(e, color)}
         onDragOver={onDragOver}
-        onDrop={(e) => switchColor(e, index, setColors)}
+        onDrop={(e) => switchColor(e, index, setColors, colors)}
         draggable>
       </div>
     )
@@ -68,7 +45,7 @@ function ColorPicker() {
         style={{ backgroundColor: color }}
         onDragStart={(e) => handleDrag(e, color + 'horizontal')}
         onDragOver={onDragOver}
-        onDrop={(e) => switchColor(e, index, setHorizontalColors)}
+        onDrop={(e) => switchColor(e, index, setHorizontalColors, colors)}
         draggable
       >
 
@@ -90,11 +67,11 @@ function ColorPicker() {
         <div className="merge-colors"
           style={{ backgroundColor: colorMerge }}
           draggable
-          onDrop={mergeColor}
+          onDrop={(e) => mergeColor(e, colorMerge, setColorMerge)}
           onDragOver={onDragOver}
           onDragStart={(e) => handleDrag(e, colorMerge)}
         >
-          <input type="text" value={colorMerge} onChange={changeColor} />
+          <input type="text" value={colorMerge} onChange={(e)=>changeColor(e, setColorMerge)} />
           {/* <h2>{colorMerge}</h2> */}
         </div>
       </div>

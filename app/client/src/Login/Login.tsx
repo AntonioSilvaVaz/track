@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
-import { checkuser, createUser } from "../utils/LoginUtils";
+import { useContext, useEffect, useState } from "react";
+import { loginUser, createUser, checkIfUserIsLoggedIn } from "../utils/AuthUtils";
 import "./Login.css";
 import DashboardBar from "../DashboardBar/DashboardBar";
 import { Context } from "../Context/context";
 
 function Login() {
-
 
   const { setLoggedIn } = useContext(Context);
 
@@ -18,8 +17,6 @@ function Login() {
   const [errorText, setErrorText] = useState('');
 
   function handleLogin() {
-    console.log('HERE');
-
     setLoggedIn(true);
     setPassword('');
     setEmail('');
@@ -31,7 +28,7 @@ function Login() {
       createUser(email, password)
         .then(registerSuccefull => registerSuccefull ? handleLogin() : setErrorText('Failed Register'))
     } else {
-      checkuser(email, password)
+      loginUser(email, password)
         .then(shouldLogin => shouldLogin ? setLoggedIn(true) : setErrorText('Failed Login'))
     }
   }
@@ -40,6 +37,10 @@ function Login() {
     setRightText(rightText == 'Register' ? 'Login' : 'Register');
     setState(state == 'Register' ? 'Login' : 'Register')
   }
+
+  useEffect(()=>{
+    checkIfUserIsLoggedIn(setLoggedIn)
+  }, [])
 
   return (
     <section id="Login">

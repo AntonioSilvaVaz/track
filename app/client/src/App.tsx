@@ -11,7 +11,7 @@ function App() {
   const [showProject, setShowProject]: [boolean, any] = useState(false);
   const [title, setProjectTitle]: [string, any] = useState('Track');
 
-  const value = { loggedIn, setLoggedIn, showProject, setShowProject, title, setProjectTitle }
+  const value = { loggedIn, setLoggedIn, showProject, setShowProject, title, setProjectTitle };
 
   return (
     <Context.Provider value={value}>

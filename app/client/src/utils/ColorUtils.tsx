@@ -1,4 +1,7 @@
 // UPDATES THE COLOR OF A CERTAIN DIV
+
+import { ChangeEvent, SetStateAction } from "react";
+
 // USED WHEN USER PAGE LOADS... i think
 export function getParentColor(targetDiv: Element) {
 
@@ -92,6 +95,31 @@ export function createMergedColor(colorToUse: string, colorMerge: string): strin
   // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   return "#" + ((1 << 24) + (merged[0] << 16) + (merged[1] << 8) + merged[2]).toString(16).slice(1);
 }
+
+//
+export function changeColor(event: ChangeEvent<any>, setColorMerge: SetStateAction<any>) {
+  let newColor = event.target.value;
+  if (!newColor) return;
+  if (newColor[0] !== '#') newColor = '#' + newColor;
+  setColorMerge(newColor);
+}
+
+// MERGES THE 2 COLORS THE CURRENT COLOR MERGE AND THE DROPED COLOR
+export function mergeColor(event: any, colorMerge: string, setColorMerge: SetStateAction<any>) {
+  event.preventDefault();
+  const type = event.dataTransfer.getData('application/reactflow');
+  const newColor = createMergedColor(type, colorMerge);
+  setColorMerge(newColor);
+}
+
+// CHANGE TO THE COLOR THAT WAS DROPED IN
+export function switchColor(event: any, index: number, setter: SetStateAction<any>, colors: string[]) {
+  event.preventDefault();
+  const newColor = event.dataTransfer.getData('application/reactflow');
+  const newArr = [...colors];
+  newArr[index] = newColor;
+  setter(newArr)
+};
 
 // RETURNS AN HEX COLOR TO RGB
 function hexToRgb(hex: string) {

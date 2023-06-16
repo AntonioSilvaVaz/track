@@ -1,8 +1,11 @@
+import { SetStateAction } from "react";
+import { initialProject } from "../types";
 // THE USER ID IS PASSED ALWAYS IN THE COOKIES
 // THE PROJECT ID IS ALSO PASSED IN THE COOKIES WHEN NEEDED
 
 // CREATES A NEW PROJECT
-export async function createNewProject(title: string, description: string) {
+export async function createNewProject(title: string, description: string, setters: any) {
+
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/project`, {
     credentials: 'include',
     method: 'POST',
@@ -12,6 +15,17 @@ export async function createNewProject(title: string, description: string) {
     body: JSON.stringify({ title, description })
   });
   const data = await res.json();
+
+  const {setProjects, setTitle, setDescription, setShowCreateProject} = setters;
+
+  setProjects((currProjects: [initialProject]) => {
+    const newProj = {title, description, _id: data._id}
+    setTitle('');
+    setDescription('');
+    setShowCreateProject(false);
+    return [...currProjects, newProj];
+  });
+
   return data;
 }
 
@@ -31,11 +45,13 @@ export async function deleteProject(project_id: string) {
 }
 
 // GETS ALL OF THE PROJECTS THAT THE USER HAS
-export async function getAllProjects() {
+
+export async function getAllProjects(setProjects: SetStateAction<any>) {
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/projects`, {
     credentials: 'include',
   });
 
   const data = await res.json();
-  return data;
+  setProjects(data);
+  return;
 }
