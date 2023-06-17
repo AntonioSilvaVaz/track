@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FlowContext } from '../Context/context';
+import { FlowContext } from '../../Context/context';
 
 import { toPng, toJpeg, toSvg } from 'html-to-image';
 import download from "downloadjs";

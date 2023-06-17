@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { loginUser, createUser, checkIfUserIsLoggedIn } from "../utils/AuthUtils";
+import { loginUser, createUser, checkIfUserIsLoggedIn } from "../../utils/AuthUtils";
 import "./Login.css";
-import DashboardBar from "../DashboardBar/DashboardBar";
-import { Context } from "../Context/context";
+import DashboardBar from "../../items/DashboardBar/DashboardBar";
+import { Context } from "../../Context/context";
 
 function Login() {
 

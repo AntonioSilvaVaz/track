@@ -1,14 +1,14 @@
 import { useEffect, useState, useContext } from "react";
-import { Context, DashboardContext } from "../Context/context";
+import { Context, DashboardContext } from "../../Context/context";
 import "./Dashboard.css";
 
-import DashboardBar from "../DashboardBar/DashboardBar";
-import ProjectsContainer from "../ProjectsContainer/ProjectContainer";
+import DashboardBar from "../../items/DashboardBar/DashboardBar";
+import ProjectsContainer from "../../items/ProjectsContainer/ProjectContainer";
 import CreateProject from "../CreateProject/CreateProject";
 
-import { getAllProjects } from "../utils/ProjectUtils";
-import { logout } from "../utils/AuthUtils";
-import { initialProject } from "../types";
+import { getAllProjects } from "../../utils/ProjectUtils";
+import { logout } from "../../utils/AuthUtils";
+import { initialProject } from "../../types";
 
 function Dashboard() {
 

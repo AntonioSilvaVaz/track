@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { changeColor, createMergedColor, mergeColor, switchColor } from "../utils/ColorUtils";
+import { changeColor, createMergedColor, mergeColor, switchColor } from "../../utils/ColorUtils";
 
 function ColorPicker() {
 

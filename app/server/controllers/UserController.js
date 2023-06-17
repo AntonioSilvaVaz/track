@@ -54,7 +54,7 @@ const logout = async (req, res) => {
     try {
       await logUserOut(user_id);
       res.setHeader('Set-Cookie', 'user_id=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/');
-      res.writeHead(401, { 'Content-Type': 'text/plain' });
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('Unauthorized');
     } catch (error) {
       res.setHeader('Set-Cookie', 'user_id=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/');

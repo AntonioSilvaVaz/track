@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Context, FlowContext } from '../Context/context';
+import { Context, FlowContext } from '../../Context/context';
 
-import { saveFile } from '../utils/SaveUtils';
+import { saveFile } from '../../utils/SaveUtils';
 import './TopBar.css';
-import { resetItems } from "../utils/FlowUtils";
+import { resetItems } from "../../utils/FlowUtils";
 
 function TopBar({ page }: any) {
 

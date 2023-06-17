@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { DashboardContext } from "../Context/context";
+import { DashboardContext } from "../../Context/context";
 
 import ProjectCreated from "../ProjectsCreated/ProjectsCreated";
 import "./ProjectContainer.css";
-import { initialProject } from "../types";
+import { initialProject } from "../../types";
 
 function ProjectContainer() {
 
-  const { projects, setProjects } = useContext(DashboardContext);
+  const { projects } = useContext(DashboardContext);
 
   const allProjects = projects.map((project: initialProject, index: number) => {
 

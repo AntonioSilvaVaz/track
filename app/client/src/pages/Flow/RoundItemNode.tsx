@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
-import { getParentColor } from '../utils/ColorUtils';
-import { findMyText } from '../utils/FlowUtils';
+import { getParentColor } from '../../utils/ColorUtils';
+import { findMyText } from '../../utils/FlowUtils';
 
 // HERE YOU CAN CUSTOMIZE YOUR NODE 'item'
 

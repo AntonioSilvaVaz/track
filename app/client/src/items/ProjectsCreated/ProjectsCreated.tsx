@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { DashboardContext, Context } from "../Context/context";
+import { DashboardContext, Context } from "../../Context/context";
 
-import bg from "../images/white_bg.png";
+import bg from "../../images/white_bg.png";
 import "./ProjectsCreated.css"
-import { deleteProject } from "../utils/ProjectUtils";
+import { deleteProject } from "../../utils/ProjectUtils";
 
 function ProjectsCreated({ title, description, _id, banner }: any) {
 
@@ -18,7 +18,7 @@ function ProjectsCreated({ title, description, _id, banner }: any) {
   }
 
   function loadFlow() {
-    document.cookie = `project_id=${_id}`;
+    document.cookie = `project_id=${_id};`;
     setProjectTitle(title);
     setShowProject(true);
   }

@@ -1,4 +1,4 @@
-import { DashboardType } from '../types';
+import { DashboardType } from '../../types';
 import './DashboardBar.css';
 
 function DashboardBar({ title, rightText, callback }: DashboardType) {

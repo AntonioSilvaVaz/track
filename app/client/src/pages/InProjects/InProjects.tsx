@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { Context, FlowContext } from "../Context/context";
+import { Context, FlowContext } from "../../Context/context";
 
 import { useNodesState, useEdgesState } from "reactflow";
 import { useState } from 'react';
 
-import TopBar from '../TopBar/TopBar';
-import LeftBar from '../LeftBar/LeftBar';
+import TopBar from '../../items/TopBar/TopBar';
+import LeftBar from '../../items/LeftBar/LeftBar';
 import Flow from '../Flow/Flow';
 import './inProjects.css';
 

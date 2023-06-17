@@ -1,6 +1,6 @@
 import { MouseEvent, useState, useContext } from "react";
-import { createNewProject } from "../utils/ProjectUtils";
-import { DashboardContext } from "../Context/context";
+import { createNewProject } from "../../utils/ProjectUtils";
+import { DashboardContext } from "../../Context/context";
 import "./CreateProject.css";
 
 function CreateProject() {

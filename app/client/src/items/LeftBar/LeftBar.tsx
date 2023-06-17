@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { FlowContext } from '../Context/context';
+import { FlowContext } from '../../Context/context';
 import './LeftBar.css';
 
 import ColorPicker from './ColorPicker';
-import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../utils/FlowUtils";
+import { createNewRoundNode, createNewRectNode, createNewNodeImage } from "../../utils/FlowUtils";
 
 const handleDrag = (event: any, nodeType: string) => {
   event.dataTransfer.setData('application/reactflow', nodeType);

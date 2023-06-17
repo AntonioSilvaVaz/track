@@ -51,7 +51,7 @@
 #leftbar .imgDrag{
   width: 100px;
   height: 70px;
-  background-image: url('../images/image.png');
+  background-image: url('../../images/image.png');
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: contain;

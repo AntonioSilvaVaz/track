@@ -1,8 +1,8 @@
 import { ChangeEvent, memo, useEffect, useRef, useState } from 'react';
 import { Handle, Position } from 'reactflow';
-import mockImage from '../images/cat.jpg';
-import { addToFiles, saveFile } from '../utils/SaveUtils';
-import { findMyImage } from '../utils/FlowUtils';
+import mockImage from '../../images/cat.jpg';
+import { addToFiles, saveFile } from '../../utils/SaveUtils';
+import { findMyImage } from '../../utils/FlowUtils';
 
 // CUSTOM IMAGE NODE
 

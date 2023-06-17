@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import InProjects from './InProjects/InProjects';
-import Dashboard from './Dashboad/Dashboard';
-import Login from './Login/Login';
+import InProjects from './pages/InProjects/InProjects';
+import Dashboard from './pages/Dashboad/Dashboard';
+import Login from './pages/Login/Login';
 import { Context } from './Context/context';
 
 function App() {

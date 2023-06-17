@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import ReactFlow, { addEdge, ConnectionMode, MarkerType, Edge } from "reactflow";
-import { FlowContext } from "../Context/context";
+import { FlowContext } from "../../Context/context";
 import 'reactflow/dist/style.css';
 import './Flow.css';
 
@@ -9,8 +9,8 @@ import RoundItemNode from "./RoundItemNode";
 import RectItemNode from "./RectItemNode";
 import ImageNode from "./ImageNode";
 
-import { createNewRectNode, createNewRoundNode, createNewNodeImage, fetchData } from "../utils/FlowUtils";
-import { updateColor } from "../utils/ColorUtils";
+import { createNewRectNode, createNewRoundNode, createNewNodeImage, fetchData } from "../../utils/FlowUtils";
+import { updateColor } from "../../utils/ColorUtils";
 
 // USED FOR THE CUSTOM NODES AND EDGES
 const nodeTypes = { rect_node: RectItemNode, round_node: RoundItemNode, img_node: ImageNode };

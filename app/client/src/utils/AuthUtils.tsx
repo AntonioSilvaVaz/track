@@ -33,15 +33,18 @@ export async function createUser(email: string, password: string) {
 
 // LOGS THE USER OUT
 export async function logout(setLoggedIn: SetStateAction<any>) {
-
+  // if(cookies[0] && cookies[0] === )
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, { credentials: 'include', method: 'DELETE', });
-
   if (res.ok) setLoggedIn(false)
   else alert('Failed logout');
 }
 
 // CHECKS ID THE USER IS LOGGED IN
 export async function checkIfUserIsLoggedIn(setLoggedIn: SetStateAction<any>) {
-  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/confirm`, { credentials: 'include', });
-  if (res.ok) setLoggedIn(true);
+  const cookies = document.cookie.split(';');
+  if (cookies[0].match(/user_id/)) {
+    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/confirm`, { credentials: 'include', });
+    if (res.ok) setLoggedIn(true);
+  }
+
 }
