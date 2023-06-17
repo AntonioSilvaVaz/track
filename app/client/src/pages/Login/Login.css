@@ -1,55 +1,137 @@
-#Login{
+#login{
   width: 100%;
   height: 100%;
   display: grid;
+  width: 100%;
+  height: 100%;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
+  background-color: #000000;
 }
 
-#Login .form h2{
-  margin-bottom: -5px;
+#login .title{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-row: 2 / 2;
+  grid-column: 2 / 11;
+  margin-bottom: 20px;
 }
 
-#Login .form-container{
-  grid-column: 1 / 12 fr;
-  grid-row: 7;
+#login .form-container{
+  border: 1px solid black;
+  background-color: white;
+  grid-row: 3 / 11;
+  grid-column: 2 / 6;
+  display: flex;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 70%;
+  padding: 20px 0;
 }
 
-#Login .form{
-  width: 400px;
+#login .form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  gap: 20px;
+}
+
+#login .name{
+  margin-bottom: 5px;
+}
+
+#login .container-input{
+  position: relative;
+  width: 100%;
   height: max-content;
-  padding: 10px 20px;
+}
+
+#login input{
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50px;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+#login button{
+  width: 180px;
+  align-self: center;
+  background-color: #000000;
+  color: white;
+  border-radius: 40px;
+  border: 0;
+  margin-top: 10px;
+}
+
+#login .circle-container{
+  grid-row: 3 / 11;
+  grid-column: 7 / 11;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
 }
 
-#Login .container-input{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-#Login input{
-  padding: 0 20px;
-  width: 220px;
-  height: 50px;
-}
-
-#Login button{
-  margin-top: 20px;
-  height: 50px;
-  width: 170px;
+/* CIRCLE STYLE */
+#login .circle{
+  width: 470px;
+  height: 470px;
+  border-radius: 500px;
+  background-color: rgb(40, 40, 40);
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 20px rgb(116, 116, 116);
+}
+
+#login .inside{
+  position: absolute;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#login .one{
+  transform: translate(-90px, -95px);
+  background-color: #99FF5B;
+  color: #000000;
+}
+
+#login .two{
+  transform: translate(90px, -30px);
+  background-color: #FF3131;
+  color: #a282fd;
+}
+
+#login .three{
+  transform: translate(90px, 90px);
+  background-color: #A800B7;
+  color: #FFFFFF;
+}
+
+#login .four{
+  transform: translate(-80px, 80px);
+  background-color: #0085FF;
+  color: #00FFB2;
+}
+
+#login svg{
+  z-index: 0;
+  position: absolute;
+  stroke: #d8d5d7;
+  stroke-width: 4;
+  fill: none;
 }

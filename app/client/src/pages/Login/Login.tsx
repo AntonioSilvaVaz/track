@@ -38,16 +38,21 @@ function Login() {
     setState(state == 'Register' ? 'Login' : 'Register')
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     checkIfUserIsLoggedIn(setLoggedIn)
   }, [])
 
   return (
-    <section id="Login">
+    <section id="login">
       <DashboardBar title={'Track'} rightText={rightText} callback={handleClick} />
-      <div className="form-container">
-        <form className="form">
-          <h2>{state}</h2>
+
+      <div className="title">
+        <h1>Start creating you schemes today</h1>
+      </div>
+
+      <div className="form-container" >
+        <form onSubmit={handleSubmit} className="form">
+          <h2 className="name">{state}</h2>
 
           <div className="container-input">
             <label htmlFor="email">
@@ -63,12 +68,31 @@ function Login() {
             <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" placeholder="not123!" />
           </div>
 
-          <button onClick={handleSubmit} type="submit">
+          <button type="submit">
             <h3>{state}</h3>
           </button>
         </form>
 
         <h3 style={{ color: 'red' }}>{errorText}</h3>
+      </div>
+
+      <div className="circle-container">
+        <div className="circle">
+          <svg>
+            <polyline points="60,2 100,400"></polyline>
+          </svg>
+          <svg>
+            <polyline points="80,2 240,50"></polyline>
+          </svg>
+          <svg>
+            <polyline points="65,2 300,220"></polyline>
+          </svg>
+          <div className="inside one"><h3>!</h3></div>
+          <div className="inside two"><h3>2</h3></div>
+          <div className="inside three"><h3>3</h3></div>
+          <div className="inside four"><h3>4</h3></div>
+        </div>
+
       </div>
 
     </section>

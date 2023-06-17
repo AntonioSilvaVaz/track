@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import TopBar from '../../items/TopBar/TopBar';
 import LeftBar from '../../items/LeftBar/LeftBar';
-import Flow from '../Flow/Flow';
+import Flow from '../../items/Flow/Flow';
 import './inProjects.css';
 
 import Render from '../Render/Render';

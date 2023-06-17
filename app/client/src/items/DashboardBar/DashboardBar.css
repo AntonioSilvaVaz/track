@@ -5,27 +5,29 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   background-color: #f2f2f2;
   color: black;
+  background-color: white;
   border-bottom: 1px solid black;
 }
 
 #dashboardBar h3{
-  margin-right: 20px;
+  grid-column: 11 / 11;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 #dashboardBar .dashboard {
-  left: 0;
-  top: 0;
-  width: 122px;
+  grid-column: 2 / 2;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  color: white;
+  border-right: 2px solid;
+  border-left: 2px solid;
+  color: black;
   padding: 0px 20px;
 }
