@@ -16,7 +16,7 @@
 #dashboardBar h3{
   grid-column: 11 / 11;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 

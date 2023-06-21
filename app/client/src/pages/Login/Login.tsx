@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { loginUser, createUser, checkIfUserIsLoggedIn } from "../../utils/AuthUtils";
 import "./Login.css";
+
+import { loginUser, createUser, checkIfUserIsLoggedIn } from "../../utils/AuthUtils";
 import DashboardBar from "../../items/DashboardBar/DashboardBar";
+import LoginPolylines from "../../items/LoginPolylines/LoginPolylines";
 import { Context } from "../../Context/context";
 
 function Login() {
@@ -10,11 +12,10 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [rightText, setRightText] = useState('Register');
-
   const [state, setState] = useState('Login')
   const [errorText, setErrorText] = useState('');
+
 
   function handleLogin() {
     setLoggedIn(true);
@@ -39,8 +40,9 @@ function Login() {
   }
 
   useEffect(() => {
-    checkIfUserIsLoggedIn(setLoggedIn)
-  }, [])
+    checkIfUserIsLoggedIn(setLoggedIn);
+  }, []);
+
 
   return (
     <section id="login">
@@ -53,50 +55,29 @@ function Login() {
       <div className="form-container" >
         <form onSubmit={handleSubmit} className="form">
           <h2 className="name">{state}</h2>
-
           <div className="container-input">
             <label htmlFor="email">
               <h3>Email:</h3>
             </label>
             <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" placeholder="demo@demo.com" />
           </div>
-
           <div className="container-input">
             <label htmlFor="password">
               <h3>Password:</h3>
             </label>
             <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" placeholder="not123!" />
           </div>
-
           <button type="submit">
             <h3>{state}</h3>
           </button>
         </form>
-
         <h3 style={{ color: 'red' }}>{errorText}</h3>
       </div>
 
-      <div className="circle-container">
-        <div className="circle">
-          <svg>
-            <polyline points="60,2 100,400"></polyline>
-          </svg>
-          <svg>
-            <polyline points="80,2 240,50"></polyline>
-          </svg>
-          <svg>
-            <polyline points="65,2 300,220"></polyline>
-          </svg>
-          <div className="inside one"><h3>!</h3></div>
-          <div className="inside two"><h3>2</h3></div>
-          <div className="inside three"><h3>3</h3></div>
-          <div className="inside four"><h3>4</h3></div>
-        </div>
+      < LoginPolylines />
 
-      </div>
-
-    </section>
-  )
+    </section >
+  );
 }
 
 export default Login;
