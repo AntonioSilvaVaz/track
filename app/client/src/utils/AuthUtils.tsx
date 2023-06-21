@@ -35,7 +35,10 @@ export async function createUser(email: string, password: string) {
 export async function logout(setLoggedIn: SetStateAction<any>) {
   // if(cookies[0] && cookies[0] === )
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, { credentials: 'include', method: 'DELETE', });
-  if (res.ok) setLoggedIn(false)
+  if (res.ok) {
+    setLoggedIn(false);
+    window.location.reload()
+  }
   else alert('Failed logout');
 }
 

@@ -1,10 +1,10 @@
 import { RefObject } from "react";
 
 const colors = [
-  '#FF0000','#00FF00','#0000FF','#FFFF00','#FF00FF','#00FFFF','#FFA500','#800080',
-  '#FFC0CB','#008000','#008080','#800000','#808000','#808080','#C0C0C0','#800000',
-  '#808000','#800080','#008000','#008080','#000080','#800000','#808000','#800080',
-  '#008000','#008080','#000080','#FF0000','#00FF00','#0000FF'
+  '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFA500', '#800080',
+  '#FFC0CB', '#008000', '#008080', '#800000', '#808000', '#808080', '#C0C0C0', '#800000',
+  '#808000', '#800080', '#008000', '#008080', '#000080', '#800000', '#808000', '#800080',
+  '#008000', '#008080', '#000080', '#FF0000', '#00FF00', '#0000FF'
 ];
 let allRefs: RefObject<HTMLDivElement>[] = [];
 let count = 0;
@@ -113,21 +113,6 @@ function connectDivsWithPolyline(
   }
 };
 
-export function connectAndCreateRandomPolylines(
-  svg: SVGSVGElement,
-  allCircleRefs?: RefObject<HTMLDivElement>[]
-) {
-
-  if (!allRefs[0] && allCircleRefs) allRefs = [...allCircleRefs];
-  if (allRefs) {
-    count = 0;
-    for (let index = 0; index < 5; index++) {
-      const [source, target] = getRandomPositions(allRefs);
-      connectDivsWithPolyline(source, target, svg, index * 300);
-    }
-  };
-}
-
 function getRandomPositions(arr: any): RefObject<HTMLDivElement>[] {
 
   const allEls = [...arr];
@@ -141,4 +126,19 @@ function getRandomPositions(arr: any): RefObject<HTMLDivElement>[] {
   allEls.splice(0, secondPosition);
 
   return [source, target];
+};
+
+export function connectAndCreateRandomPolylines(
+  svg: SVGSVGElement,
+  allCircleRefs?: RefObject<HTMLDivElement>[]
+) {
+
+  if (!allRefs[0] && allCircleRefs) allRefs = [...allCircleRefs];
+  if (allRefs[0]) {
+    count = 0;
+    for (let index = 0; index < 5; index++) {
+      const [source, target] = getRandomPositions(allRefs);
+      connectDivsWithPolyline(source, target, svg, index * 300);
+    }
+  };
 }

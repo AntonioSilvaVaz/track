@@ -11,6 +11,7 @@ import './inProjects.css';
 import Render from '../Render/Render';
 import DashboardBar from "../../items/DashboardBar/DashboardBar";
 import { resetItems } from "../../utils/FlowUtils";
+import { saveFile } from "../../utils/SaveUtils";
 
 function InProjects() {
 
@@ -29,7 +30,8 @@ function InProjects() {
   }
 
 
-  function leaveThisPage() {
+  async function extraCallback() {
+    await saveFile(edges)
     document.cookie = 'project_id=0';
     setShowProject(false);
     resetItems();
@@ -39,7 +41,7 @@ function InProjects() {
     <FlowContext.Provider value={value}>
       <main className='InProjects'>
         {showExport && <Render />}
-        <DashboardBar title={'Dashboard'} extraStyle={{ gridColumn: '1 / 3' }} rightText={title} callback={() => setShowExport(true)} extraCallback={leaveThisPage} />
+        <DashboardBar title={'Dashboard'} extraStyle={{ gridColumn: '1 / 3' }} rightText={title} callback={() => setShowExport(true)} extraCallback={extraCallback} />
         <LeftBar />
         <Flow />
       </main>

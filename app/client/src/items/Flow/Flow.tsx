@@ -76,7 +76,7 @@ function Flow() {
 
   return (
 
-    <div id="react-flow-wrapper" ref={reactFlowWrapper} style={{ width: '100%', height: '100%' }}>
+    <div className="Flow" id="react-flow-wrapper" ref={reactFlowWrapper} style={{ width: '100%', height: '100%' }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

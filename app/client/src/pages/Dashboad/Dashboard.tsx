@@ -23,7 +23,7 @@ function Dashboard() {
   }, []);
 
   function logUserOut() {
-    logout(setLoggedIn)
+    logout(setLoggedIn);
   }
 
   return (

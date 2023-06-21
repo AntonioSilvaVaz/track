@@ -11,7 +11,6 @@ function TopBar({ page }: any) {
   const { setShowProject } = useContext(Context);
 
   function leaveThisPage() {
-    saveChanges(false);
     document.cookie = 'project_id=0';
     setShowProject(false);
     resetItems();
@@ -33,18 +32,12 @@ function TopBar({ page }: any) {
     }, 5000)
   }
 
-  function saveChanges(shouldShowChanges: boolean) {
-    saveFile(edges)
-      .then(res => shouldShowChanges ? updateText(false) : false)
-      .catch(err => shouldShowChanges ? updateText(true) : false)
-  }
-
   return (
     <>
       <div className='dashboard hover' onClick={leaveThisPage}>
         <h2>Dashboard</h2>
       </div>
-      <div className='save' onClick={() => saveChanges(true)}></div>
+      <div className='save'></div>
       <h3 id='text-save'>{saved}</h3>
       <h3 className='currentPage'>{page}</h3>
     </>
