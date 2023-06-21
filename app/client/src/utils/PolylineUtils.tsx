@@ -1,6 +1,13 @@
 import { RefObject } from "react";
 
-const colors = ['red', 'blue', 'pink', 'purple', 'yellow', 'white'];
+const colors = [
+  '#FF0000','#00FF00','#0000FF','#FFFF00','#FF00FF','#00FFFF','#FFA500','#800080',
+  '#FFC0CB','#008000','#008080','#800000','#808000','#808080','#C0C0C0','#800000',
+  '#808000','#800080','#008000','#008080','#000080','#800000','#808000','#800080',
+  '#008000','#008080','#000080','#FF0000','#00FF00','#0000FF'
+];
+let allRefs: RefObject<HTMLDivElement>[] = [];
+let count = 0;
 
 function animatePath(
   { startX, startY, endX, endY }: { startX: number, startY: number, endX: number, endY: number },
@@ -47,8 +54,9 @@ function createPolyline(
   const xmlns = 'http://www.w3.org/2000/svg';
   const polyline = document.createElementNS(xmlns, 'polyline');
 
-  polyline.style.stroke = colors[0];
-  colors.splice(0, 1);
+  const randomColorPosition = Math.round(Math.random() * colors.length);
+  polyline.style.stroke = colors[randomColorPosition];
+
   polyline.setAttribute('points', `${startX},${startY} ${startX},${startY}`);
   animatePath({ startX, startY, endX, endY }, polyline, svgElement);
   return polyline;
@@ -58,24 +66,24 @@ function deletePolyline(svg: SVGSVGElement, polyline: SVGPolylineElement): void 
   let opacity = 1;
   const removePathInterval = setInterval(() => {
     opacity -= 0.1;
-    console.log(opacity);
     polyline.style.opacity = opacity + '';
     if (opacity <= 0) {
+      count++;
+      if (count === 5) connectAndCreateRandomPolylines(svg);
       clearInterval(removePathInterval);
       svg.removeChild(polyline);
     }
-  }, 180);
+  }, 200);
 }
 
-export function connectDivsWithPolyline(
+function connectDivsWithPolyline(
   startDiv: RefObject<HTMLDivElement>,
   endDiv: RefObject<HTMLDivElement>,
-  svgRef: RefObject<SVGSVGElement>,
+  svgElement: SVGSVGElement,
   startDelay: number) {
 
   const circle = startDiv.current;
   const circle2 = endDiv.current;
-  const svgElement = svgRef.current;
 
   if (circle && circle2 && svgElement) {
     // .slice(0, -2) removes 'px' from the returned values
@@ -104,3 +112,33 @@ export function connectDivsWithPolyline(
     }, startDelay);
   }
 };
+
+export function connectAndCreateRandomPolylines(
+  svg: SVGSVGElement,
+  allCircleRefs?: RefObject<HTMLDivElement>[]
+) {
+
+  if (!allRefs[0] && allCircleRefs) allRefs = [...allCircleRefs];
+  if (allRefs) {
+    count = 0;
+    for (let index = 0; index < 5; index++) {
+      const [source, target] = getRandomPositions(allRefs);
+      connectDivsWithPolyline(source, target, svg, index * 300);
+    }
+  };
+}
+
+function getRandomPositions(arr: any): RefObject<HTMLDivElement>[] {
+
+  const allEls = [...arr];
+
+  const firstPosition = Math.floor(Math.random() * allEls.length);
+  const source = allEls[firstPosition];
+  allEls.splice(firstPosition, 1);
+
+  const secondPosition = Math.floor(Math.random() * allEls.length);
+  const target = allEls[secondPosition];
+  allEls.splice(0, secondPosition);
+
+  return [source, target];
+}

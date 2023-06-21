@@ -19,7 +19,14 @@
   margin-bottom: 20px;
 }
 
+#login .errorText{
+  position: absolute;
+  bottom: 0;
+  left: 50;
+}
+
 #login .form-container{
+  position: relative;
   border: 1px solid black;
   background-color: white;
   grid-row: 3 / 11;
@@ -27,7 +34,8 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  padding: 20px 0;
+  padding: 20px 0 35px;
+  box-shadow: 0px 0px 20px rgb(89, 89, 89);
 }
 
 #login .form{

@@ -1,50 +1,46 @@
-import { useRef, RefObject, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion"
 import './LoginPolylines.css';
-import { connectDivsWithPolyline } from "./PolylineUtils";
+import { connectAndCreateRandomPolylines } from "../../utils/PolylineUtils";
 
 function LoginPolylines() {
 
-  const circle1Ref = useRef<HTMLDivElement>(null);
-  const circle2Ref = useRef<HTMLDivElement>(null);
-  const circle3Ref = useRef<HTMLDivElement>(null);
-  const circle4Ref = useRef<HTMLDivElement>(null);
+  const allRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ]
   const svgRef = useRef<SVGSVGElement>(null);
 
-  useEffect(()=>{
-    connectDivsWithPolyline(circle1Ref, circle2Ref, svgRef, 200);
-    // connectDivsWithPolyline(circle1Ref, circle3Ref, svgRef, 300);
-    // connectDivsWithPolyline(circle3Ref, circle2Ref, svgRef, 400);
-    // connectDivsWithPolyline(circle4Ref, circle2Ref, svgRef, 500);
-    // connectDivsWithPolyline(circle4Ref, circle1Ref, svgRef, 600);
+
+  useEffect(() => {
+    if (svgRef.current) {
+      connectAndCreateRandomPolylines(svgRef.current, allRefs);
+    }
   }, [])
 
-  const items = [
-    { name: 'one', ref: circle1Ref },
-    { name: 'two', ref: circle2Ref },
-    { name: 'three', ref: circle3Ref },
-    { name: 'four', ref: circle4Ref }
-  ];
+  const items = ['one', 'two', 'three', 'four'];
 
   const allItems = items.map((item, index) => {
     return (
-      <motion.div className={`inside ${item.name}`} key={item.name} ref={item.ref}
+      <motion.div className={`inside ${item}`} key={item} ref={allRefs[index]}
 
         animate={{
           borderRadius: ['0px', '200px', '200px', '0px'],
-          rotateZ: [0, 100, 100, 200, 200, 100, 100, 0],
+          width: ['40px', '80px', '80px', '40px'],
           scale: 1,
         }}
 
         transition={{
           type: "tween",
-          duration: 4,
+          duration: 1.5,
           repeat: Infinity,
           repeatDelay: 1,
           delay: index * 0.9
         }}>
 
-        <h3>{item.name}</h3>
+        <h3>{item}</h3>
       </motion.div>
     )
   });

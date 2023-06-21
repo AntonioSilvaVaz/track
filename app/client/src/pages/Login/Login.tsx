@@ -23,14 +23,21 @@ function Login() {
     setEmail('');
   }
 
+  function handleError(text: string) {
+    setErrorText(text);
+    setTimeout(()=>{
+      setErrorText('')
+    }, 5000)
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (state === 'Register') {
       createUser(email, password)
-        .then(registerSuccefull => registerSuccefull ? handleLogin() : setErrorText('Failed Register'))
+        .then(registerSuccefull => registerSuccefull ? handleLogin() : handleError('Failed Register'))
     } else {
       loginUser(email, password)
-        .then(shouldLogin => shouldLogin ? setLoggedIn(true) : setErrorText('Failed Login'))
+        .then(shouldLogin => shouldLogin ? setLoggedIn(true) : handleError('Failed Login'));
     }
   }
 
@@ -71,7 +78,7 @@ function Login() {
             <h3>{state}</h3>
           </button>
         </form>
-        <h3 style={{ color: 'red' }}>{errorText}</h3>
+        <h3 className="errorText" style={{ color: 'red' }}>{errorText}</h3>
       </div>
 
       < LoginPolylines />
