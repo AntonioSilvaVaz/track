@@ -1,4 +1,4 @@
-.InProjects{
+.InProjects {
   position: relative;
   width: 100%;
   height: 100%;
@@ -7,17 +7,22 @@
   grid-template-rows: repeat(12, 1fr);
 }
 
-.InProjects .TopBar{
-  grid-column: 1fr / 1fr;
-  grid-row: 1fr / 1fr;
+.InProjects #leftbar {
+  grid-row: 2 / 13;
+  grid-column: 1 / 3;
+  position: relative;
+  color: black;
+  background-color: #191919;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 33px;
+  justify-content: start;
+  align-items: center;
+  gap: 50px;
 }
 
-.InProjects .LeftBar{
-  grid-column: 1   span;
-  grid-row:  11 span;
-}
-
-.InProjects .Flow{
-  grid-column: 11 span;
+.InProjects #react-flow-wrapper {
+  grid-column: 10 span;
   grid-row: 11 span;
 }

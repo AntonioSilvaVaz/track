@@ -23,21 +23,19 @@ function CreateProject() {
 
         <div className='input-options'>
           <h3>Title:</h3>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="ex: track" />
+          <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="track" />
         </div>
 
         <div className='input-options'>
           <h3>Description:</h3>
-          <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="ex: track is nice" />
+          <input value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="track is nice" />
         </div>
 
         <div className='input-options'>
           <button className="create" onClick={createProject}>
-            <h3>Create Project:</h3>
+            <h3>Create Project</h3>
           </button>
         </div>
-
-
       </div>
     </div>
   )

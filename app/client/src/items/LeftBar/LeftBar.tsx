@@ -12,32 +12,30 @@ const handleDrag = (event: any, nodeType: string) => {
 
 function LeftBar() {
 
-  const { setNodes, setShowExport } = useContext(FlowContext);
+  const { setNodes } = useContext(FlowContext);
 
   return (
     <div id='leftbar'>
 
-      <div className='btn-container'>
-        <button className="item-btn rectangle" onDragStart={(event) => handleDrag(event, 'itemNodeRect')} onClick={() => createNewRectNode(setNodes)} draggable>
-          <h3>text</h3>
-        </button>
+      <button className="item-btn rectangle"
+        onDragStart={(event) => handleDrag(event, 'itemNodeRect')}
+        onClick={() => createNewRectNode(setNodes)} draggable>
+        <h3>text</h3>
+      </button>
 
+      <button className="item-btn circle"
+        onDragStart={(event) => handleDrag(event, 'itemNodeRound')}
+        onClick={() => createNewRoundNode(setNodes)} draggable>
+        <h3>text</h3>
+      </button>
 
-        <button className="item-btn circle" onDragStart={(event) => handleDrag(event, 'itemNodeRound')} onClick={() => createNewRoundNode(setNodes)} draggable>
-          <h3>text</h3>
-        </button>
+      <button className='imgDrag'
+        onDragStart={(event) => handleDrag(event, 'imageNode')}
+        onClick={() => createNewNodeImage(setNodes)} draggable>
+      </button>
 
-        <button className='imgDrag' onDragStart={(event) => handleDrag(event, 'imageNode')} onClick={() => createNewNodeImage(setNodes)} draggable>
-        </button>
-
+      <div id="colorPicker">
         <ColorPicker />
-
-      </div>
-
-      <div className='img-drag-container'>
-        <button className='export-btn' onClick={() => setShowExport(true)}>
-          <h2>Export</h2>
-        </button>
       </div>
 
     </div>

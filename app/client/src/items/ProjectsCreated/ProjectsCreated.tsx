@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DashboardContext, Context } from "../../Context/context";
 
-import bg from "../../images/white_bg.png";
+import bg from "../../images/black_bg.jpg";
 import "./ProjectsCreated.css"
 import { deleteProject } from "../../utils/ProjectUtils";
 

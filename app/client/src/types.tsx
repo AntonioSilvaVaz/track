@@ -40,5 +40,7 @@ export type initialProject = {
 export type DashboardType = {
   title: string,
   rightText: string,
-  callback: any
+  callback: any,
+  extraCallback?: any,
+  extraStyle?: any,
 }
