@@ -12,7 +12,7 @@ function ProjectContainer() {
   const allProjects = projects.map((project: initialProject, index: number) => {
 
     return (
-      <div key={index} className="options-container hover">
+      <div key={index} className="project-holder hover">
         < ProjectCreated  banner={project.banner} title={project.title} description={project.description} _id={project._id}/>
       </div>
     )

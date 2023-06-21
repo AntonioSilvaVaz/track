@@ -1,18 +1,18 @@
-#ProjectContainer{
+#ProjectContainer {
+  box-sizing: content-box;
   position: relative;
-  padding: 20px;
-  gap: 20px;
-  grid-column: 1 / 11 fr;
+  padding: 20px 0;
+  gap: 13px;
+  grid-column: 2 / 12;
+  grid-row: 12 span;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  z-index: 1;
+  align-content: flex-start;
+  overflow-y: scroll;
 }
 
-#ProjectContainer .options-container{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+/* HIDES THE SCROLLBAR ON THAT CONTAINER */
+#ProjectContainer::-webkit-scrollbar{
+  display: none;
 }

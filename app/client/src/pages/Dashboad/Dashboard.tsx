@@ -32,9 +32,11 @@ function Dashboard() {
         {showCreateProject && <CreateProject />}
         <DashboardBar title={'Dashboard'} rightText={'Logout'} callback={logUserOut} />
         <ProjectsContainer />
-        <button className='create-btn' onClick={() => setShowCreateProject(true)}>
-          <h2>+</h2>
-        </button>
+        <div className="btn-container">
+          <button className='create-btn' onClick={() => setShowCreateProject(true)}>
+            <h2>New project</h2>
+          </button>
+        </div>
       </section>
     </ DashboardContext.Provider >
   )

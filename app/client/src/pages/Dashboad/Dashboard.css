@@ -1,17 +1,29 @@
 #dashboard {
+  position: relative;
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
+  background-color: black;
+  overflow: hidden;
+}
+
+#dashboard .btn-container{
+  position: absolute;
+  bottom: 0;
+  grid-column: 2;
+  z-index: 2;
 }
 
 #dashboard .create-btn{
-  position: absolute;
-  bottom: 0;
-  left: 0px;
+  border-top: 3px solid;
+  border-left: 3px solid;
+  border-right: 3px solid;
+  border-color: black;
+  position: relative;
+  grid-column: 2 / 12;
   width: 200px;
   border-radius: 20px 20px 0 0;
-  border: 0;
-  box-shadow: 8px -7px 20px rgb(160, 160, 160);
+  box-shadow: 2px 0px 20px rgb(90, 90, 90);
 }

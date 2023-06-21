@@ -24,12 +24,16 @@ function ProjectsCreated({ title, description, _id, banner }: any) {
   }
 
   return (
-    <div className="project hover"
-      onContextMenu={deleteElement}
-      onClick={loadFlow}>
-      <img src={imgSrc} alt="Banner" />
-      <h3 className="title">{title}</h3>
-    </div >
+    <>
+      <div className="project hover"
+        onContextMenu={deleteElement}
+        onClick={loadFlow}>
+        <img src={imgSrc} alt="Banner" />
+      </div >
+      <div className="title-container">
+        <h3>{title}</h3>
+      </div>
+      </>
   )
 }
 
