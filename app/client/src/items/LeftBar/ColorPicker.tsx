@@ -45,7 +45,7 @@ function ColorPicker() {
         style={{ backgroundColor: color }}
         onDragStart={(e) => handleDrag(e, color + 'horizontal')}
         onDragOver={onDragOver}
-        onDrop={(e) => switchColor(e, index, setHorizontalColors, colors)}
+        onDrop={(e) => switchColor(e, index, setHorizontalColors, horizontalColors)}
         draggable
       >
 

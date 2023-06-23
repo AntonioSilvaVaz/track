@@ -3,7 +3,6 @@ import { MarkerType } from "reactflow";
 import { nodeType, conectItems } from "../types";
 
 let totalNodes: number = 0;
-let maxNodes: number = 0;
 
 let currentText: { id: number, text: string }[] = [];
 export let currentImages: { id: number, img: string }[] = [];
@@ -12,8 +11,8 @@ export let currentImages: { id: number, img: string }[] = [];
 // IF THE ITEMS DON'T GET RESETED THEN WITH MORE THAN 1 DOCUMENT
 // THEY START LOADING THE WRONG INFORMATION
 export function resetItems() {
-  currentText = []
-  currentImages = []
+  currentText = [];
+  currentImages = [];
 }
 
 export function pushToFiles(img: string, id: number) {
@@ -96,7 +95,7 @@ export function getInitialItems(arr: any, reactFlowInstance: any) {
 
   return arr.map((item: any, index: number) => {
 
-    maxNodes = item.id >= maxNodes ? Number(item.id) + 1 : maxNodes;
+    totalNodes = item.id >= totalNodes ? Number(item.id) + 1 : totalNodes;
     currentText.push({ id: item.id, text: item.text });
     item.file && currentImages.push({ id: item.id, img: item.file });
 

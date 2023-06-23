@@ -115,10 +115,15 @@ export function mergeColor(event: any, colorMerge: string, setColorMerge: SetSta
 // CHANGE TO THE COLOR THAT WAS DROPED IN
 export function switchColor(event: any, index: number, setter: SetStateAction<any>, colors: string[]) {
   event.preventDefault();
-  const newColor = event.dataTransfer.getData('application/reactflow');
+  let newColor = event.dataTransfer.getData('application/reactflow');
+  if(newColor.match('horizontal')) newColor = newColor.slice(0, -'horizontal'.length)
+
   const newArr = [...colors];
   newArr[index] = newColor;
-  setter(newArr)
+  console.log(newArr);
+  console.log(colors);
+
+  setter(newArr);
 };
 
 // RETURNS AN HEX COLOR TO RGB
