@@ -104,7 +104,7 @@ export function changeColor(event: ChangeEvent<any>, setColorMerge: SetStateActi
   setColorMerge(newColor);
 }
 
-// MERGES THE 2 COLORS THE CURRENT COLOR MERGE AND THE DROPED COLOR
+// MERGES THE 2 COLORS THE CURRENT COLOR MERGE AND THE DROPPED COLOR
 export function mergeColor(event: any, colorMerge: string, setColorMerge: SetStateAction<any>) {
   event.preventDefault();
   const type = event.dataTransfer.getData('application/reactflow');
@@ -112,7 +112,7 @@ export function mergeColor(event: any, colorMerge: string, setColorMerge: SetSta
   setColorMerge(newColor);
 }
 
-// CHANGE TO THE COLOR THAT WAS DROPED IN
+// CHANGE TO THE COLOR THAT WAS DROPPED IN
 export function switchColor(event: any, index: number, setter: SetStateAction<any>, colors: string[]) {
   event.preventDefault();
   let newColor = event.dataTransfer.getData('application/reactflow');

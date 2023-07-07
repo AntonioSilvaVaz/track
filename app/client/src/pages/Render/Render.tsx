@@ -7,7 +7,7 @@ import download from "downloadjs";
 import './Render.css';
 
 
-async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
+async function exportFile(toWhat: 'png' | 'svg' | 'jpeg', projectName: string) {
   const node = document.getElementsByClassName('Flow')[0];
   const nodeAsHtml = (node as HTMLElement);
 
@@ -27,13 +27,13 @@ async function exportFile(toWhat: 'png' | 'svg' | 'jpeg') {
       end = 'jpeg';
     }
     else return;
-    download(dataUrl, `track.${end}`);
+    download(dataUrl, `track-${projectName}.${end}`);
   } catch (error) {
     alert('Something went wrong');
   }
 }
 
-function Render() {
+function Render({ projectName }: { projectName: string }) {
 
   const { setShowExport } = useContext(FlowContext);
 
@@ -46,21 +46,21 @@ function Render() {
 
         <div className='export-options'>
           <h3>SVG:</h3>
-          <button className='export-btn' onClick={() => exportFile('svg')}>
+          <button className='export-btn' onClick={() => exportFile('svg', projectName)}>
             <h4>Export as SVG</h4>
           </button>
         </div>
 
         <div className='export-options'>
           <h3>PNG:</h3>
-          <button className='export-btn' onClick={() => exportFile('png')}>
+          <button className='export-btn' onClick={() => exportFile('png', projectName)}>
             <h4>Export as PNG</h4>
           </button>
         </div>
 
         <div className='export-options'>
           <h3>JPEG:</h3>
-          <button className='export-btn' onClick={() => exportFile('jpeg')}>
+          <button className='export-btn' onClick={() => exportFile('jpeg', projectName)}>
             <h4>Export as JPEG</h4>
           </button>
         </div>

@@ -9,7 +9,7 @@ export type nodeType = {
   attributes?: {}
 }
 
-export type conectItems = {
+export type connectItems = {
   id: string,
   source: string,
   target: string,

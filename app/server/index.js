@@ -2,13 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+require('dotenv').config()
 
 const router = require('./router');
 const app = express();
-const PORT = 3001;
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: `http://localhost:${process.env.FRONT_END_PORT}`,
   credentials: true
 }
 
@@ -18,4 +18,4 @@ app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use(router);
 
-app.listen(PORT, ()=> console.log(`Running at http://localhost:${PORT}/`));
+app.listen(process.env.PORT, ()=> console.log(`Running at http://localhost:${process.env.PORT}/`));

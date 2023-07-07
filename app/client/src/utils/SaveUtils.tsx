@@ -18,7 +18,7 @@ export async function saveFile(edges: any) {
     sourceId: edge.source,
     targetId: edge.target,
     sourceHandle: edge.sourceHandle,
-    targetHandle: edge.tagetHandle
+    targetHandle: edge.targetHandle
     }));
 
   const endArr = [

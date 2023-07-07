@@ -1,4 +1,4 @@
-const {Save} = require('./User');
+const { Save } = require('./Schemas');
 
 // GETS A INFORMATION OF AN X PROJECT
 async function getInfo(user_id, project_id) {
@@ -21,7 +21,7 @@ async function saveInfo(information, user_id, project_id) {
     file: item.img
   }));
 
-  const conections = information[1].map(item => ({
+  const connections = information[1].map(item => ({
     sourceId: item.sourceId,
     targetId: item.targetId,
     sourceHandle: item.sourceHandle,
@@ -35,13 +35,13 @@ async function saveInfo(information, user_id, project_id) {
 
   if (project[0]) {
     project[0].items = items;
-    project[0].conections = conections;
+    project[0].connections = connections;
     project[0].banner = banner;
     await document.save();
   } else {
     project[0] = {
       items,
-      conections,
+      connections,
       banner
     };
 

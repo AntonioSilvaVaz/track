@@ -1,14 +1,14 @@
-// ALL OF THE UTILITES FUNCTION TAHT ARE BEING USED BY THE REACT FLOW
+// ALL OF THE UTILITIS FUNCTIONS THAT ARE BEING USED BY THE REACT FLOW
 import { MarkerType } from "reactflow";
-import { nodeType, conectItems } from "../types";
+import { nodeType, connectItems } from "../types";
 
 let totalNodes: number = 0;
 
 let currentText: { id: number, text: string }[] = [];
 export let currentImages: { id: number, img: string }[] = [];
 
-// THIS IS REALLY IMPORTANT BECAUSE OF THE WAY THE LOADING IS STUCTURE
-// IF THE ITEMS DON'T GET RESETED THEN WITH MORE THAN 1 DOCUMENT
+// THIS IS REALLY IMPORTANT BECAUSE OF THE WAY THE LOADING IS STRUCTURED
+// IF THE ITEMS DON'T GET RESTARTED THEN WITH MORE THAN 1 DOCUMENT
 // THEY START LOADING THE WRONG INFORMATION
 export function resetItems() {
   currentText = [];
@@ -120,8 +120,8 @@ export function getInitialItems(arr: any, reactFlowInstance: any) {
   });
 }
 
-// RETURNS AN ARRAYS WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODE CONNECTONS
-export function connectInitialItems(edges: [{ sourceId: string, targetId: string, sourceHandle: string, targetHandle: string }]): conectItems[] {
+// RETURNS AN ARRAYS WITH ALL WHAT IS NEEDED TO CREATE THE INITIAL NODE CONNECTIONS
+export function connectInitialItems(edges: [{ sourceId: string, targetId: string, sourceHandle: string, targetHandle: string }]): connectItems[] {
 
   return edges.map(item => ({
     id: item.sourceId + '-' + item.targetId,
@@ -142,6 +142,7 @@ export function findMyText(node: Element) {
   return text[0]?.text;
 }
 
+// FINDS A SPECIFIC IMAGE IN THE FLOW
 export function findMyImage(node: Element) {
   const parentNode: any = node.parentNode;
   const id = parentNode.getAttribute("data-id");
@@ -149,6 +150,7 @@ export function findMyImage(node: Element) {
   return text[0]?.img;
 }
 
+// FETCHES THE INITIAL DATA
 export async function fetchData(setNodes: any, setEdges: any, reactFlowInstance: any) {
 
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/info`, { credentials: 'include', });
@@ -157,7 +159,7 @@ export async function fetchData(setNodes: any, setEdges: any, reactFlowInstance:
   if (data[0]) {
     try {
       const nodes = getInitialItems(data[0].items, reactFlowInstance);
-      const edges = connectInitialItems(data[0].conections);
+      const edges = connectInitialItems(data[0].connections);
       setNodes(nodes);
       setEdges(edges);
     } catch (error) {

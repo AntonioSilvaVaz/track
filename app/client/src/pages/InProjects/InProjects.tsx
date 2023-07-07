@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { SetStateAction, useContext } from "react"
 import { Context, FlowContext } from "../../Context/context";
 
 import { useNodesState, useEdgesState } from "reactflow";
@@ -15,12 +15,12 @@ import { saveFile } from "../../utils/SaveUtils";
 
 function InProjects() {
 
-  const { title, setShowProject } = useContext(Context);
+  const { title, setShowProject }: { title: string, setShowProject: SetStateAction<any> } = useContext(Context);
 
-  const [showExport, setShowExport]: [any, any] = useState(false);
-  const [nodes, setNodes, onNodesChange]: [any, any, any] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange]: [any, any, any] = useEdgesState([]);
-  const [saved, setSaved]: [any, any] = useState('');
+  const [showExport, setShowExport]: [boolean, any] = useState(false);
+  const [nodes, setNodes, onNodesChange]: [any, SetStateAction<any>, any] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange]: [any, SetStateAction<any>, any] = useEdgesState([]);
+  const [saved, setSaved]: [string, SetStateAction<any>] = useState('');
 
   const value = {
     nodes, setNodes, onNodesChange,
@@ -40,7 +40,7 @@ function InProjects() {
   return (
     <FlowContext.Provider value={value}>
       <main className='InProjects'>
-        {showExport && <Render />}
+        {showExport && <Render projectName={title} />}
         <DashboardBar title={'Dashboard'} extraStyle={{ gridColumn: '1 / 3' }} rightText={title} callback={() => setShowExport(true)} extraCallback={extraCallback} />
         <LeftBar />
         <Flow />

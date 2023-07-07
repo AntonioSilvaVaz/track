@@ -1,6 +1,6 @@
 import { SetStateAction } from "react";
 
-// THE CHECK USER FUNCTION SETS THE USER ID COOKIE OF EVEYTHING GOES FINE
+// THE CHECK USER FUNCTION SETS THE USER ID COOKIE IF EVERYTHING GOES FINE
 export async function loginUser(email: string, password: string) {
 
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/login`, {
@@ -14,7 +14,7 @@ export async function loginUser(email: string, password: string) {
   else return false;
 }
 
-// IT CREATES A NEW USER AND AUTOMATICALY LOGS IT IN
+// IT CREATES A NEW USER AND AUTOMATICALLY LOGS IN
 export async function createUser(email: string, password: string) {
 
   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/register`, {
@@ -33,11 +33,14 @@ export async function createUser(email: string, password: string) {
 
 // LOGS THE USER OUT
 export async function logout(setLoggedIn: SetStateAction<any>) {
-  // if(cookies[0] && cookies[0] === )
-  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, { credentials: 'include', method: 'DELETE', });
+  const res = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,
+    {
+      credentials: 'include', method: 'DELETE',
+    });
+
   if (res.ok) {
     setLoggedIn(false);
-    window.location.reload()
+    window.location.reload();
   }
   else alert('Failed logout');
 }

@@ -15,7 +15,7 @@ const login = async (req, res) => {
       expirationDate.setMonth(expirationDate.getMonth() + 1);
       res.setHeader('Set-Cookie', `user_id=${info}; expires=${expirationDate.toUTCString()}; path=/`);
       res.writeHead(200, { 'Content-Type': 'text/plain'});
-      res.end('Loged in');
+      res.end('Logged in');
     } catch (error) {
       console.log(error);
       res.writeHead(409, {'Content-Type': 'text/plain'});
@@ -75,7 +75,7 @@ const confirmUser = async (req, res) => {
     try {
       await checkUser(user_id);
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Autorized');
+      res.end('Authorized');
     } catch (error) {
       res.writeHead(401, { 'Content-Type': 'text/plain' });
       res.end('Unauthorized');

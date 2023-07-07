@@ -9,7 +9,7 @@ return (async () => {
   const newUser = await Save.create({
     user_email: "demo@demo.com",
     password: "123",
-    projects: [...parsed],
+    projects: parsed,
   });
 
   console.log(newUser);
