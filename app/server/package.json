@@ -11,6 +11,7 @@
   "scripts": {
     "fill": "node ./mock/insertDb.js",
     "get": "node ./mock/getAllDb.js",
-    "clear": "node ./mock/deleteDb.js"
+    "clear": "node ./mock/deleteDb.js",
+    "start": "node index.js"
   }
 }
