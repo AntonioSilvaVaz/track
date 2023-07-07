@@ -32,7 +32,15 @@ Env variables
 
 `DB_NAME -> ex: track`
 ## Features
-
+- Node Creation and Connection
+- Interactive Visualization
+- Dynamic manipulation
+- Image Integration
+- Customizable Node Properties
+- User Register/Login
+- Data Persistence
+- Intuitive Interface
+- MongoDB Integration
 
 ## Stack
 
