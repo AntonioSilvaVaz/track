@@ -3,6 +3,3 @@ node_modules/
 
 #ENV VARIABLES
 .env
-
-# reame
-README.md
