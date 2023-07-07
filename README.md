@@ -4,9 +4,9 @@ Track is a cutting-edge application that empowers users to visualize and collabo
 
 ## Screenshots
 
-![gif example 1](https://github.com/AntonioSilvaVaz/track/resources/dogo_ex.png)
-![gif example](https://github.com/AntonioSilvaVaz/track/resources/trac_ex.gif)
-![video example](https://github.com/AntonioSilvaVaz/track/resources/track_ex.mkv)
+![gif example 1](https://github.com/AntonioSilvaVaz/track/blob/main/resources/dogo_ex.png)
+![gif example](https://github.com/AntonioSilvaVaz/track/blob/main/resources/trac_ex.gif)
+![video example](https://github.com/AntonioSilvaVaz/track/blob/main/resources/track_ex.mp4)
 
 
 ## Get Started
