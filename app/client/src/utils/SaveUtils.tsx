@@ -35,7 +35,7 @@ export async function saveFile(edges: any) {
     }
   ];
 
-  return fetch('http://localhost:3001/save', {
+  return fetch(`${process.env.REACT_APP_BASE_URL}/save`, {
     credentials: 'include',
     method: 'POST',
     headers: {
@@ -117,7 +117,7 @@ function handleImageNode(node: Element): nodeSave {
     if (file.id === id) return file;
   });
 
-  const imgSelected = img[0] ? img[0].img : 'http://localhost:3000/static/media/cat.77aaf5376cc1173fc38e.jpg';
+  const imgSelected = img[0] ? img[0].img : `${process.env.REACT_APP_BASE_URL}/static/media/cat.77aaf5376cc1173fc38e.jpg`;
 
 
   return {
